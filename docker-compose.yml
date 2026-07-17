@@ -43,15 +43,18 @@ services:
             fr_fr: Bibliothèque, configuration et sauvegardes (db.json).
 
   # ── Mise à jour automatique ──────────────────────────────────────────────
-  # Tag `:latest` explicite — Docker le sous-entend, mais l'import CasaOS
-  # EXIGE un tag et refuse le formulaire sans dire pourquoi : l'erreur
-  # s'affiche sur l'onglet du service, qu'on ne regarde pas.
+  # Nom d'image ENTIER (registre/espace/nom:tag), comme celui de playR.
+  # L'import CasaOS découpe le nom pour remplir ses champs « Image » et « Tag » :
+  # sur un raccourci Docker Hub à deux segments (`containrrr/watchtower`), il
+  # laisse le Tag VIDE, puis refuse le formulaire — avec une erreur affichée sur
+  # l'onglet du service, celui qu'on ne regarde pas. Docker, lui, accepte les
+  # deux écritures : rien ne signalait le problème avant l'import.
   # Surveille et met playR à jour tout seul (chaque nuit à 4h). Limité au
   # conteneur « playr » — ne touche à aucun autre conteneur de la machine.
   # Rien à configurer : c'est inclus par défaut. La notification « mise à jour »
   # dans l'app reste disponible comme repli manuel si besoin.
   playr-updater:
-    image: containrrr/watchtower:latest
+    image: docker.io/containrrr/watchtower:latest
     container_name: playr-updater
     restart: unless-stopped
     environment:
