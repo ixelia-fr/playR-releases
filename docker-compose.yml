@@ -1,0 +1,83 @@
+# Import CasaOS — playR Serveur
+# CasaOS : Applications → « + » (personnalisée) → « Importer » → coller ce fichier.
+# (Ou : partager ce fichier à quelqu'un qui a un CasaOS / NAS avec Docker Compose.)
+#
+# ⚠️ Nécessite que l'image ghcr.io/ixelia-fr/playr soit PUBLIQUE.
+
+name: playr
+
+services:
+  playr:
+    image: ghcr.io/ixelia-fr/playr:latest
+    container_name: playr
+    restart: unless-stopped
+    ports:
+      - target: 3000
+        published: "3000"
+        protocol: tcp
+    environment:
+      - NODE_ENV=production
+      - DATA_PATH=/app/data
+    volumes:
+      - type: bind
+        source: /DATA/AppData/playr/data
+        target: /app/data
+    x-casaos:
+      ports:
+        - container: "3000"
+          description:
+            en_us: Web interface / API used by the playR client apps.
+            fr_fr: Interface web / API utilisée par les apps clientes playR.
+      volumes:
+        - container: /app/data
+          description:
+            en_us: Library, config and backups (db.json).
+            fr_fr: Bibliothèque, configuration et sauvegardes (db.json).
+
+  # ── Mise à jour automatique ──────────────────────────────────────────────
+  # Surveille et met playR à jour tout seul (chaque nuit à 4h). Limité au
+  # conteneur « playr » — ne touche à aucun autre conteneur de la machine.
+  # Rien à configurer : c'est inclus par défaut. La notification « mise à jour »
+  # dans l'app reste disponible comme repli manuel si besoin.
+  playr-updater:
+    image: containrrr/watchtower
+    container_name: playr-updater
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Paris
+    command: ["--schedule", "0 0 4 * * *", "--cleanup", "playr"]
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    x-casaos:
+      volumes:
+        - container: /var/run/docker.sock
+          description:
+            en_us: Docker socket — lets the auto-updater keep playR up to date.
+            fr_fr: Socket Docker — permet la mise à jour automatique de playR.
+
+x-casaos:
+  architectures:
+    - amd64
+  main: playr
+  author: Ixelia
+  developer: Ixelia
+  category: Games
+  title:
+    en_us: playR
+    fr_fr: playR
+  tagline:
+    en_us: Your multi-platform game library, unified.
+    fr_fr: Votre bibliothèque de jeux multi-plateforme, unifiée.
+  description:
+    en_us: >-
+      playR server. Hosts your unified game library (Steam, Epic, GOG, Amazon)
+      and serves the playR client apps on your network. Point each client's
+      "server address" to http://[NAS-IP]:3000.
+    fr_fr: >-
+      Serveur playR. Héberge votre bibliothèque de jeux unifiée (Steam, Epic,
+      GOG, Amazon) et alimente les apps clientes playR du réseau. Réglez
+      l'« adresse du serveur » de chaque client sur http://[IP-NAS]:3000.
+  icon: https://raw.githubusercontent.com/ixelia-fr/playR-releases/main/icon.png
+  port_map: "3000"

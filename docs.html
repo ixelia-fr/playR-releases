@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Documentation — playR</title>
+<meta name="description" content="Installer un serveur playR (Windows, CasaOS, Synology, NAS, Proxmox), connecter ses comptes, obtenir sa clé IGDB. Guide pas à pas." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#07070d;--ink:#eae7f2;--muted:#9a97ac;--violet:#8b5cf6;--cyan:#22d3ee;
+    --line:rgba(255,255,255,.08);--card:rgba(255,255,255,.03);
+    --display:'Bricolage Grotesque',sans-serif;--body:'Instrument Sans',sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+  .bg-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(60vw 50vw at 82% -10%,rgba(139,92,246,.22),transparent 60%),
+    radial-gradient(50vw 50vw at 5% 8%,rgba(34,211,238,.12),transparent 55%)}
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,7,13,.65);border-bottom:1px solid var(--line)}
+  nav .in{max-width:1000px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:var(--display);font-weight:800;font-size:20px}
+  .logo b{background:linear-gradient(90deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .layout{max-width:1000px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:220px 1fr;gap:48px}
+  aside{position:sticky;top:96px;align-self:start;padding-top:56px}
+  aside a{display:block;color:var(--muted);font-size:14.5px;padding:8px 0;border-left:2px solid transparent;padding-left:14px}
+  aside a:hover{color:var(--ink);text-decoration:none}
+  aside .grp{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5c5972;margin:20px 0 6px;padding-left:14px}
+  main{padding:56px 0 120px;min-width:0}
+  h1{font-family:var(--display);font-weight:700;letter-spacing:-.03em;font-size:clamp(34px,6vw,52px);margin-bottom:10px}
+  .intro{color:var(--muted);font-size:18px;margin-bottom:10px}
+  h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:28px;margin:56px 0 14px;
+    padding-top:20px;border-top:1px solid var(--line);scroll-margin-top:88px}
+  h3{font-family:var(--display);font-weight:600;font-size:19px;margin:28px 0 8px}
+  p,li{color:#c9c6d6;font-size:15.5px}
+  ul,ol{margin:12px 0 12px 22px}li{margin:6px 0}
+  strong{color:var(--ink)}
+  code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13.5px;font-family:ui-monospace,monospace;color:#d6d2e6}
+  pre{background:#0c0c17;border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;margin:14px 0}
+  pre code{background:none;padding:0;color:#cdd6e6;line-height:1.6}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
+  .warn{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
+  .warn strong{color:#fbbf24}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14.5px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em}
+  .pill{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;background:rgba(139,92,246,.16);
+    border:1px solid rgba(139,92,246,.35);color:#c4b5fd;margin-bottom:8px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:11px 20px;
+    border-radius:12px;background:linear-gradient(90deg,var(--violet),var(--cyan));color:#08080f}
+  .btn:hover{text-decoration:none}
+  @media(max-width:780px){.layout{grid-template-columns:1fr}aside{display:none}}
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+<nav><div class="in">
+  <a href="index.html" class="logo" style="color:inherit">Game<b>HuB</b> · Doc</a>
+  <a href="index.html" style="color:var(--muted);font-size:14px">← Accueil</a>
+</div></nav>
+
+<div class="layout">
+  <aside>
+    <div class="grp">Démarrer</div>
+    <a href="#principe">Le principe</a>
+    <div class="grp">Serveur</div>
+    <a href="#windows">Sur un PC Windows</a>
+    <a href="#casaos">Sur CasaOS</a>
+    <a href="#synology">Sur Synology / NAS</a>
+    <a href="#proxmox">Sur Proxmox</a>
+    <a href="#docker">Docker (n'importe où)</a>
+    <a href="#autres">Portainer / Unraid / TrueNAS…</a>
+    <a href="#maj">Mettre à jour</a>
+    <div class="grp">Client</div>
+    <a href="#client">Installer le client</a>
+    <a href="#comptes">Connecter ses comptes</a>
+    <a href="#igdb">Clé IGDB (jaquettes)</a>
+  </aside>
+
+  <main>
+    <span class="pill">Documentation</span>
+    <h1>Installer &amp; configurer playR</h1>
+    <p class="intro">Tout est expliqué pas à pas — même si vous débutez.</p>
+
+    <h2 id="principe">Le principe</h2>
+    <p>playR = <strong>un serveur</strong> (qui héberge la bibliothèque) + <strong>des clients</strong> (les PC qui s'y connectent).</p>
+    <ol>
+      <li><strong>Le serveur</strong> tourne sur un PC, un CasaOS, un NAS ou un Proxmox.</li>
+      <li><strong>Le client</strong> (app Windows) se connecte à l'adresse du serveur (ex. <code>192.168.1.10:3000</code>).</li>
+      <li>Vous <strong>connectez vos comptes</strong> (Steam, Epic…) et synchronisez.</li>
+    </ol>
+    <p>Vous avez besoin d'<strong>un seul serveur</strong> sur votre réseau ; tous vos PC clients pointent dessus.</p>
+
+    <h2 id="windows">Serveur — sur un PC Windows</h2>
+    <p>Le plus simple : au moment d'installer playR (<a href="https://github.com/ixelia-fr/playR-releases/releases/latest">télécharger l'installeur</a>), cochez <strong>« Serveur »</strong> en plus du client.</p>
+    <ul>
+      <li>Une petite fenêtre <strong>playR Serveur</strong> s'ouvre et affiche l'adresse à donner aux autres PC.</li>
+      <li>Fermer la fenêtre la réduit dans la <strong>barre système</strong> (près de l'horloge) — le serveur continue de tourner.</li>
+      <li>Pour l'arrêter : clic droit sur l'icône → <em>Arrêter</em>.</li>
+    </ul>
+
+    <h2 id="casaos">Serveur — sur CasaOS</h2>
+    <ol>
+      <li>App Store → <strong>Installer une app personnalisée</strong>.</li>
+      <li>Cliquez sur l'icône <strong>Importer</strong>, en haut à droite de la fenêtre.</li>
+      <li>Copiez le contenu de <a href="casaos/docker-compose.yml" target="_blank" rel="noopener">ce fichier</a>, collez-le, puis <strong>Envoyer</strong>.</li>
+      <li>Cliquez sur <strong>Installer</strong>.</li>
+      <li>Dans la fenêtre qui s'ouvre : <strong>Installer</strong>, puis <strong>Ouvrir</strong>.</li>
+    </ol>
+    <p>Adresse à donner aux clients : <code>http://[IP-du-CasaOS]:3000</code>.</p>
+
+    <h2 id="synology">Serveur — sur Synology / NAS</h2>
+    <div class="box warn"><strong>Avant tout : votre Synology supporte-t-il Docker ?</strong><br>
+      Docker n'est disponible que sur les Synology <strong>compatibles</strong> (surtout modèles Intel/x86 — séries « + » et milieu/haut de gamme). Sur beaucoup de modèles <strong>ARM / entrée de gamme</strong>, l'app <strong>n'apparaît pas du tout</strong> dans le Centre de paquets, quelle que soit la version de DSM. Dans ce cas, hébergez le serveur <strong>ailleurs</strong> : un PC avec l'app Windows « Serveur », un mini-PC, un Raspberry Pi…<br>
+      Pour vérifier : <a href="https://www.synology.com/fr-fr/dsm/packages/ContainerManager" target="_blank" rel="noopener">liste des modèles compatibles Container Manager</a>.<br><br>
+      <strong>Cas des Synology ARM (ex. DS218 — puce RTD1296) :</strong> Synology <strong>ne propose PAS</strong> Docker / Container Manager pour ces modèles dans le Centre de paquets. Une <strong>solution communautaire</strong> existe (script <a href="https://github.com/007revad/ContainerManager_for_all_armv8" target="_blank" rel="noopener">007revad « ContainerManager for all armv8 »</a>, DSM 7.2+) qui installe Container Manager sur ces modèles — <strong>non officiel, à vos risques</strong>.<br>
+      ⚠️ De plus, l'image playR est pour l'instant en <strong>amd64 uniquement</strong> ; le support <strong>arm64</strong> (NAS ARM, Raspberry Pi) est <strong>en cours</strong>. En attendant, sur ces machines, le plus simple est d'héberger le serveur <strong>ailleurs</strong> (mini-PC, CasaOS, ou l'app Windows « Serveur »).</div>
+    <p>Le nom de l'app dépend de votre version de DSM :</p>
+    <ul>
+      <li><strong>DSM 7.2 / 7.3</strong> → « <strong>Container Manager</strong> »</li>
+      <li><strong>DSM 7.0 / 7.1</strong> → « <strong>Docker</strong> »</li>
+    </ul>
+    <p>Si l'app est disponible dans le Centre de paquets, installez-la, ouvrez-la, puis :</p>
+    <ol>
+      <li><strong>Projet</strong> → <strong>Créer</strong>.</li>
+      <li>Nom : <code>playr</code> · chemin : un dossier (ex. <code>/docker/playr</code>).</li>
+      <li>Source : <em>Créer docker-compose.yml</em>, et collez :</li>
+    </ol>
+<pre><code>services:
+  playr:
+    image: ghcr.io/ixelia-fr/playr:latest
+    container_name: playr
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATA_PATH=/app/data
+    volumes:
+      - /volume1/docker/playr/data:/app/data</code></pre>
+    <ol start="4">
+      <li><strong>Suivant</strong> → <strong>Terminer</strong>. Container Manager télécharge l'image et démarre.</li>
+      <li>Adresse pour les clients : <code>http://[IP-du-Synology]:3000</code>.</li>
+    </ol>
+    <div class="box warn"><strong>Architecture :</strong> l'image est en <strong>amd64</strong> (Synology Intel : OK). Sur un Synology <strong>ARM</strong>, il faut une image multi-arch — demandez et on l'ajoute.</div>
+
+    <h2 id="proxmox">Serveur — sur Proxmox</h2>
+    <p>Deux options :</p>
+    <ul>
+      <li>Un <strong>conteneur LXC</strong> avec Docker installé, puis la commande <a href="#docker">Docker générique</a>.</li>
+      <li>Une petite <strong>VM</strong> (Debian/Ubuntu) avec Docker, idem.</li>
+    </ul>
+
+    <h2 id="docker">Serveur — Docker (la méthode universelle)</h2>
+    <p>Le serveur est une <strong>image Docker</strong> : elle tourne sur <strong>n'importe quel hôte Docker</strong> (un simple serveur Linux, un mini-PC, un Raspberry Pi Intel/amd64…). C'est la base de tous les autres cas.</p>
+<pre><code>mkdir -p ./playr/data
+docker run -d --name playr --restart unless-stopped \
+  -p 3000:3000 \
+  -e DATA_PATH=/app/data \
+  -v $(pwd)/playr/data:/app/data \
+  ghcr.io/ixelia-fr/playr:latest</code></pre>
+    <p>Ou avec un <code>docker-compose.yml</code> puis <code>docker compose up -d</code>.</p>
+
+    <h2 id="autres">Serveur — Portainer, Unraid, TrueNAS, OMV…</h2>
+    <p>Toutes ces plateformes exécutent <strong>Docker</strong> → c'est le <strong>même fichier compose</strong> partout. Repères par outil :</p>
+    <ul>
+      <li><strong>Portainer / Dockge</strong> : <em>Stacks</em> → <em>Add stack</em> → collez le compose → <em>Deploy</em>.</li>
+      <li><strong>Unraid</strong> : plugin <em>Compose Manager</em> (ou un template Docker) — image <code>ghcr.io/ixelia-fr/playr:latest</code>, port 3000, volume vers <code>/app/data</code>.</li>
+      <li><strong>TrueNAS SCALE</strong> : <em>Apps</em> → <em>Custom App</em> / Docker Compose — même image, même port, même volume.</li>
+      <li><strong>OpenMediaVault</strong> : plugin <em>compose</em> (omv-extras) → collez le compose.</li>
+    </ul>
+    <p>Dans tous les cas : image <code>ghcr.io/ixelia-fr/playr:latest</code>, port <code>3000</code>, volume persistant sur <code>/app/data</code>. Adresse pour les clients : <code>http://[IP-de-la-machine]:3000</code>.</p>
+
+    <h2 id="maj">Mettre à jour le serveur</h2>
+    <p><strong>Automatique (inclus par défaut).</strong> Le <code>docker-compose.yml</code> fourni embarque un service <code>playr-updater</code> qui met playR à jour <strong>tout seul chaque nuit</strong>. Rien à configurer, rien à taper. Il ne touche qu'au conteneur playR.</p>
+    <p><strong>Manuellement (repli).</strong> Une notification (🔔 en haut à droite) vous prévient quand une version existe. Si vous préférez déclencher vous-même, ou si vous avez installé l'<strong>image seule</strong> (sans le compose), la notification affiche la commande à lancer sur la machine hôte :</p>
+<pre><code>docker compose pull &amp;&amp; docker compose up -d</code></pre>
+    <p><strong>Serveur Windows</strong> : il se met à jour tout seul avec l'application.</p>
+
+    <h2 id="client">Installer le client</h2>
+    <p><a href="https://github.com/ixelia-fr/playR-releases/releases/latest">Téléchargez l'installeur</a>, cochez <strong>Client</strong>. Au premier lancement, saisissez l'<strong>adresse de votre serveur</strong> (ex. <code>192.168.1.10:3000</code>). Vous pouvez en changer à tout moment (menu ⚙ → <em>Changer de serveur</em>).</p>
+
+    <h2 id="comptes">Connecter ses comptes</h2>
+    <p>Chaque serveur démarre <strong>vide</strong> : vous connectez <strong>vos propres</strong> comptes dans <strong>⚙ Paramètres</strong>. Rien n'est partagé.</p>
+    <table>
+      <tr><th>Service</th><th>Ce qu'il faut</th><th></th></tr>
+      <tr><td>Steam</td><td>Connexion Steam (Connector, <strong>famille incluse</strong>) — ou SteamID + clé API</td><td><a href="#steam-help">Plus d'infos →</a></td></tr>
+      <tr><td>Epic</td><td>Code d'autorisation (un bouton dans l'app)</td><td><a href="#epic-help">Plus d'infos →</a></td></tr>
+      <tr><td>GOG</td><td>URL de votre profil public</td><td><a href="#gog-help">Plus d'infos →</a></td></tr>
+      <tr><td>Amazon</td><td>Un petit script + un fichier à importer</td><td><a href="#amazon-help">Plus d'infos →</a></td></tr>
+      <tr><td>IGDB (jaquettes, notes)</td><td>Client ID + Secret</td><td><a href="#igdb">Plus d'infos →</a></td></tr>
+      <tr><td>HowLongToBeat (durées)</td><td>Rien (public)</td><td>—</td></tr>
+    </table>
+
+    <h2 id="steam-help">Steam</h2>
+    <p>Deux façons, au choix :</p>
+    <ul>
+      <li><strong>Steam Connector (recommandé — inclut les jeux de la famille)</strong> : ⚙ Paramètres → Steam → entrez votre <strong>identifiant et mot de passe Steam</strong>, validez le code <strong>Steam Guard</strong>. Connexion unique (un jeton est stocké, rien n'est renvoyé ailleurs).</li>
+      <li><strong>Ou SteamID + clé API</strong> (jeux possédés uniquement, sans la famille) : votre <strong>SteamID64</strong> (17 chiffres, ex. <code>7656…</code> — trouvable via <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) et une clé gratuite sur <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+    </ul>
+
+    <h2 id="epic-help">Epic Games</h2>
+    <ol>
+      <li>⚙ Paramètres → Epic → bouton <strong>« Ouvrir Epic (obtenir le code) »</strong>.</li>
+      <li>Connectez-vous à Epic si besoin : une <strong>page JSON</strong> s'affiche dans le navigateur.</li>
+      <li>Copiez la valeur du champ <code>authorizationCode</code> (une longue suite de caractères).</li>
+      <li>Collez-la dans l'app et cliquez <strong>Valider</strong>. Connexion unique (le refresh token est conservé).</li>
+    </ol>
+
+    <h2 id="gog-help">GOG</h2>
+    <p>GOG n'a pas d'API de connexion : on lit votre <strong>profil public</strong>.</p>
+    <ol>
+      <li>Sur <a href="https://www.gog.com" target="_blank" rel="noopener">gog.com</a>, rendez votre profil <strong>public</strong> (Paramètres du profil → Confidentialité).</li>
+      <li>Ouvrez l'onglet <strong>JEUX</strong> de votre profil et copiez l'URL, du type <code>https://www.gog.com/u/PSEUDO/games</code>.</li>
+      <li>Collez-la dans ⚙ Paramètres → GOG → <strong>Synchroniser</strong>.</li>
+    </ol>
+
+    <h2 id="amazon-help">Amazon Games</h2>
+    <p>Amazon ne donne pas de jeton simple : un petit script récupère votre bibliothèque depuis votre PC (l'<strong>appli Amazon Games</strong> doit être installée et connectée).</p>
+    <ol>
+      <li>⚙ Paramètres → Amazon → <strong>« Télécharger le script PowerShell »</strong>.</li>
+      <li>Sur votre PC Windows : clic droit sur le script → <em>Exécuter avec PowerShell</em>.</li>
+      <li>Il crée un fichier <code>amazon_games.json</code> et ouvre son dossier.</li>
+      <li>Glissez ce fichier dans la zone d'import de l'app (⚙ Paramètres → Amazon).</li>
+    </ol>
+
+    <h2 id="igdb">Obtenir sa clé IGDB (jaquettes &amp; métadonnées)</h2>
+    <p>IGDB passe par un compte <strong>Twitch développeur</strong> (gratuit) :</p>
+    <ol>
+      <li>Allez sur <a href="https://dev.twitch.tv/console" target="_blank" rel="noopener">dev.twitch.tv/console</a> → <strong>Register Your Application</strong>.</li>
+      <li>Nom au choix · <em>OAuth Redirect URL</em> : <code>http://localhost</code> · Catégorie : <em>Application Integration</em>.</li>
+      <li>Récupérez le <strong>Client ID</strong> et générez un <strong>Client Secret</strong>.</li>
+      <li>Dans playR → ⚙ Paramètres → IGDB : collez <strong>Client ID</strong> + <strong>Client Secret</strong>.</li>
+    </ol>
+    <p>Puis lancez la synchronisation des métadonnées : jaquettes, descriptions et notes se remplissent.</p>
+
+    <div class="box" style="margin-top:48px;text-align:center">
+      <a href="https://github.com/ixelia-fr/playR-releases/releases/latest/download/playR-Setup.exe" class="btn">⬇ Télécharger playR</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>
