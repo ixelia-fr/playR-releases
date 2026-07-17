@@ -63,7 +63,7 @@ playR = **un serveur** (héberge la bibliothèque) + **des clients** (les PC qui
 Le serveur est une **image Docker** → il tourne partout.
 
 ### CasaOS
-**App Store** → *Installer une app personnalisée* → icône **Importer** (en haut à droite) → collez [`casaos/docker-compose.yml`](casaos/docker-compose.yml) → **Envoyer** → **Installer** → **Ouvrir**.
+**App Store** → *Installer une app personnalisée* → icône **Importer** (en haut à droite) → collez [`docker-compose.yml`](docker-compose.yml) → **Envoyer** → **Installer** → **Ouvrir**.
 (Détails pas à pas dans la [doc](https://ixelia-fr.github.io/playR-releases/docs.html#casaos).)
 
 ### NAS / Synology / Proxmox / Docker

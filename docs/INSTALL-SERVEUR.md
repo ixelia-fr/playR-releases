@@ -17,7 +17,7 @@ via son adresse réseau. Trois façons de faire tourner le serveur :
 ## CasaOS (import 1-clic)
 
 1. CasaOS → **Applications** → **+** → **Installer une app personnalisée** → **Importer**.
-2. Collez le contenu de [`casaos/docker-compose.yml`](../casaos/docker-compose.yml).
+2. Collez le contenu de [`docker-compose.yml`](../docker-compose.yml).
 3. **Installer**. playR apparaît dans vos apps.
 4. Adresse à donner aux clients : `http://[IP-du-CasaOS]:3000`.
 
@@ -25,7 +25,7 @@ via son adresse réseau. Trois façons de faire tourner le serveur :
 
 ```bash
 mkdir -p /DATA/AppData/playr/data
-# Récupérez casaos/docker-compose.yml (ou docker-compose.yml à la racine), puis :
+# Récupérez docker-compose.yml, puis :
 docker compose up -d
 ```
 Adresse à donner aux clients : `http://[IP-de-la-machine]:3000`.

@@ -1,8 +1,16 @@
-# Import CasaOS — playR Serveur
-# CasaOS : Applications → « + » (personnalisée) → « Importer » → coller ce fichier.
-# (Ou : partager ce fichier à quelqu'un qui a un CasaOS / NAS avec Docker Compose.)
+# playR Serveur — Docker Compose
 #
-# ⚠️ Nécessite que l'image ghcr.io/ixelia-fr/playr soit PUBLIQUE.
+# Fichier STANDARD : il marche sur n'importe quel Docker (NAS, mini-PC, Synology,
+# Portainer, `docker compose up -d`). Les blocs `x-casaos:` sont des extensions
+# optionnelles — la spec Compose impose de les ignorer, et tout Docker autre que
+# CasaOS les passe sans broncher. Ils servent uniquement à CasaOS pour afficher
+# l'app (titre, icône, description) lors d'un import en un clic.
+#
+# CasaOS : Applications → « + » (personnalisée) → « Importer » → coller ce fichier.
+#
+# ⚠️ L'image ghcr.io/ixelia-fr/playr DOIT être PUBLIQUE : sans identifiants,
+#    watchtower ne pourrait pas la télécharger et les mises à jour s'arrêteraient
+#    en silence.
 
 name: playr
 
