@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="fr">
+<html lang="pl">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>playR — Toute votre bibliothèque de jeux, réunie.</title>
-<meta name="description" content="playR réunit Steam, Epic, GOG et Amazon en une seule bibliothèque : lancez vos jeux, consultez leurs fiches, comparez les prix de vos wishlists. Mode TV à la manette, auto-hébergé, 9 langues." />
+<title>playR — Cała twoja biblioteka gier w jednym miejscu.</title>
+<meta name="description" content="playR łączy Steam, Epic, GOG i Amazon w jedną bibliotekę: uruchamiaj gry, przeglądaj ich opisy i porównuj ceny z list życzeń. Tryb TV obsługiwany padem, hostowany u ciebie, 9 języków." />
 <!-- Bunny Fonts et non Google Fonts : mêmes polices, serveurs européens, aucune
      adresse IP transmise à Google (ce que la CNIL sanctionne). ⚠️ Leur endpoint
      /css2 refuse la syntaxe à axes variables et répond une erreur EN 200 — donc
@@ -200,7 +200,7 @@
     footer .wrap{flex-direction:column;align-items:flex-start;gap:20px}
   }
 </style>
-  <link rel="canonical" href="https://playrgameslauncher.com/">
+  <link rel="canonical" href="https://playrgameslauncher.com/pl/">
   <link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/">
   <link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/">
   <link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/">
@@ -220,29 +220,29 @@
   <svg class="logo" viewBox="0 36 512 180" role="img" aria-label="playR"><g transform="translate(4,89)"><path d="M22.5 0 h 26 v 22.5 h 22.5 v 26 h -22.5 v 22.5 h -26 v -22.5 h -22.5 v -26 h 22.5 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(114,0)" fill="#f1f5f9"><path d="M34 88 C 32 122, 30 162, 29 202 C 29 207, 33.5 207, 35 201 C 39 160, 45 118, 49 88 C 50.5 80, 34.5 80, 34 88 Z"/><path d="M47 92 C 73 83, 102 96, 100 119 C 98 142, 66 152, 39 144 C 32.5 142, 35 131, 42 133.5 C 65 140, 88 132, 89 117 C 90 102, 70 94, 49 101 C 42.5 103, 40.5 90, 47 92 Z"/><path d="M112 50 C 110 90, 108 128, 107 159 C 107 164.5, 111.5 164.5, 113.5 158 C 118 128, 122.5 88, 126 50 C 127 42, 111.5 42, 112 50 Z"/><path d="M191 97 C 166 86, 138 99, 138 123 C 138 146, 163 156, 187 145 C 192.5 142.5, 196.5 149.5, 191 152.5 C 160 167, 125 151, 125 123 C 125 94, 161 77, 193 89.5 C 199.5 92, 197 99.5, 191 97 Z"/><path d="M192 92 C 190 116, 187 139, 187 157 C 187 163.5, 178 163.5, 178 157 C 178 136, 180.5 112, 183 92 C 184 84, 193 84, 192 92 Z"/><path d="M213 96 C 217 119, 225 141, 236 155.5 C 239.5 160, 231.5 166.5, 227 160.5 C 213.5 143, 205 119, 202 97 C 201 89, 212 88, 213 96 Z"/><path d="M264 94 C 256 125, 245 157, 233 183 C 227 196, 216.5 205.5, 205 208 C 198.5 209.5, 197 200.5, 204 198.5 C 214 196, 221.5 186, 227 175 C 239 148, 247.5 120, 253.5 93 C 255.5 85, 266 86, 264 94 Z"/><path d="M290 44 C 294 44, 298 47, 297 53 C 295 65, 290 78, 285 87 C 282.5 91, 277.5 88, 280 84 C 284 76, 287 64, 288 51 C 288.5 45.5, 287 44, 290 44 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(132,0)" fill="var(--violet)"><path d="M300 44 C 296 90, 292 132, 290 164 C 290 170, 279.5 170, 280.5 163.5 C 284 129, 288 87, 292 42 C 293 34, 301 36, 300 44 Z"/><path d="M296 47 C 331 40, 375 47, 377 74 C 379 99, 345 111, 310 109 C 303.5 109, 304.5 97.5, 311 97.5 C 341 99.5, 366 91, 364 74.5 C 362 58, 328 52.5, 298 58 C 291.5 59, 289.5 46, 296 47 Z"/><path d="M317 104 C 338 125, 359 148, 376 169 C 380 174, 370.5 181.5, 365.5 175 C 348 152, 327 129, 308.5 110.5 C 303 105, 312 98.5, 317 104 Z"/></g></svg>
   <input type="checkbox" id="nav-toggle" hidden>
   <div class="nav-links">
-    <a href="#features">Fonctionnalités</a>
-    <a href="#tv">Mode TV</a>
-    <a href="#promos">Envies &amp; Promos</a>
-    <a href="#how">Comment ça marche</a>
-    <a href="docs.html">Doc</a>
-    <details class="langs"><summary aria-label="Langue">🌐 Français</summary><div><a href="/" hreflang="fr" aria-current="page">Français</a><a href="/en/" hreflang="en">English</a><a href="/de/" hreflang="de">Deutsch</a><a href="/es/" hreflang="es">Español</a><a href="/it/" hreflang="it">Italiano</a><a href="/pt/" hreflang="pt">Português</a><a href="/nl/" hreflang="nl">Nederlands</a><a href="/pl/" hreflang="pl">Polski</a><a href="/ru/" hreflang="ru">Русский</a><a href="/ja/" hreflang="ja">日本語</a></div></details>
+    <a href="#features">Funkcje</a>
+    <a href="#tv">Tryb TV</a>
+    <a href="#promos">Lista życzeń &amp; promocje</a>
+    <a href="#how">Jak to działa</a>
+    <a href="../docs.html">Dokumentacja</a>
+    <details class="langs"><summary aria-label="Langue">🌐 Polski</summary><div><a href="/" hreflang="fr">Français</a><a href="/en/" hreflang="en">English</a><a href="/de/" hreflang="de">Deutsch</a><a href="/es/" hreflang="es">Español</a><a href="/it/" hreflang="it">Italiano</a><a href="/pt/" hreflang="pt">Português</a><a href="/nl/" hreflang="nl">Nederlands</a><a href="/pl/" hreflang="pl" aria-current="page">Polski</a><a href="/ru/" hreflang="ru">Русский</a><a href="/ja/" hreflang="ja">日本語</a></div></details>
   </div>
   <div class="nav-end">
-    <a href="#download" class="btn btn-primary">Télécharger ↓</a>
+    <a href="#download" class="btn btn-primary">Pobierz ↓</a>
     <label for="nav-toggle" class="burger" aria-label="Menu"><span></span><span></span><span></span></label>
   </div>
 </div></nav>
 
 <header><div class="wrap">
-  <span class="eyebrow reveal d1">Launcher de jeux auto-hébergé</span>
-  <h1 class="reveal d2">Toute votre bibliothèque, <em>réunie.</em></h1>
-  <p class="sub reveal d3">Steam, Epic, GOG et Amazon réunis en une seule bibliothèque. Lancez n'importe quel jeu depuis une seule application, retrouvez toutes ses informations et suivez les prix de vos wishlists. Sur votre PC, ou en plein écran à la manette.</p>
+  <span class="eyebrow reveal d1">Launcher gier hostowany u ciebie</span>
+  <h1 class="reveal d2">Cała twoja biblioteka, <em>w jednym miejscu.</em></h1>
+  <p class="sub reveal d3">Steam, Epic, GOG i Amazon połączone w jedną bibliotekę. Uruchom dowolną grę z jednej aplikacji, znajdź wszystkie informacje o niej i śledź ceny ze swoich list życzeń. Na komputerze albo na pełnym ekranie z padem.</p>
   <div class="cta reveal d4">
-    <a href="#download" class="btn btn-primary">Télécharger pour Windows</a>
-    <a href="#tv" class="btn">▶ Voir le mode TV</a>
+    <a href="#download" class="btn btn-primary">Pobierz na Windows</a>
+    <a href="#tv" class="btn">▶ Zobacz tryb TV</a>
   </div>
   <div class="plats reveal d5">
-    <span>Réunit&nbsp;:</span>
+    <span>Łączy&nbsp;:</span>
     <!-- Mêmes tracés que src/components/PlatformIcon.jsx : le site et l'app doivent
          montrer exactement les mêmes logos. Inline, donc aucune requête réseau. -->
     <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg>Steam</b>
@@ -253,117 +253,117 @@
 
   <div class="shot reveal d5">
     <div class="shot-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-      <span class="shot-title">playR — Ma bibliothèque</span></div>
-    <img src="assets/library.jpg" alt="Bibliothèque playR" style="display:block;width:100%">
+      <span class="shot-title">playR — Moja biblioteka</span></div>
+    <img src="../assets/library.jpg" alt="Biblioteka playR" style="display:block;width:100%">
   </div>
 </div></header>
 
 <section id="features"><div class="wrap">
-  <span class="kicker">Ce que ça fait</span>
-  <h2>Une bibliothèque, pensée<br>pour les joueurs.</h2>
+  <span class="kicker">Co potrafi</span>
+  <h2>Biblioteka stworzona<br>dla graczy.</h2>
   <div class="bento">
-    <div class="card glow c-6"><span class="ico">🧩</span><h3>Plusieurs plateformes, une seule bibliothèque</h3>
-      <p>Steam (bibliothèque famille incluse), Epic, GOG et Amazon réunis au même endroit, avec regroupement des jeux similaires. Une seule bibliothèque à parcourir, au lieu de quatre launchers à ouvrir.</p></div>
-    <div class="card c-2"><span class="ico">🚀</span><h3>Jouer &amp; installer</h3>
-      <p>Installez et lancez vos jeux directement depuis votre bibliothèque.</p></div>
-    <div class="card c-2"><span class="ico">🗃️</span><h3>Fiches enrichies</h3>
-      <p>Jaquettes, description, note critique, durée de jeu, configuration requise, temps joué. Données complétées via les API IGDB et HowLongToBeat.</p></div>
-    <div class="card c-2"><span class="ico">💰</span><h3>Envies &amp; Promos</h3>
-      <p>Vos wishlists Steam et GOG réunies, avec les prix et les promotions comparés sur Steam, GOG, Epic, Kinguin et une trentaine de boutiques.</p></div>
-    <div class="card c-2"><span class="ico">📺</span><h3>Mode TV</h3>
-      <p>Une interface plein écran pilotée à la manette, comme sur une console — sur la télé du salon comme sur votre écran de PC.</p></div>
-    <div class="card c-2"><span class="ico">⭐</span><h3>Notes &amp; listes</h3>
-      <p>Notez vos jeux et rangez-les dans vos propres listes.</p></div>
-    <div class="card c-2"><span class="ico">🗂️</span><h3>Triez comme vous voulez</h3>
-      <p>Marquez vos jeux à faire, en cours ou terminés, retrouvez ceux installés sur ce PC, masquez ceux qui vous encombrent — puis filtrez et triez votre bibliothèque comme bon vous semble.</p></div>
-    <div class="card c-2"><span class="ico">🌍</span><h3>9 langues</h3>
-      <p>Français, anglais, allemand, espagnol, italien, portugais, néerlandais, polonais, russe et japonais.</p></div>
-    <div class="card c-2"><span class="ico">🏠</span><h3>Chez vous, sur tous vos PC</h3>
-      <p>Votre bibliothèque est stockée chez vous — sur un PC Windows, ou partout où Docker tourne (NAS, CasaOS, Proxmox…). Vos autres ordinateurs s'y connectent et retrouvent tous la même bibliothèque à jour, sans que rien ne parte ailleurs.</p></div>
-    <div class="card c-2"><span class="ico">☁️</span><h3>Sur le cloud (bientôt)</h3>
-      <p>Un accès à votre bibliothèque depuis l'extérieur, où que vous soyez.</p></div>
+    <div class="card glow c-6"><span class="ico">🧩</span><h3>Wiele platform, jedna biblioteka</h3>
+      <p>Steam (razem z biblioteką rodzinną), Epic, GOG i Amazon w jednym miejscu, z grupowaniem podobnych gier. Jedna biblioteka do przeglądania zamiast czterech launcherów do otwierania.</p></div>
+    <div class="card c-2"><span class="ico">🚀</span><h3>Graj i instaluj</h3>
+      <p>Instaluj i uruchamiaj gry bezpośrednio z biblioteki.</p></div>
+    <div class="card c-2"><span class="ico">🗃️</span><h3>Rozbudowane opisy gier</h3>
+      <p>Okładki, opis, oceny recenzentów, długość gry, wymagania sprzętowe, czas gry. Dane uzupełniane przez API IGDB i HowLongToBeat.</p></div>
+    <div class="card c-2"><span class="ico">💰</span><h3>Lista życzeń &amp; promocje</h3>
+      <p>Twoje listy życzeń ze Steama i GOG w jednym miejscu, z cenami i promocjami porównanymi na Steamie, GOG, Epicu, Kinguinie i w około trzydziestu innych sklepach.</p></div>
+    <div class="card c-2"><span class="ico">📺</span><h3>Tryb TV</h3>
+      <p>Pełnoekranowy interfejs obsługiwany w całości padem, jak na konsoli — na telewizorze w salonie i na monitorze komputera.</p></div>
+    <div class="card c-2"><span class="ico">⭐</span><h3>Oceny i listy</h3>
+      <p>Oceniaj gry i porządkuj je we własnych listach.</p></div>
+    <div class="card c-2"><span class="ico">🗂️</span><h3>Sortuj po swojemu</h3>
+      <p>Oznaczaj gry jako do zagrania, w trakcie lub ukończone, znajduj te zainstalowane na tym komputerze, ukrywaj te, które zawadzają — a potem filtruj i sortuj bibliotekę dokładnie tak, jak chcesz.</p></div>
+    <div class="card c-2"><span class="ico">🌍</span><h3>9 języków</h3>
+      <p>Francuski, angielski, niemiecki, hiszpański, włoski, portugalski, niderlandzki, polski, rosyjski i japoński.</p></div>
+    <div class="card c-2"><span class="ico">🏠</span><h3>U ciebie, na wszystkich komputerach</h3>
+      <p>Twoja biblioteka jest przechowywana u ciebie — na komputerze z Windows albo wszędzie tam, gdzie działa Docker (NAS, CasaOS, Proxmox…). Pozostałe komputery łączą się z nią i widzą tę samą, aktualną bibliotekę, a nic nie opuszcza twojej sieci.</p></div>
+    <div class="card c-2"><span class="ico">☁️</span><h3>W chmurze (wkrótce)</h3>
+      <p>Dostęp do biblioteki z zewnątrz, gdziekolwiek jesteś.</p></div>
   </div>
 </div></section>
 
 <section id="tv" style="padding-top:40px"><div class="wrap">
-  <span class="kicker">Mode TV</span>
-  <h2>Le canapé, la manette,<br>le plein écran.</h2>
-  <p class="lead">Une interface plein écran pilotée à la manette, comme sur une console : grandes jaquettes, carrousels, fiche détaillée, tri et filtres. Sur la télé du salon comme sur votre écran de PC — lancez un jeu sans jamais toucher la souris.</p>
+  <span class="kicker">Tryb TV</span>
+  <h2>Kanapa, pad,<br>pełny ekran.</h2>
+  <p class="lead">Pełnoekranowy interfejs obsługiwany w całości padem, jak na konsoli: duże okładki, karuzele, szczegółowe opisy gier, sortowanie i filtry. Na telewizorze w salonie i na monitorze komputera — uruchom grę, nie dotykając myszy.</p>
   <div class="shot" style="margin-top:48px">
     <div class="shot-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-      <span class="shot-title">playR — Mode TV</span></div>
-    <img src="assets/tv.jpg" alt="Mode TV playR" style="display:block;width:100%">
+      <span class="shot-title">playR — Tryb TV</span></div>
+    <img src="../assets/tv.jpg" alt="Tryb TV playR" style="display:block;width:100%">
   </div>
 </div></section>
 
 <section id="promos" style="padding-top:40px"><div class="wrap">
-  <span class="kicker">Envies &amp; Promos</span>
-  <h2>Vos wishlists,<br>et le meilleur prix.</h2>
-  <p class="lead">Vos listes d'envies Steam et GOG réunies au même endroit, avec les prix et les promotions comparés sur Steam, GOG, Epic, Kinguin et une trentaine de boutiques. Le moins cher est mis en avant, et les jeux que vous possédez déjà sont signalés.</p>
+  <span class="kicker">Lista życzeń &amp; promocje</span>
+  <h2>Twoje listy życzeń,<br>i najlepsza cena.</h2>
+  <p class="lead">Twoje listy życzeń ze Steama i GOG zebrane w jednym miejscu, z cenami i promocjami porównanymi na Steamie, GOG, Epicu, Kinguinie i w około trzydziestu innych sklepach. Najtańsza oferta jest wyróżniona, a gry, które już masz, są oznaczone.</p>
   <div class="shot" style="margin-top:48px">
     <div class="shot-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-      <span class="shot-title">playR — Envies &amp; Promos</span></div>
-    <img src="assets/wishlist.jpg" alt="Envies &amp; Promos — comparateur de prix playR" style="display:block;width:100%">
+      <span class="shot-title">playR — Lista życzeń &amp; promocje</span></div>
+    <img src="../assets/wishlist.jpg" alt="Lista życzeń &amp; promocje — porównywarka cen playR" style="display:block;width:100%">
   </div>
 </div></section>
 
 <section id="how"><div class="wrap">
-  <span class="kicker">Comment ça marche</span>
-  <h2>Deux applis, une installation.</h2>
+  <span class="kicker">Jak to działa</span>
+  <h2>Dwie aplikacje, jedna instalacja.</h2>
   <div class="steps">
-    <div class="step"><div class="n">1</div><h3>Le serveur</h3>
-      <p>Un PC Windows héberge votre bibliothèque, ou n'importe quelle machine faisant tourner Docker (NAS, CasaOS, Proxmox…). Installeur Windows en 1 clic, ou image Docker partout ailleurs.</p></div>
-    <div class="step"><div class="n">2</div><h3>Le client</h3>
-      <p>Installez l'app playR sur chaque PC. Elle trouve votre bibliothèque toute seule, sur ce PC ou sur le réseau.</p></div>
-    <div class="step"><div class="n">3</div><h3>Vos comptes</h3>
-      <p>Connectez vos plateformes (Steam, Epic, GOG, Amazon) avec vos propres accès. Synchronisez, et votre bibliothèque apparaît.</p></div>
+    <div class="step"><div class="n">1</div><h3>Serwer</h3>
+      <p>Twoją bibliotekę hostuje komputer z Windows albo dowolna maszyna z Dockerem (NAS, CasaOS, Proxmox…). Instalator Windows w jednym kliknięciu albo obraz Dockera wszędzie indziej.</p></div>
+    <div class="step"><div class="n">2</div><h3>Klient</h3>
+      <p>Zainstaluj aplikację playR na każdym komputerze. Sama znajdzie twoją bibliotekę — na tym komputerze albo w sieci.</p></div>
+    <div class="step"><div class="n">3</div><h3>Twoje konta</h3>
+      <p>Połącz swoje platformy (Steam, Epic, GOG, Amazon) własnymi danymi logowania. Zsynchronizuj i biblioteka się pojawi.</p></div>
   </div>
 </div></section>
 
 <section id="download" style="padding-top:40px"><div class="wrap">
-  <span class="kicker">Télécharger</span>
-  <h2>Prêt en deux minutes.</h2>
+  <span class="kicker">Pobierz</span>
+  <h2>Gotowe w dwie minuty.</h2>
   <div class="dl">
     <div class="dl-card dl-main">
       <h3>Windows</h3>
-      <p>Un seul installeur, que votre bibliothèque soit <b>sur ce PC</b> ou <b>sur votre réseau</b>.</p>
-      <a href="https://github.com/ixelia-fr/playR-releases/releases/latest/download/playR-Setup.exe" class="btn btn-primary">⬇ Télécharger pour Windows<span data-version></span></a>
-      <p style="margin-top:16px;font-size:12.5px">Windows 10/11 · gratuit</p>
+      <p>Jeden instalator, niezależnie od tego, czy biblioteka jest <b>na tym komputerze</b> czy <b>w twojej sieci</b>.</p>
+      <a href="https://github.com/ixelia-fr/playR-releases/releases/latest/download/playR-Setup.exe" class="btn btn-primary">⬇ Pobierz na Windows<span data-version></span></a>
+      <p style="margin-top:16px;font-size:12.5px">Windows 10/11 · za darmo</p>
     </div>
     <div class="dl-card">
-      <h3>Serveur ailleurs</h3>
-      <p>Le serveur est une image Docker — il tourne partout.</p>
+      <h3>Serwer gdzie indziej</h3>
+      <p>Serwer to obraz Dockera — działa wszędzie.</p>
       <div class="opts">
-        <div class="opt"><b>🐳 Docker</b> · marche partout : <code>docker compose up -d</code></div>
-        <div class="opt"><b>🧩 Portainer · Dockge</b> · collez le compose</div>
-        <div class="opt"><b>📦 CasaOS · Unraid · TrueNAS · OMV</b> · via leur interface Docker</div>
-        <div class="opt"><b>🗄️ Synology · 🧱 Proxmox</b> · Docker (selon le modèle)</div>
+        <div class="opt"><b>🐳 Docker</b> · działa wszędzie: <code>docker compose up -d</code></div>
+        <div class="opt"><b>🧩 Portainer · Dockge</b> · wklej plik compose</div>
+        <div class="opt"><b>📦 CasaOS · Unraid · TrueNAS · OMV</b> · przez ich interfejs Dockera</div>
+        <div class="opt"><b>🗄️ Synology · 🧱 Proxmox</b> · Docker (zależnie od modelu)</div>
       </div>
-      <a href="docs.html" class="btn" style="margin-top:22px">Voir la doc serveur →</a>
+      <a href="../docs.html" class="btn" style="margin-top:22px">Zobacz dokumentację serwera →</a>
     </div>
   </div>
 </div></section>
 
 <section id="docs" style="padding-top:40px"><div class="wrap">
-  <span class="kicker">Documentation</span>
-  <h2>Tout est expliqué,<br>même si vous débutez.</h2>
-  <p class="lead">Installer le serveur (chaque cas), connecter ses comptes, brancher un client — pas à pas, captures à l'appui.</p>
+  <span class="kicker">Dokumentacja</span>
+  <h2>Wszystko jest wyjaśnione,<br>nawet jeśli dopiero zaczynasz.</h2>
+  <p class="lead">Instalacja serwera (w każdym przypadku), podłączenie kont, dodanie klienta — krok po kroku, ze zrzutami ekranu.</p>
   <div class="cta" style="margin-top:30px">
-    <a href="docs.html#windows" class="btn">Installer un serveur</a>
-    <a href="docs.html#comptes" class="btn">Connecter ses comptes</a>
-    <a href="https://github.com/ixelia-fr/playR-releases/releases/latest/download/playR-Setup.exe" class="btn">Télécharger et essayer</a>
+    <a href="../docs.html#windows" class="btn">Zainstaluj serwer</a>
+    <a href="../docs.html#comptes" class="btn">Podłącz swoje konta</a>
+    <a href="https://github.com/ixelia-fr/playR-releases/releases/latest/download/playR-Setup.exe" class="btn">Pobierz i wypróbuj</a>
   </div>
 </div></section>
 
 <footer><div class="wrap">
   <svg class="logo" viewBox="0 36 512 180" role="img" aria-label="playR"><g transform="translate(4,89)"><path d="M22.5 0 h 26 v 22.5 h 22.5 v 26 h -22.5 v 22.5 h -26 v -22.5 h -22.5 v -26 h 22.5 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(114,0)" fill="#f1f5f9"><path d="M34 88 C 32 122, 30 162, 29 202 C 29 207, 33.5 207, 35 201 C 39 160, 45 118, 49 88 C 50.5 80, 34.5 80, 34 88 Z"/><path d="M47 92 C 73 83, 102 96, 100 119 C 98 142, 66 152, 39 144 C 32.5 142, 35 131, 42 133.5 C 65 140, 88 132, 89 117 C 90 102, 70 94, 49 101 C 42.5 103, 40.5 90, 47 92 Z"/><path d="M112 50 C 110 90, 108 128, 107 159 C 107 164.5, 111.5 164.5, 113.5 158 C 118 128, 122.5 88, 126 50 C 127 42, 111.5 42, 112 50 Z"/><path d="M191 97 C 166 86, 138 99, 138 123 C 138 146, 163 156, 187 145 C 192.5 142.5, 196.5 149.5, 191 152.5 C 160 167, 125 151, 125 123 C 125 94, 161 77, 193 89.5 C 199.5 92, 197 99.5, 191 97 Z"/><path d="M192 92 C 190 116, 187 139, 187 157 C 187 163.5, 178 163.5, 178 157 C 178 136, 180.5 112, 183 92 C 184 84, 193 84, 192 92 Z"/><path d="M213 96 C 217 119, 225 141, 236 155.5 C 239.5 160, 231.5 166.5, 227 160.5 C 213.5 143, 205 119, 202 97 C 201 89, 212 88, 213 96 Z"/><path d="M264 94 C 256 125, 245 157, 233 183 C 227 196, 216.5 205.5, 205 208 C 198.5 209.5, 197 200.5, 204 198.5 C 214 196, 221.5 186, 227 175 C 239 148, 247.5 120, 253.5 93 C 255.5 85, 266 86, 264 94 Z"/><path d="M290 44 C 294 44, 298 47, 297 53 C 295 65, 290 78, 285 87 C 282.5 91, 277.5 88, 280 84 C 284 76, 287 64, 288 51 C 288.5 45.5, 287 44, 290 44 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(132,0)" fill="var(--violet)"><path d="M300 44 C 296 90, 292 132, 290 164 C 290 170, 279.5 170, 280.5 163.5 C 284 129, 288 87, 292 42 C 293 34, 301 36, 300 44 Z"/><path d="M296 47 C 331 40, 375 47, 377 74 C 379 99, 345 111, 310 109 C 303.5 109, 304.5 97.5, 311 97.5 C 341 99.5, 366 91, 364 74.5 C 362 58, 328 52.5, 298 58 C 291.5 59, 289.5 46, 296 47 Z"/><path d="M317 104 C 338 125, 359 148, 376 169 C 380 174, 370.5 181.5, 365.5 175 C 348 152, 327 129, 308.5 110.5 C 303 105, 312 98.5, 317 104 Z"/></g></svg>
   <div style="display:flex;gap:26px;flex-wrap:wrap">
-    <a href="#features">Fonctionnalités</a><a href="#download">Télécharger</a>
-    <a href="docs.html">Documentation</a><a href="https://github.com/ixelia-fr/playR-releases">GitHub</a>
-    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="#features">Funkcje</a><a href="#download">Pobierz</a>
+    <a href="../docs.html">Dokumentacja</a><a href="https://github.com/ixelia-fr/playR-releases">GitHub</a>
+    <a href="../mentions-legales.html">Nota prawna</a>
   </div>
 </div></footer>
-<div class="note">playR, votre bibliothèque de jeux auto-hébergée.</div>
+<div class="note">playR — twoja biblioteka gier hostowana u ciebie.</div>
 
 <script>
   // Numéro de version affiché à côté du bouton de téléchargement. Il est lu sur la

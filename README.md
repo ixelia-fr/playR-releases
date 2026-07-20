@@ -17,12 +17,14 @@ avec un **mode TV** plein écran, et un **serveur qui tourne chez vous**.
 
 ## ✨ Ce que ça fait
 
-- **Multi-plateforme** — Steam (bibliothèque **famille** incluse), Epic, GOG, Amazon, fusionnés. Les doublons cross-plateforme sont regroupés automatiquement.
-- **Jouer & installer** — détecte les jeux installés sur ce PC, lance / installe / désinstalle via le bon launcher.
+- **Plusieurs plateformes, une seule bibliothèque** — Steam (bibliothèque **famille** incluse), Epic, GOG, Amazon, avec regroupement des jeux similaires.
+- **Jouer & installer** — installez et lancez vos jeux directement depuis votre bibliothèque.
+- **Envies & Promos** — vos wishlists Steam et GOG, avec les prix et promotions comparés sur Steam, GOG, Epic, Kinguin et une trentaine de boutiques.
+- **Fiches enrichies** — jaquettes, description, note critique, durée de jeu, configuration requise, temps joué (**IGDB**, **HowLongToBeat**).
+- **Mode TV** — plein écran à la manette, sur la télé du salon comme sur votre écran de PC.
+- **Notes, listes & statuts** — notez, créez vos listes, marquez à faire / en cours / terminé, masquez ce qui vous encombre.
+- **9 langues** — français, anglais, allemand, espagnol, italien, portugais, néerlandais, polonais, russe, japonais.
 - **100 % manette** — navigation complète manette, clavier et souris.
-- **Mode TV (Big Picture)** — plein écran, carrousels, fiche détaillée, tri & filtres, sons — tout à la manette.
-- **Métadonnées riches** — jaquettes, descriptions, notes critiques (**IGDB**), durées de jeu (**HowLongToBeat**).
-- **Notes, listes & statuts** — notez, classez, marquez à faire / en cours / terminé.
 - **Auto-hébergé & privé** — votre serveur tourne chez vous. Vos données restent à vous.
 
 <div align="center">
@@ -49,12 +51,12 @@ playR = **un serveur** (héberge la bibliothèque) + **des clients** (les PC qui
 
 ➡️ **[Télécharger `playR-Setup.exe`](https://github.com/ixelia-fr/playR-releases/releases/latest)**
 
-À l'installation, cochez :
-- ✅ **Client** (recommandé — sur chaque PC).
-- ⬜ **Serveur** (optionnel — seulement si vous voulez héberger la bibliothèque sur CE PC ; inutile si vous avez déjà un CasaOS/NAS).
+**L'installeur ne pose aucune question** : il pose l'application et le serveur, et au premier
+lancement playR cherche votre bibliothèque — sur ce PC comme sur le réseau — et vous la fait
+confirmer.
 
 > Windows peut afficher « éditeur inconnu » → *Informations complémentaires* → *Exécuter quand même*.
-> Le client se met à jour tout seul.
+> L'application se met à jour toute seule, serveur compris.
 
 ---
 
@@ -64,7 +66,7 @@ Le serveur est une **image Docker** → il tourne partout.
 
 ### CasaOS
 **App Store** → *Installer une app personnalisée* → icône **Importer** (en haut à droite) → collez [`docker-compose.yml`](docker-compose.yml) → **Envoyer** → **Installer** → **Ouvrir**.
-(Détails pas à pas dans la [doc](https://ixelia-fr.github.io/playR-releases/docs.html#casaos).)
+(Détails pas à pas dans la [doc](https://playrgameslauncher.com/docs.html#casaos).)
 
 ### NAS / Synology / Proxmox / Docker
 ```bash
@@ -89,11 +91,10 @@ Chaque serveur démarre **vide** : vous connectez **vos propres** comptes dans *
 | **Steam** | Connexion Steam (Connector, famille incluse) — ou SteamID + clé API |
 | **Epic** | Code d'autorisation (OAuth) |
 | **GOG** | Identifiant GOG |
-| **Amazon** | Token Amazon Games |
-| **IGDB** (jaquettes, notes) | Client ID + Secret via [Twitch dev console](https://dev.twitch.tv/console) |
-| **HowLongToBeat** | Rien (public) |
+| **Amazon** | Un bouton dans l'app (l'appli Amazon Games doit être installée sur ce PC) |
+| **Jaquettes & métadonnées** | **Rien — c'est inclus** (IGDB, HowLongToBeat) |
 
-Guide détaillé (dont l'obtention de la clé IGDB) : [`docs/CONNEXIONS.md`](../docs/CONNEXIONS.md).
+Guide détaillé : [`docs/CONNEXIONS.md`](../docs/CONNEXIONS.md).
 
 ---
 

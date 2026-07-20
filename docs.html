@@ -4,10 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Documentation — playR</title>
-<meta name="description" content="Installer un serveur playR (Windows, CasaOS, Synology, NAS, Proxmox), connecter ses comptes, obtenir sa clé IGDB. Guide pas à pas." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<meta name="description" content="Installer un serveur playR (Windows, CasaOS, Synology, NAS, Proxmox) et connecter ses comptes Steam, Epic, GOG et Amazon. Guide pas à pas." />
+<!-- Bunny Fonts et non Google Fonts : memes polices, serveurs europeens, aucune
+     adresse IP transmise a Google. Voir index.html pour le piege de leur /css2. -->
+<link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+<link href="https://fonts.bunny.net/css?family=bricolage-grotesque:300,400,600,700,800|instrument-sans:400,400i,600,700&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#07070d;--ink:#eae7f2;--muted:#9a97ac;--violet:#8b5cf6;--cyan:#22d3ee;
     --line:rgba(255,255,255,.08);--card:rgba(255,255,255,.03);
@@ -50,7 +51,22 @@
   .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:11px 20px;
     border-radius:12px;background:linear-gradient(90deg,var(--violet),var(--cyan));color:#08080f}
   .btn:hover{text-decoration:none}
-  @media(max-width:780px){.layout{grid-template-columns:1fr}aside{display:none}}
+  /* Sous 900 px le sommaire passait à display:none : plus aucun moyen de naviguer
+     dans une page longue. Il devient une barre horizontale déroulante, collée sous
+     l'en-tête. Les intitulés de groupe n'y ont plus de sens, on les retire. */
+  @media(max-width:900px){
+    .layout{grid-template-columns:1fr;gap:0;padding:0 18px}
+    aside{position:sticky;top:64px;z-index:40;padding:10px 0;display:flex;gap:8px;
+      overflow-x:auto;background:rgba(7,7,13,.92);border-bottom:1px solid var(--line);
+      -webkit-overflow-scrolling:touch}
+    aside .grp{display:none}
+    aside a{flex:none;white-space:nowrap;border:1px solid var(--line);border-radius:999px;
+      padding:7px 14px;font-size:13.5px}
+    main{padding:32px 0 90px}
+    h2{font-size:23px;margin:40px 0 12px}
+    pre{padding:14px;font-size:13px}
+    table{font-size:14px}
+  }
 </style>
 </head>
 <body>
@@ -75,7 +91,7 @@
     <div class="grp">Client</div>
     <a href="#client">Installer le client</a>
     <a href="#comptes">Connecter ses comptes</a>
-    <a href="#igdb">Clé IGDB (jaquettes)</a>
+    <a href="#metadonnees">Jaquettes &amp; métadonnées</a>
   </aside>
 
   <main>
@@ -86,14 +102,14 @@
     <h2 id="principe">Le principe</h2>
     <p>playR = <strong>un serveur</strong> (qui héberge la bibliothèque) + <strong>des clients</strong> (les PC qui s'y connectent).</p>
     <ol>
-      <li><strong>Le serveur</strong> tourne sur un PC, un CasaOS, un NAS ou un Proxmox.</li>
-      <li><strong>Le client</strong> (app Windows) se connecte à l'adresse du serveur (ex. <code>192.168.1.10:3000</code>).</li>
+      <li><strong>Le serveur</strong> tourne sur un PC Windows, ou ailleurs via Docker (NAS, CasaOS, Proxmox…).</li>
+      <li><strong>Le client</strong> (app Windows) le trouve tout seul, sur ce PC comme sur le réseau.</li>
       <li>Vous <strong>connectez vos comptes</strong> (Steam, Epic…) et synchronisez.</li>
     </ol>
     <p>Vous avez besoin d'<strong>un seul serveur</strong> sur votre réseau ; tous vos PC clients pointent dessus.</p>
 
     <h2 id="windows">Serveur — sur un PC Windows</h2>
-    <p>Le plus simple : au moment d'installer playR (<a href="https://github.com/ixelia-fr/playR-releases/releases/latest">télécharger l'installeur</a>), cochez <strong>« Serveur »</strong> en plus du client.</p>
+    <p>Rien à faire : <a href="https://github.com/ixelia-fr/playR-releases/releases/latest">l'installeur</a> pose le serveur en même temps que l'application. Au premier lancement, playR le démarre et s'y connecte tout seul.</p>
     <ul>
       <li>Une petite fenêtre <strong>playR Serveur</strong> s'ouvre et affiche l'adresse à donner aux autres PC.</li>
       <li>Fermer la fenêtre la réduit dans la <strong>barre système</strong> (près de l'horloge) — le serveur continue de tourner.</li>
@@ -173,13 +189,13 @@ docker run -d --name playr --restart unless-stopped \
     <p>Dans tous les cas : image <code>ghcr.io/ixelia-fr/playr:latest</code>, port <code>3000</code>, volume persistant sur <code>/app/data</code>. Adresse pour les clients : <code>http://[IP-de-la-machine]:3000</code>.</p>
 
     <h2 id="maj">Mettre à jour le serveur</h2>
-    <p><strong>Automatique (inclus par défaut).</strong> Le <code>docker-compose.yml</code> fourni embarque un service <code>playr-updater</code> qui met playR à jour <strong>tout seul chaque nuit</strong>. Rien à configurer, rien à taper. Il ne touche qu'au conteneur playR.</p>
-    <p><strong>Manuellement (repli).</strong> Une notification (🔔 en haut à droite) vous prévient quand une version existe. Si vous préférez déclencher vous-même, ou si vous avez installé l'<strong>image seule</strong> (sans le compose), la notification affiche la commande à lancer sur la machine hôte :</p>
-<pre><code>docker compose pull &amp;&amp; docker compose up -d</code></pre>
+    <p><strong>Automatique (inclus par défaut).</strong> Le <code>docker-compose.yml</code> fourni embarque un service <code>playr-updater</code> qui vérifie <strong>toutes les 30 minutes</strong> et met playR à jour tout seul. Rien à configurer, rien à taper. Il ne touche qu'au conteneur playR.</p>
+    <p><strong>Manuellement (repli).</strong> Une notification (🔔 en haut à droite) vous prévient quand une version existe. Si vous préférez déclencher vous-même, ou si vous avez installé l'<strong>image seule</strong> (sans le compose), lancez ceci sur la machine hôte — la commande demande son chemin à Docker, vous n'avez pas besoin d'être dans le bon dossier :</p>
+<pre><code>cd "$(docker inspect playr --format '{{index .Config.Labels "com.docker.compose.project.working_dir"}}')" &amp;&amp; docker compose pull &amp;&amp; docker compose up -d</code></pre>
     <p><strong>Serveur Windows</strong> : il se met à jour tout seul avec l'application.</p>
 
     <h2 id="client">Installer le client</h2>
-    <p><a href="https://github.com/ixelia-fr/playR-releases/releases/latest">Téléchargez l'installeur</a>, cochez <strong>Client</strong>. Au premier lancement, saisissez l'<strong>adresse de votre serveur</strong> (ex. <code>192.168.1.10:3000</code>). Vous pouvez en changer à tout moment (menu ⚙ → <em>Changer de serveur</em>).</p>
+    <p><a href="https://github.com/ixelia-fr/playR-releases/releases/latest">Téléchargez l'installeur</a> et lancez-le. Au premier lancement, playR <strong>cherche votre bibliothèque</strong> — sur ce PC comme sur le réseau — et vous la fait confirmer. Vous pouvez changer de serveur à tout moment (menu ⚙ → <em>Changer de serveur</em>).</p>
 
     <h2 id="comptes">Connecter ses comptes</h2>
     <p>Chaque serveur démarre <strong>vide</strong> : vous connectez <strong>vos propres</strong> comptes dans <strong>⚙ Paramètres</strong>. Rien n'est partagé.</p>
@@ -188,9 +204,8 @@ docker run -d --name playr --restart unless-stopped \
       <tr><td>Steam</td><td>Connexion Steam (Connector, <strong>famille incluse</strong>) — ou SteamID + clé API</td><td><a href="#steam-help">Plus d'infos →</a></td></tr>
       <tr><td>Epic</td><td>Code d'autorisation (un bouton dans l'app)</td><td><a href="#epic-help">Plus d'infos →</a></td></tr>
       <tr><td>GOG</td><td>URL de votre profil public</td><td><a href="#gog-help">Plus d'infos →</a></td></tr>
-      <tr><td>Amazon</td><td>Un petit script + un fichier à importer</td><td><a href="#amazon-help">Plus d'infos →</a></td></tr>
-      <tr><td>IGDB (jaquettes, notes)</td><td>Client ID + Secret</td><td><a href="#igdb">Plus d'infos →</a></td></tr>
-      <tr><td>HowLongToBeat (durées)</td><td>Rien (public)</td><td>—</td></tr>
+      <tr><td>Amazon</td><td>Un bouton dans l'app (l'appli Amazon Games doit être installée)</td><td><a href="#amazon-help">Plus d'infos →</a></td></tr>
+      <tr><td>Jaquettes &amp; métadonnées</td><td><strong>Rien — c'est inclus</strong></td><td><a href="#metadonnees">Plus d'infos →</a></td></tr>
     </table>
 
     <h2 id="steam-help">Steam</h2>
@@ -217,23 +232,16 @@ docker run -d --name playr --restart unless-stopped \
     </ol>
 
     <h2 id="amazon-help">Amazon Games</h2>
-    <p>Amazon ne donne pas de jeton simple : un petit script récupère votre bibliothèque depuis votre PC (l'<strong>appli Amazon Games</strong> doit être installée et connectée).</p>
+    <p>Amazon ne donne pas de jeton simple : sa bibliothèque est chiffrée avec votre session Windows, elle ne peut donc être lue que <strong>sur votre PC</strong>. playR s'en charge tout seul.</p>
     <ol>
-      <li>⚙ Paramètres → Amazon → <strong>« Télécharger le script PowerShell »</strong>.</li>
-      <li>Sur votre PC Windows : clic droit sur le script → <em>Exécuter avec PowerShell</em>.</li>
-      <li>Il crée un fichier <code>amazon_games.json</code> et ouvre son dossier.</li>
-      <li>Glissez ce fichier dans la zone d'import de l'app (⚙ Paramètres → Amazon).</li>
+      <li>Installez l'<strong>appli Amazon Games</strong> et ouvrez-la au moins une fois, connecté à votre compte.</li>
+      <li>Dans playR : ⚙ Paramètres → Amazon → <strong>Synchroniser</strong>.</li>
     </ol>
+    <p>Vos jeux Amazon apparaissent. À faire depuis le PC où Amazon Games est installé.</p>
 
-    <h2 id="igdb">Obtenir sa clé IGDB (jaquettes &amp; métadonnées)</h2>
-    <p>IGDB passe par un compte <strong>Twitch développeur</strong> (gratuit) :</p>
-    <ol>
-      <li>Allez sur <a href="https://dev.twitch.tv/console" target="_blank" rel="noopener">dev.twitch.tv/console</a> → <strong>Register Your Application</strong>.</li>
-      <li>Nom au choix · <em>OAuth Redirect URL</em> : <code>http://localhost</code> · Catégorie : <em>Application Integration</em>.</li>
-      <li>Récupérez le <strong>Client ID</strong> et générez un <strong>Client Secret</strong>.</li>
-      <li>Dans playR → ⚙ Paramètres → IGDB : collez <strong>Client ID</strong> + <strong>Client Secret</strong>.</li>
-    </ol>
-    <p>Puis lancez la synchronisation des métadonnées : jaquettes, descriptions et notes se remplissent.</p>
+    <h2 id="metadonnees">Jaquettes &amp; métadonnées</h2>
+    <p><strong>Rien à configurer.</strong> Les jaquettes, descriptions, notes critiques, durées de jeu et configurations requises sont <strong>incluses</strong> : playR les récupère via son propre service, avec ses propres accès aux bases <strong>IGDB</strong> et <strong>HowLongToBeat</strong>.</p>
+    <p>Il suffit de lancer <strong>Compléter les informations manquantes</strong> depuis une fiche de jeu, ou la synchronisation des métadonnées depuis ⚙ Paramètres.</p>
 
     <div class="box" style="margin-top:48px;text-align:center">
       <a href="https://github.com/ixelia-fr/playR-releases/releases/latest/download/playR-Setup.exe" class="btn">⬇ Télécharger playR</a>
