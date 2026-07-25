@@ -3,8 +3,18 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>playR — Tutta la tua libreria di giochi, in un solo posto.</title>
+<title>playR — Tutti i tuoi giochi, un'unica libreria.</title>
 <meta name="description" content="playR riunisce Steam, Epic, GOG, Amazon, EA, Ubisoft e Battle.net in un'unica libreria: avvia i tuoi giochi, consulta le loro schede, confronta i prezzi delle tue wishlist. Cloud gaming con GeForce NOW e Amazon Luna, modalità TV con il controller, self-hosted, 9 lingue." />
+<!-- Icônes : le « R » du logo (même tracé que src/components/Logo.jsx), posé sur
+     une tuile sombre — sans elle, le violet disparaît dans l'onglet d'un
+     navigateur en thème clair. Chemins absolus : les pages de langue vivent un
+     cran plus bas, mais les icônes restent à la racine du site. -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#07070d">
+<!-- Balises de partage (Open Graph, Twitter) et données structurées : injectées
+     par site/build.mjs, qui seul connaît l'URL et la langue de chaque version. -->
 <!-- Bunny Fonts et non Google Fonts : mêmes polices, serveurs européens, aucune
      adresse IP transmise à Google (ce que la CNIL sanctionne). ⚠️ Leur endpoint
      /css2 refuse la syntaxe à axes variables et répond une erreur EN 200 — donc
@@ -295,6 +305,30 @@
   <link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/">
   <link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/">
   <link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="playR">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="pt_PT">
+  <meta property="og:locale:alternate" content="nl_NL">
+  <meta property="og:locale:alternate" content="pl_PL">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <meta property="og:url" content="https://playrgameslauncher.com/it/">
+  <meta property="og:title" content="playR — Tutti i tuoi giochi, un'unica libreria.">
+  <meta property="og:description" content="playR riunisce Steam, Epic, GOG, Amazon, EA, Ubisoft e Battle.net in un'unica libreria: avvia i tuoi giochi, consulta le loro schede, confronta i prezzi delle tue wishlist. Cloud gaming con GeForce NOW e Amazon Luna, modalità TV con il controller, self-hosted, 9 lingue.">
+  <meta property="og:image" content="https://playrgameslauncher.com/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="playR — Tutti i tuoi giochi, un'unica libreria.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="playR — Tutti i tuoi giochi, un'unica libreria.">
+  <meta name="twitter:description" content="playR riunisce Steam, Epic, GOG, Amazon, EA, Ubisoft e Battle.net in un'unica libreria: avvia i tuoi giochi, consulta le loro schede, confronta i prezzi delle tue wishlist. Cloud gaming con GeForce NOW e Amazon Luna, modalità TV con il controller, self-hosted, 9 lingue.">
+  <meta name="twitter:image" content="https://playrgameslauncher.com/assets/og.jpg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://playrgameslauncher.com/it/#site","name":"playR","url":"https://playrgameslauncher.com/it/","inLanguage":"it","publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}},{"@type":"SoftwareApplication","@id":"https://playrgameslauncher.com/it/#app","name":"playR","description":"playR riunisce Steam, Epic, GOG, Amazon, EA, Ubisoft e Battle.net in un'unica libreria: avvia i tuoi giochi, consulta le loro schede, confronta i prezzi delle tue wishlist. Cloud gaming con GeForce NOW e Amazon Luna, modalità TV con il controller, self-hosted, 9 lingue.","url":"https://playrgameslauncher.com/it/","inLanguage":"it","applicationCategory":"GameApplication","applicationSubCategory":"Game library manager","operatingSystem":"Windows 10, Windows 11, Docker (Linux)","downloadUrl":"https://github.com/ixelia-fr/playR-releases/releases/latest","screenshot":"https://playrgameslauncher.com/assets/og.jpg","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}}]}</script>
 </head>
 <body>
 <div class="bg-fx"></div><div class="grain"></div>
@@ -321,7 +355,7 @@
 
 <header><div class="wrap">
   <span class="eyebrow reveal d1">Launcher di giochi self-hosted</span>
-  <h1 class="reveal d2">Tutta la tua libreria, <em>in un solo posto.</em></h1>
+  <h1 class="reveal d2">Tutti i tuoi giochi, <em>un'unica libreria.</em></h1>
   <p class="sub reveal d3">Steam, Epic, GOG, Amazon, EA, Ubisoft e Battle.net riuniti in un'unica libreria, e i tuoi giochi giocabili in streaming su GeForce NOW e Amazon Luna. Avvia qualsiasi gioco da una sola applicazione, trova tutte le sue informazioni e segui i prezzi delle tue wishlist. Sul PC o a schermo intero con il controller.</p>
   <div class="cta reveal d4">
     <a href="#download" class="btn btn-primary">Scarica per Windows</a>

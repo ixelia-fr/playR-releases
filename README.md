@@ -2,7 +2,7 @@
 
 # 🎮 playR
 
-### Toute votre bibliothèque de jeux, réunie.
+### Tous vos jeux, une seule bibliothèque.
 
 **Steam · Epic · GOG · Amazon · EA · Ubisoft · Battle.net** dans une seule interface élégante —
 plus le cloud gaming **GeForce NOW** et **Amazon Luna**. Navigable à la manette, avec un
