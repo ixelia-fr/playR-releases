@@ -112,6 +112,9 @@
   h1 em{font-style:normal;background:linear-gradient(100deg,var(--violet),var(--cyan));
     -webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{font-size:clamp(17px,2.1vw,21px);color:var(--muted);max-width:56ch;margin:26px 0 34px}
+  /* La phrase d'ouverture dit CE QU'EST le produit ; le reste dit ce qu'il fait.
+     Elle passe en clair pour qu'on la lise même en survolant la page. */
+  .sub strong{color:var(--ink);font-weight:600}
   .cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .plats{display:flex;gap:22px;margin-top:40px;color:var(--muted);font-size:13.5px;
     align-items:center;flex-wrap:wrap}
@@ -354,9 +357,9 @@
 </div></nav>
 
 <header><div class="wrap">
-  <span class="eyebrow reveal d1">セルフホスト型ゲームランチャー</span>
+  <span class="eyebrow reveal d1">ユニバーサルなゲームランチャー</span>
   <h1 class="reveal d2">すべてのゲームを、 <em>ひとつのライブラリに。</em></h1>
-  <p class="sub reveal d3">Steam・Epic・GOG・Amazon・EA・Ubisoft・Battle.net をひとつのライブラリに集約。さらに GeForce NOW と Amazon Luna でストリーミングプレイも。どのゲームもひとつのアプリから起動でき、詳細情報をまとめて確認し、ウィッシュリストの価格を追えます。PC でも、コントローラーによる全画面表示でも。</p>
+  <p class="sub reveal d3"><strong>メディアサーバーが映画にしていることを、playR はゲームにします。</strong> Steam・Epic・GOG・Amazon・EA・Ubisoft・Battle.net をひとつのライブラリに集約。さらに GeForce NOW と Amazon Luna でストリーミングプレイも。どのゲームもひとつのアプリから起動でき、詳細情報をまとめて確認し、ウィッシュリストの価格を追えます。PC でも、コントローラーによる全画面表示でも。</p>
   <div class="cta reveal d4">
     <a href="#download" class="btn btn-primary">Windows 版をダウンロード</a>
     <a href="#tv" class="btn">▶ TV モードを見る</a>

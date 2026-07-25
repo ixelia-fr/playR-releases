@@ -112,6 +112,9 @@
   h1 em{font-style:normal;background:linear-gradient(100deg,var(--violet),var(--cyan));
     -webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{font-size:clamp(17px,2.1vw,21px);color:var(--muted);max-width:56ch;margin:26px 0 34px}
+  /* La phrase d'ouverture dit CE QU'EST le produit ; le reste dit ce qu'il fait.
+     Elle passe en clair pour qu'on la lise même en survolant la page. */
+  .sub strong{color:var(--ink);font-weight:600}
   .cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .plats{display:flex;gap:22px;margin-top:40px;color:var(--muted);font-size:13.5px;
     align-items:center;flex-wrap:wrap}
@@ -354,9 +357,9 @@
 </div></nav>
 
 <header><div class="wrap">
-  <span class="eyebrow reveal d1">Launcher gier hostowany u ciebie</span>
+  <span class="eyebrow reveal d1">Uniwersalny launcher gier</span>
   <h1 class="reveal d2">Wszystkie twoje gry, <em>jedna biblioteka.</em></h1>
-  <p class="sub reveal d3">Steam, Epic, GOG, Amazon, EA, Ubisoft i Battle.net połączone w jedną bibliotekę — a twoje gry dostępne w streamingu na GeForce NOW i Amazon Luna. Uruchom dowolną grę z jednej aplikacji, znajdź wszystkie informacje o niej i śledź ceny ze swoich list życzeń. Na komputerze albo na pełnym ekranie z padem.</p>
+  <p class="sub reveal d3"><strong>To, co serwer multimedialny robi z twoimi filmami, playR robi z twoimi grami.</strong> Steam, Epic, GOG, Amazon, EA, Ubisoft i Battle.net połączone w jedną bibliotekę — a twoje gry dostępne w streamingu na GeForce NOW i Amazon Luna. Uruchom dowolną grę z jednej aplikacji, znajdź wszystkie informacje o niej i śledź ceny ze swoich list życzeń. Na komputerze albo na pełnym ekranie z padem.</p>
   <div class="cta reveal d4">
     <a href="#download" class="btn btn-primary">Pobierz na Windows</a>
     <a href="#tv" class="btn">▶ Zobacz tryb TV</a>

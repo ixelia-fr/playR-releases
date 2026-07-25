@@ -112,6 +112,9 @@
   h1 em{font-style:normal;background:linear-gradient(100deg,var(--violet),var(--cyan));
     -webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{font-size:clamp(17px,2.1vw,21px);color:var(--muted);max-width:56ch;margin:26px 0 34px}
+  /* La phrase d'ouverture dit CE QU'EST le produit ; le reste dit ce qu'il fait.
+     Elle passe en clair pour qu'on la lise même en survolant la page. */
+  .sub strong{color:var(--ink);font-weight:600}
   .cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .plats{display:flex;gap:22px;margin-top:40px;color:var(--muted);font-size:13.5px;
     align-items:center;flex-wrap:wrap}
@@ -354,9 +357,9 @@
 </div></nav>
 
 <header><div class="wrap">
-  <span class="eyebrow reveal d1">Launcher di giochi self-hosted</span>
+  <span class="eyebrow reveal d1">Game launcher universale</span>
   <h1 class="reveal d2">Tutti i tuoi giochi, <em>un'unica libreria.</em></h1>
-  <p class="sub reveal d3">Steam, Epic, GOG, Amazon, EA, Ubisoft e Battle.net riuniti in un'unica libreria, e i tuoi giochi giocabili in streaming su GeForce NOW e Amazon Luna. Avvia qualsiasi gioco da una sola applicazione, trova tutte le sue informazioni e segui i prezzi delle tue wishlist. Sul PC o a schermo intero con il controller.</p>
+  <p class="sub reveal d3"><strong>Quello che un media server fa per i tuoi film, playR lo fa per i tuoi giochi.</strong> Steam, Epic, GOG, Amazon, EA, Ubisoft e Battle.net riuniti in un'unica libreria, e i tuoi giochi giocabili in streaming su GeForce NOW e Amazon Luna. Avvia qualsiasi gioco da una sola applicazione, trova tutte le sue informazioni e segui i prezzi delle tue wishlist. Sul PC o a schermo intero con il controller.</p>
   <div class="cta reveal d4">
     <a href="#download" class="btn btn-primary">Scarica per Windows</a>
     <a href="#tv" class="btn">▶ Guarda la modalità TV</a>

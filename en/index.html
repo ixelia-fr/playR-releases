@@ -112,6 +112,9 @@
   h1 em{font-style:normal;background:linear-gradient(100deg,var(--violet),var(--cyan));
     -webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{font-size:clamp(17px,2.1vw,21px);color:var(--muted);max-width:56ch;margin:26px 0 34px}
+  /* La phrase d'ouverture dit CE QU'EST le produit ; le reste dit ce qu'il fait.
+     Elle passe en clair pour qu'on la lise même en survolant la page. */
+  .sub strong{color:var(--ink);font-weight:600}
   .cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .plats{display:flex;gap:22px;margin-top:40px;color:var(--muted);font-size:13.5px;
     align-items:center;flex-wrap:wrap}
@@ -354,9 +357,9 @@
 </div></nav>
 
 <header><div class="wrap">
-  <span class="eyebrow reveal d1">Self-hosted game launcher</span>
+  <span class="eyebrow reveal d1">Universal game launcher</span>
   <h1 class="reveal d2">All your games, <em>one single library.</em></h1>
-  <p class="sub reveal d3">Steam, Epic, GOG, Amazon, EA, Ubisoft and Battle.net brought together in a single library — plus your games streamable on GeForce NOW and Amazon Luna. Launch any game from one app, find everything there is to know about it, and track your wishlist prices. On your PC, or full screen with a controller.</p>
+  <p class="sub reveal d3"><strong>What a media server does for your movies, playR does for your games.</strong> Steam, Epic, GOG, Amazon, EA, Ubisoft and Battle.net brought together in a single library — plus your games streamable on GeForce NOW and Amazon Luna. Launch any game from one app, find everything there is to know about it, and track your wishlist prices. On your PC, or full screen with a controller.</p>
   <div class="cta reveal d4">
     <a href="#download" class="btn btn-primary">Download for Windows</a>
     <a href="#tv" class="btn">▶ See TV mode</a>
