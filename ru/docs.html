@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Документация — playR</title>
+<meta name="description" content="Установка сервера playR (Windows, CasaOS, Synology, NAS, Proxmox) и подключение аккаунтов Steam, Epic, GOG и Amazon. Пошаговое руководство." />
+<!-- Bunny Fonts et non Google Fonts : memes polices, serveurs europeens, aucune
+     adresse IP transmise a Google. Voir index.html pour le piege de leur /css2. -->
+<link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+<link href="https://fonts.bunny.net/css?family=bricolage-grotesque:300,400,600,700,800|instrument-sans:400,400i,600,700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#07070d;--ink:#eae7f2;--muted:#9a97ac;--violet:#8b5cf6;--cyan:#22d3ee;
+    --line:rgba(255,255,255,.08);--card:rgba(255,255,255,.03);
+    --display:'Bricolage Grotesque',sans-serif;--body:'Instrument Sans',sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+  .bg-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(60vw 50vw at 82% -10%,rgba(139,92,246,.22),transparent 60%),
+    radial-gradient(50vw 50vw at 5% 8%,rgba(34,211,238,.12),transparent 55%)}
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,7,13,.65);border-bottom:1px solid var(--line)}
+  nav .in{max-width:1000px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .logo{height:26px;width:auto;display:block}
+  .layout{max-width:1000px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:220px 1fr;gap:48px}
+  /* Le sommaire est plus haut que l'écran depuis qu'il liste les comptes et les
+     sections d'usage (~1275 px) : sans défilement interne, tout ce qui dépasse
+     était inatteignable, la barre étant collée. */
+  aside{position:sticky;top:96px;align-self:start;padding:56px 0 24px;
+    max-height:calc(100vh - 96px);overflow-y:auto;scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.16) transparent}
+  aside a{display:block;color:var(--muted);font-size:14.5px;padding:8px 0;border-left:2px solid transparent;padding-left:14px}
+  aside a:hover{color:var(--ink);text-decoration:none}
+  aside .grp{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5c5972;margin:20px 0 6px;padding-left:14px}
+  main{padding:56px 0 120px;min-width:0}
+  h1{font-family:var(--display);font-weight:700;letter-spacing:-.03em;font-size:clamp(34px,6vw,52px);margin-bottom:10px}
+  .intro{color:var(--muted);font-size:18px;margin-bottom:10px}
+  h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:28px;margin:56px 0 14px;
+    padding-top:20px;border-top:1px solid var(--line);scroll-margin-top:88px}
+  h3{font-family:var(--display);font-weight:600;font-size:19px;margin:28px 0 8px}
+  p,li{color:#c9c6d6;font-size:15.5px}
+  ul,ol{margin:12px 0 12px 22px}li{margin:6px 0}
+  strong{color:var(--ink)}
+  code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13.5px;font-family:ui-monospace,monospace;color:#d6d2e6}
+  pre{background:#0c0c17;border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;margin:14px 0}
+  pre code{background:none;padding:0;color:#cdd6e6;line-height:1.6}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
+  .warn{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
+  .warn strong{color:#fbbf24}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14.5px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em}
+  .pill{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;background:rgba(139,92,246,.16);
+    border:1px solid rgba(139,92,246,.35);color:#c4b5fd;margin-bottom:8px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:11px 20px;
+    border-radius:12px;background:linear-gradient(90deg,var(--violet),var(--cyan));color:#08080f}
+  .btn:hover{text-decoration:none}
+  /* Sélecteur de langue de la barre du haut (généré par build.mjs), même tracé
+     que l'accueil : la doc est traduite comme le reste du site. */
+  .langs{position:relative}
+  .langs summary{list-style:none;cursor:pointer;font-size:14px;color:var(--muted);
+    white-space:nowrap;display:flex;align-items:center;gap:6px}
+  .langs summary::-webkit-details-marker{display:none}
+  .langs summary:hover,.langs[open] summary{color:var(--ink)}
+  .langs>div{position:absolute;right:0;top:calc(100% + 8px);z-index:60;display:flex;
+    flex-direction:column;min-width:160px;padding:6px;border-radius:14px;
+    border:1px solid var(--line);background:#0c0c17;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+  .langs a{padding:9px 12px;border-radius:9px;font-size:14px;color:var(--muted)}
+  .langs a:hover{background:rgba(139,92,246,.14);color:var(--ink);text-decoration:none}
+  .langs a[aria-current]{color:var(--ink);font-weight:600}
+  /* Sous 900 px le sommaire passait à display:none : plus aucun moyen de naviguer
+     dans une page longue. Il devient une barre horizontale déroulante, collée sous
+     l'en-tête. Les intitulés de groupe n'y ont plus de sens, on les retire. */
+  @media(max-width:900px){
+    .layout{grid-template-columns:1fr;gap:0;padding:0 18px}
+    aside{position:sticky;top:64px;z-index:40;padding:10px 0;display:flex;gap:8px;
+      overflow-x:auto;overflow-y:visible;max-height:none;
+      background:rgba(7,7,13,.92);border-bottom:1px solid var(--line);
+      -webkit-overflow-scrolling:touch}
+    aside .grp{display:none}
+    aside a{flex:none;white-space:nowrap;border:1px solid var(--line);border-radius:999px;
+      padding:7px 14px;font-size:13.5px}
+    main{padding:32px 0 90px}
+    h2{font-size:23px;margin:40px 0 12px}
+    pre{padding:14px;font-size:13px}
+    table{font-size:14px}
+  }
+
+  /* Téléphone. Le sommaire est déjà une barre de pastilles ; restent les blocs
+     de commandes (qu'on colle aux bords pour gagner la largeur des marges) et
+     surtout le tableau des comptes : trois colonnes sur 360 px réduisent la
+     colonne du milieu à une lettre par ligne. On empile chaque ligne. */
+  @media(max-width:560px){
+    nav .in{padding:0 16px;height:58px}
+    .layout{padding:0 16px}
+    aside{gap:6px;padding:8px 0}
+    aside a{padding:6px 12px;font-size:13px}
+    main{padding:26px 0 70px}
+    h1{font-size:clamp(28px,8.5vw,38px)}
+    .intro{font-size:16px}
+    h2{font-size:21px;margin:34px 0 10px}
+    h3{font-size:17px}
+    p,li{font-size:15px}
+    ul,ol{margin-left:18px}
+    .box{padding:14px 15px;border-radius:12px}
+    pre{margin-left:-16px;margin-right:-16px;border-radius:0;border-left:0;border-right:0}
+
+    table,tr,td,th{display:block}
+    /* Empilée, la ligne d'en-tête n'annonce plus rien : elle ferait trois mots
+       orphelins au-dessus du premier service. */
+    tr:first-child{display:none}
+    tr{border-bottom:1px solid var(--line);padding:12px 0}
+    td{border:0;padding:2px 0}
+    td:first-child{color:var(--ink);font-weight:600;font-size:15px}
+  }
+</style>
+  <link rel="canonical" href="https://playrgameslauncher.com/ru/docs.html">
+  <link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/docs.html">
+  <link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/docs.html">
+  <link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/docs.html">
+  <link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/docs.html">
+  <link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/docs.html">
+  <link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/docs.html">
+  <link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/docs.html">
+  <link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/docs.html">
+  <link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/docs.html">
+  <link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/docs.html">
+  <link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/docs.html">
+</head>
+<body>
+<div class="bg-fx"></div>
+<nav><div class="in">
+  <a href="index.html" style="color:inherit;display:flex;align-items:center;gap:10px"><svg class="logo" viewBox="0 36 512 180" role="img" aria-label="playR"><g transform="translate(4,89)"><path d="M22.5 0 h 26 v 22.5 h 22.5 v 26 h -22.5 v 22.5 h -26 v -22.5 h -22.5 v -26 h 22.5 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(114,0)" fill="#f1f5f9"><path d="M34 88 C 32 122, 30 162, 29 202 C 29 207, 33.5 207, 35 201 C 39 160, 45 118, 49 88 C 50.5 80, 34.5 80, 34 88 Z"/><path d="M47 92 C 73 83, 102 96, 100 119 C 98 142, 66 152, 39 144 C 32.5 142, 35 131, 42 133.5 C 65 140, 88 132, 89 117 C 90 102, 70 94, 49 101 C 42.5 103, 40.5 90, 47 92 Z"/><path d="M112 50 C 110 90, 108 128, 107 159 C 107 164.5, 111.5 164.5, 113.5 158 C 118 128, 122.5 88, 126 50 C 127 42, 111.5 42, 112 50 Z"/><path d="M191 97 C 166 86, 138 99, 138 123 C 138 146, 163 156, 187 145 C 192.5 142.5, 196.5 149.5, 191 152.5 C 160 167, 125 151, 125 123 C 125 94, 161 77, 193 89.5 C 199.5 92, 197 99.5, 191 97 Z"/><path d="M192 92 C 190 116, 187 139, 187 157 C 187 163.5, 178 163.5, 178 157 C 178 136, 180.5 112, 183 92 C 184 84, 193 84, 192 92 Z"/><path d="M213 96 C 217 119, 225 141, 236 155.5 C 239.5 160, 231.5 166.5, 227 160.5 C 213.5 143, 205 119, 202 97 C 201 89, 212 88, 213 96 Z"/><path d="M264 94 C 256 125, 245 157, 233 183 C 227 196, 216.5 205.5, 205 208 C 198.5 209.5, 197 200.5, 204 198.5 C 214 196, 221.5 186, 227 175 C 239 148, 247.5 120, 253.5 93 C 255.5 85, 266 86, 264 94 Z"/><path d="M290 44 C 294 44, 298 47, 297 53 C 295 65, 290 78, 285 87 C 282.5 91, 277.5 88, 280 84 C 284 76, 287 64, 288 51 C 288.5 45.5, 287 44, 290 44 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(132,0)" fill="var(--violet)"><path d="M300 44 C 296 90, 292 132, 290 164 C 290 170, 279.5 170, 280.5 163.5 C 284 129, 288 87, 292 42 C 293 34, 301 36, 300 44 Z"/><path d="M296 47 C 331 40, 375 47, 377 74 C 379 99, 345 111, 310 109 C 303.5 109, 304.5 97.5, 311 97.5 C 341 99.5, 366 91, 364 74.5 C 362 58, 328 52.5, 298 58 C 291.5 59, 289.5 46, 296 47 Z"/><path d="M317 104 C 338 125, 359 148, 376 169 C 380 174, 370.5 181.5, 365.5 175 C 348 152, 327 129, 308.5 110.5 C 303 105, 312 98.5, 317 104 Z"/></g></svg><span style="font-family:var(--display);font-weight:800;font-size:18px;color:var(--muted)">Документация</span></a>
+  <div style="display:flex;align-items:center;gap:18px">
+    <details class="langs"><summary aria-label="Langue">🌐 Русский</summary><div><a href="/docs.html" hreflang="fr">Français</a><a href="/en/docs.html" hreflang="en">English</a><a href="/de/docs.html" hreflang="de">Deutsch</a><a href="/es/docs.html" hreflang="es">Español</a><a href="/it/docs.html" hreflang="it">Italiano</a><a href="/pt/docs.html" hreflang="pt">Português</a><a href="/nl/docs.html" hreflang="nl">Nederlands</a><a href="/pl/docs.html" hreflang="pl">Polski</a><a href="/ru/docs.html" hreflang="ru" aria-current="page">Русский</a><a href="/ja/docs.html" hreflang="ja">日本語</a></div></details>
+    <a href="index.html" style="color:var(--muted);font-size:14px">← На главную</a>
+  </div>
+</div></nav>
+
+<div class="layout">
+  <aside>
+    <div class="grp">Начало работы</div>
+    <a href="#principe">Как это устроено</a>
+    <div class="grp">Сервер</div>
+    <a href="#windows">На компьютере с Windows</a>
+    <a href="#casaos">На CasaOS</a>
+    <a href="#synology">На Synology / NAS</a>
+    <a href="#proxmox">На Proxmox</a>
+    <a href="#docker">Docker (где угодно)</a>
+    <a href="#autres">Portainer / Unraid / TrueNAS…</a>
+    <a href="#appairage">Разрешить устройство</a>
+    <a href="#maj">Обновление</a>
+    <div class="grp">Клиент</div>
+    <a href="#client">Установить клиент</a>
+    <a href="#comptes">Подключить аккаунты</a>
+    <div class="grp">Аккаунты</div>
+    <a href="#steam-help">Steam</a>
+    <a href="#epic-help">Epic Games</a>
+    <a href="#gog-help">GOG</a>
+    <a href="#amazon-help">Amazon Games</a>
+    <a href="#ea-help">EA</a>
+    <a href="#ubisoft-help">Ubisoft Connect</a>
+    <a href="#battlenet-help">Battle.net</a>
+    <a href="#cloud">Облачный гейминг</a>
+    <div class="grp">Возможности</div>
+    <a href="#metadonnees">Обложки &amp; метаданные</a>
+    <a href="#tv">ТВ-режим</a>
+    <a href="#promos">Желаемое и скидки</a>
+    <a href="#gratuits">Бесплатные игры</a>
+    <a href="#dashboard">Панель статистики</a>
+    <a href="#jaquettes">Сменить обложку</a>
+  </aside>
+
+  <main>
+    <span class="pill">Документация</span>
+    <h1>Установка &amp; настройка playR</h1>
+    <p class="intro">Всё объяснено шаг за шагом — даже если вы новичок.</p>
+
+    <h2 id="principe">Как это устроено</h2>
+    <p>playR = <strong>сервер</strong> (на нём хранится библиотека) + <strong>клиенты</strong> (компьютеры, которые к нему подключаются).</p>
+    <ol>
+      <li><strong>Сервер</strong> работает на компьютере с Windows или в другом месте через Docker (NAS, CasaOS, Proxmox…).</li>
+      <li><strong>Клиент</strong> (приложение для Windows) находит его сам — и на этом компьютере, и в сети.</li>
+      <li>Вы <strong>подключаете свои аккаунты</strong> (Steam, Epic…) и синхронизируете.</li>
+    </ol>
+    <p>Вам нужен <strong>только один сервер</strong> в вашей сети; все клиентские компьютеры указывают на него.</p>
+
+    <h2 id="windows">Сервер — на компьютере с Windows</h2>
+    <p>Ничего делать не нужно: <a href="https://github.com/ixelia-fr/playR-releases/releases/latest">установщик</a> ставит сервер вместе с приложением. При первом запуске playR сам запускает его и подключается к нему.</p>
+    <ul>
+      <li>Небольшое окно <strong>playR Serveur</strong> открывается и показывает адрес, который нужно указать на других компьютерах.</li>
+      <li>Закрытие окна сворачивает его в <strong>системный трей</strong> (рядом с часами) — сервер продолжает работать.</li>
+      <li>Чтобы его остановить: правый клик по значку → <em>Остановить</em>.</li>
+    </ul>
+
+    <h2 id="casaos">Сервер — на CasaOS</h2>
+    <ol>
+      <li>App Store → <strong>Установить пользовательское приложение</strong>.</li>
+      <li>Нажмите на значок <strong>Импорт</strong> в правом верхнем углу окна.</li>
+      <li>Скопируйте содержимое <a href="../docker-compose.yml" target="_blank" rel="noopener">этого файла</a>, вставьте его и нажмите <strong>Отправить</strong>.</li>
+      <li>Нажмите <strong>Установить</strong>.</li>
+      <li>В открывшемся окне: <strong>Установить</strong>, затем <strong>Открыть</strong>.</li>
+    </ol>
+    <p>Адрес для клиентов: <code>http://[IP-du-CasaOS]:3000</code>.</p>
+
+    <h2 id="synology">Сервер — на Synology / NAS</h2>
+    <div class="box warn"><strong>Прежде всего: поддерживает ли ваш Synology Docker?</strong><br>
+      Docker доступен только на <strong>совместимых</strong> моделях Synology (в основном Intel/x86 — серии « + » и средний/старший сегмент). На многих моделях <strong>ARM / начального уровня</strong> приложение <strong>вообще не появляется</strong> в Центре пакетов, какой бы ни была версия DSM. В этом случае разместите сервер <strong>в другом месте</strong>: компьютер с приложением « playR Serveur » для Windows, мини-ПК, Raspberry Pi…<br>
+      Чтобы проверить: <a href="https://www.synology.com/fr-fr/dsm/packages/ContainerManager" target="_blank" rel="noopener">список моделей, совместимых с Container Manager</a>.<br><br>
+      <strong>Случай Synology на ARM (например, DS218 — чип RTD1296):</strong> Synology <strong>НЕ предлагает</strong> Docker / Container Manager для этих моделей в Центре пакетов. Существует <strong>решение от сообщества</strong> (скрипт <a href="https://github.com/007revad/ContainerManager_for_all_armv8" target="_blank" rel="noopener">007revad « ContainerManager for all armv8 »</a>, DSM 7.2+), которое устанавливает Container Manager на эти модели — <strong>неофициально, на ваш страх и риск</strong>.<br>
+      ⚠️ Кроме того, образ playR пока существует только в варианте <strong>amd64</strong>; поддержка <strong>arm64</strong> (NAS на ARM, Raspberry Pi) <strong>в разработке</strong>. А пока на таких машинах проще всего разместить сервер <strong>в другом месте</strong> (мини-ПК, CasaOS или приложение « playR Serveur » для Windows).</div>
+    <p>Название приложения зависит от версии DSM:</p>
+    <ul>
+      <li><strong>DSM 7.2 / 7.3</strong> → « <strong>Container Manager</strong> »</li>
+      <li><strong>DSM 7.0 / 7.1</strong> → « <strong>Docker</strong> »</li>
+    </ul>
+    <p>Если приложение есть в Центре пакетов, установите его, откройте, затем:</p>
+    <ol>
+      <li><strong>Проект</strong> → <strong>Создать</strong>.</li>
+      <li>Имя: <code>playr</code> · путь: папка (например, <code>/docker/playr</code>).</li>
+      <li>Источник: <em>Создать docker-compose.yml</em>, и вставьте:</li>
+    </ol>
+<pre><code>services:
+  playr:
+    image: ghcr.io/ixelia-fr/playr:latest
+    container_name: playr
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATA_PATH=/app/data
+    volumes:
+      - /volume1/docker/playr/data:/app/data</code></pre>
+    <ol start="4">
+      <li><strong>Далее</strong> → <strong>Готово</strong>. Container Manager скачает образ и запустит его.</li>
+      <li>Адрес для клиентов: <code>http://[IP-du-Synology]:3000</code>.</li>
+    </ol>
+    <div class="box warn"><strong>Архитектура:</strong> образ собран под <strong>amd64</strong> (Synology на Intel: подходит). На Synology с <strong>ARM</strong> нужен мультиархитектурный образ — напишите нам, и мы его добавим.</div>
+
+    <h2 id="proxmox">Сервер — на Proxmox</h2>
+    <p>Два варианта:</p>
+    <ul>
+      <li>Либо <strong>контейнер LXC</strong> с установленным Docker, затем команда из раздела <a href="#docker">Универсальный Docker</a>.</li>
+      <li>Либо небольшая <strong>VM</strong> (Debian/Ubuntu) с Docker — то же самое.</li>
+    </ul>
+
+    <h2 id="docker">Сервер — Docker (универсальный способ)</h2>
+    <p>Сервер — это <strong>образ Docker</strong>: он работает на <strong>любом хосте Docker</strong> (обычный сервер на Linux, мини-ПК, Raspberry Pi на Intel/amd64…). Это основа всех остальных случаев.</p>
+<pre><code>mkdir -p ./playr/data
+docker run -d --name playr --restart unless-stopped \
+  -p 3000:3000 \
+  -e DATA_PATH=/app/data \
+  -v $(pwd)/playr/data:/app/data \
+  ghcr.io/ixelia-fr/playr:latest</code></pre>
+    <p>Или через <code>docker-compose.yml</code> и затем <code>docker compose up -d</code>.</p>
+
+    <h2 id="autres">Сервер — Portainer, Unraid, TrueNAS, OMV…</h2>
+    <p>Все эти платформы работают на <strong>Docker</strong> → значит, везде <strong>один и тот же файл compose</strong> — ориентиры по каждому инструменту:</p>
+    <ul>
+      <li><strong>Portainer / Dockge</strong>: <em>Stacks</em> → <em>Add stack</em> → вставьте compose → <em>Deploy</em>.</li>
+      <li><strong>Unraid</strong>: плагин <em>Compose Manager</em> (или шаблон Docker) — образ <code>ghcr.io/ixelia-fr/playr:latest</code>, порт 3000, том в <code>/app/data</code>.</li>
+      <li><strong>TrueNAS SCALE</strong>: <em>Apps</em> → <em>Custom App</em> / Docker Compose — тот же образ, тот же порт, тот же том.</li>
+      <li><strong>OpenMediaVault</strong>: плагин <em>compose</em> (omv-extras) → вставьте compose.</li>
+    </ul>
+    <p>В любом случае: образ <code>ghcr.io/ixelia-fr/playr:latest</code>, порт <code>3000</code>, постоянный том в <code>/app/data</code>. Адрес для клиентов: <code>http://[IP-de-la-machine]:3000</code>.</p>
+
+    <h2 id="appairage">Разрешить устройство (код сопряжения)</h2>
+    <p>Ваш сервер <strong>не открывает свою библиотеку кому попало</strong>: каждое устройство нужно авторизовать <strong>один раз</strong> с помощью кода. Никто другой в вашей сети не сможет прочитать ваши резервные копии или управлять playR.</p>
+    <ul>
+      <li><strong>Сервер на этом компьютере (обычная установка под Windows)</strong>: <strong>ничего делать не нужно</strong>. playR сам находит код на диске и авторизуется, ничего у вас не спрашивая.</li>
+      <li><strong>Сервер в другом месте (NAS, Docker, другой компьютер)</strong>: playR показывает экран <em>Код авторизации</em> и ждёт код вида <code>ABCD-EFGH-JKMN</code>. Один раз на устройство — дальше он его запоминает.</li>
+    </ul>
+    <h3>Где найти код</h3>
+    <ul>
+      <li><strong>Сервер под Windows</strong>: в окне <strong>playR Serveur</strong>, блок <em>Код авторизации</em>, с кнопкой <strong>Копировать код</strong>.</li>
+      <li><strong>Сервер Docker / NAS</strong>: там нет экрана, поэтому код <strong>записывается в журналы при запуске</strong>:
+<pre><code>docker compose logs playr</code></pre>
+      Найдите строку <code>playR — code d'autorisation : XXXX-XXXX-XXXX</code>.</li>
+    </ul>
+    <div class="box"><strong>Код не меняется.</strong> Он создаётся при самом первом запуске и хранится рядом с вашей библиотекой. В резервные копии он никогда не попадает: восстановив бэкап, доступ к серверу, который его создал, получить нельзя.</div>
+
+    <h2 id="maj">Обновление сервера</h2>
+
+    <h3>Сервер под Windows</h3>
+    <p><strong>Ничего делать не нужно.</strong> Он обновляется сам, вместе с приложением.</p>
+
+    <h3>Сервер в Docker (NAS, CasaOS, Proxmox…)</h3>
+    <p><strong>Автоматически (включено по умолчанию).</strong> В поставляемом <code>docker-compose.yml</code> есть служба <code>playr-updater</code> — она проверяет обновления <strong>каждые 30 минут</strong> и сама обновляет playR. Ничего настраивать и вводить не нужно. Она затрагивает только контейнер playR.</p>
+    <p><strong>Вручную (запасной вариант).</strong> Уведомление (🔔 в правом верхнем углу) предупредит, когда выйдет новая версия. Если вы предпочитаете запускать обновление сами или установили <strong>только образ</strong> (без compose), выполните это на хост-машине — команда сама спросит у Docker нужный путь, находиться в правильной папке не требуется:</p>
+<pre><code>cd "$(docker inspect playr --format '{{index .Config.Labels "com.docker.compose.project.working_dir"}}')" &amp;&amp; docker compose pull &amp;&amp; docker compose up -d</code></pre>
+
+    <h2 id="client">Установить клиент</h2>
+    <p><a href="https://github.com/ixelia-fr/playR-releases/releases/latest">Скачайте установщик</a> и запустите его. При первом запуске playR <strong>ищет вашу библиотеку</strong> — и на этом компьютере, и в сети — и просит её подтвердить. Сменить сервер можно в любой момент (меню ⚙ → <em>Сменить сервер</em>).</p>
+
+    <h2 id="comptes">Подключить аккаунты</h2>
+    <p>Каждый сервер стартует <strong>пустым</strong>: вы подключаете <strong>свои собственные</strong> аккаунты в разделе <strong>⚙ Настройки</strong>. Ничего ни с кем не делится.</p>
+    <p>Для большинства платформ playR просто открывает <strong>официальное окно входа</strong>: вы авторизуетесь у них, как обычно, и всё. Никаких кодов переписывать больше не нужно.</p>
+    <table>
+      <tr><th>Сервис</th><th>Что нужно</th><th></th></tr>
+      <tr><td>Steam</td><td>Логин и пароль Steam, затем Steam Guard (<strong>семейная библиотека включена</strong>) — или SteamID и ключ API</td><td><a href="#steam-help">Подробнее →</a></td></tr>
+      <tr><td>Epic</td><td>Окно входа Epic</td><td><a href="#epic-help">Подробнее →</a></td></tr>
+      <tr><td>GOG</td><td>Ссылка на ваш открытый профиль</td><td><a href="#gog-help">Подробнее →</a></td></tr>
+      <tr><td>Amazon</td><td>Одна кнопка (приложение Amazon Games должно быть установлено на этом компьютере)</td><td><a href="#amazon-help">Подробнее →</a></td></tr>
+      <tr><td>EA</td><td>Окно входа EA</td><td><a href="#ea-help">Подробнее →</a></td></tr>
+      <tr><td>Ubisoft Connect</td><td>Окно входа Ubisoft (вместе с двухфакторной аутентификацией)</td><td><a href="#ubisoft-help">Подробнее →</a></td></tr>
+      <tr><td>Battle.net</td><td>Окно входа Battle.net</td><td><a href="#battlenet-help">Подробнее →</a></td></tr>
+      <tr><td>GeForce NOW · Amazon Luna</td><td>Переключатель / уровень вашей подписки</td><td><a href="#cloud">Подробнее →</a></td></tr>
+      <tr><td>Обложки &amp; метаданные</td><td><strong>Ничего — уже включено</strong></td><td><a href="#metadonnees">Подробнее →</a></td></tr>
+    </table>
+    <div class="box"><strong>Аккаунт подключается к СЕРВЕРУ, а не к компьютеру.</strong> Вы входите из приложения, но доступ хранит ваш сервер: дальше он синхронизирует всё сам, даже когда приложение закрыто. Именно поэтому установка на NAS так же удобна, как установка на компьютере.</div>
+
+    <h2 id="steam-help">Steam</h2>
+    <p>Два способа на выбор:</p>
+    <ul>
+      <li><strong>Steam Connector (рекомендуется — включает игры семейной библиотеки)</strong>: ⚙ Настройки → Steam → введите свои <strong>логин и пароль Steam</strong>. Затем Steam Guard попросит подтвердить вход: либо вы <strong>подтверждаете одним касанием в приложении Steam Mobile</strong> (playR подождёт и продолжит сам), либо вводите <strong>код из 5 символов</strong>. Вход один раз — сохраняется токен, ваш пароль не хранится. Работает даже с закрытым профилем Steam.</li>
+      <li><strong>Или SteamID и ключ API</strong> (только купленные игры, <strong>без семейной библиотеки</strong>, и профиль должен быть <strong>открытым</strong>): ваш <strong>SteamID64</strong> (17 цифр, например, <code>7656…</code> — найти можно через <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) и бесплатный ключ на <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+    </ul>
+    <p>Если на этом компьютере уже использовалось несколько аккаунтов Steam, playR их обнаружит и предложит в один клик.</p>
+
+    <h2 id="epic-help">Epic Games</h2>
+    <h3>Обычный способ — окно входа</h3>
+    <ol>
+      <li>⚙ Настройки → Epic → кнопка <strong>« Войти в окне »</strong>.</li>
+      <li>Откроется окно входа Epic: авторизуйтесь как обычно.</li>
+      <li>И всё — playR сам получает разрешение и закрывает окно. Вход один раз, ничего копировать не нужно.</li>
+    </ol>
+    <h3>Если окно не открывается — код вручную</h3>
+    <p>Старый способ по-прежнему работает и остаётся доступен в приложении, за ссылкой <em>« Что-то не так? Ввести код вручную »</em>:</p>
+    <ol>
+      <li>Кнопка <strong>« Открыть Epic (получить код) »</strong>.</li>
+      <li>При необходимости войдите в Epic: после этого <strong>страница с обычным текстом</strong> откроется.</li>
+      <li>Скопируйте значение поля <code>authorizationCode</code> (длинная последовательность символов).</li>
+      <li>Вставьте её в playR и нажмите <strong>Подтвердить</strong>.</li>
+    </ol>
+    <p>Результат в обоих случаях одинаковый: доступ хранит <strong>сервер</strong> — и дальше он пересинхронизируется сам.</p>
+
+    <h2 id="gog-help">GOG</h2>
+    <p>У GOG нет API для входа: мы читаем ваш <strong>открытый профиль</strong>.</p>
+    <ol>
+      <li>На <a href="https://www.gog.com" target="_blank" rel="noopener">gog.com</a> сделайте свой профиль <strong>открытым</strong> (Настройки профиля → Конфиденциальность).</li>
+      <li>Откройте вкладку <strong>ИГРЫ</strong> своего профиля и скопируйте ссылку вида <code>https://www.gog.com/u/PSEUDO/games</code>.</li>
+      <li>Вставьте её в ⚙ Настройки → GOG → <strong>Синхронизировать</strong>.</li>
+    </ol>
+
+    <h2 id="amazon-help">Amazon Games</h2>
+    <p>Amazon не выдаёт простого токена: его библиотека зашифрована вашей сессией Windows, поэтому прочитать её можно только <strong>на вашем компьютере</strong>. playR делает это сам.</p>
+    <ol>
+      <li>Установите <strong>приложение Amazon Games</strong> и откройте его хотя бы один раз, войдя в свой аккаунт.</li>
+      <li>В playR: ⚙ Настройки → Amazon → <strong>« Получить мою библиотеку Amazon »</strong>.</li>
+    </ol>
+    <p>Ваши игры Amazon появятся. Делать это нужно с того компьютера, где установлен Amazon Games.</p>
+
+    <h2 id="ea-help">EA</h2>
+    <ol>
+      <li>⚙ Настройки → EA → кнопка <strong>« Войти в окне »</strong>.</li>
+      <li>Авторизуйтесь на открывшейся странице EA.</li>
+      <li>playR получает разрешение и синхронизирует вашу библиотеку EA — <strong>все купленные вами игры</strong>, а не только установленные на этом компьютере.</li>
+    </ol>
+    <p>Установленные игры EA запускаются и устанавливаются из playR, как и остальные.</p>
+
+    <h2 id="ubisoft-help">Ubisoft Connect</h2>
+    <ol>
+      <li>⚙ Настройки → Ubisoft → кнопка <strong>« Войти через окно Ubisoft »</strong>.</li>
+      <li>Авторизуйтесь на странице Ubisoft. <strong>Двухфакторная аутентификация работает</strong>: её показывает сам Ubisoft, playR лишь отображает его окно.</li>
+    </ol>
+    <p><strong>playR никогда не видит ваш пароль</strong> — сохраняется только токен сессии. Полученная библиотека — это библиотека вашего аккаунта, включая неустановленные игры.</p>
+
+    <h2 id="battlenet-help">Battle.net</h2>
+    <p>Две отдельные кнопки — в зависимости от того, что вам нужно:</p>
+    <ul>
+      <li><strong>« Подключить мою библиотеку Blizzard »</strong>: открывает окно входа Battle.net и получает <strong>игры, которыми вы владеете</strong>, установленные или нет.</li>
+      <li><strong>« Найти установленные игры Blizzard »</strong>: просто смотрит, что установлено на этом компьютере, без входа в аккаунт.</li>
+    </ul>
+    <div class="box"><strong>Для Battle.net на сервере не хранится никакого доступа</strong>: playR запоминает только дату последнего получения и число игр. Обратная сторона — он не может пересинхронизироваться сам: повторяйте « Подключить мою библиотеку Blizzard » после покупки игры. Стереть всё можно кнопкой <em>Забыть синхронизацию</em>.</div>
+
+    <h2 id="cloud">Облачный гейминг — GeForce NOW &amp; Amazon Luna</h2>
+    <p>playR умеет находить игры, в которые вы можете играть <strong>по стримингу</strong>, не устанавливая их. Всё настраивается в <strong>⚙ Настройки → Облачный гейминг</strong>.</p>
+    <h3>GeForce NOW</h3>
+    <p>Обычный переключатель: <strong>« У меня есть подписка GeForce NOW »</strong>. GeForce NOW <strong>не добавляет ни одной игры</strong> в вашу библиотеку — он отмечает те, которыми вы <strong>уже владеете</strong> и в которые можно играть по стримингу.</p>
+    <ul>
+      <li>Пункт <strong>GeForce NOW</strong> появляется на боковой панели, с числом подходящих игр.</li>
+      <li>На странице игры: кнопка <strong>« Играть через GeForce NOW »</strong>. На компьютере, где установлено приложение GeForce NOW, игра <strong>запускается прямо в нём</strong> — и playR возвращается на передний план в конце сессии.</li>
+      <li>В ТВ-режиме вкладка <strong>GeForce NOW</strong> добавляется, как только появляются игры, которые можно там показать.</li>
+    </ul>
+    <h3>Amazon Luna</h3>
+    <p>Здесь выбирается <strong>уровень подписки</strong>: <strong>Без подписки</strong>, <strong>Amazon Prime</strong> или <strong>Premium</strong>. В отличие от GeForce NOW, Luna — это <strong>полноценная платформа</strong>: входящие в неё игры добавляются в вашу библиотеку, примерно как семейный доступ Steam.</p>
+    <ul>
+      <li><strong>Amazon Prime</strong> даёт каталог, входящий в Prime; <strong>Premium</strong> добавляет игры, доступные только по подписке Luna.</li>
+      <li>Возврат к варианту <strong>Без подписки</strong> убирает игры Luna из библиотеки.</li>
+      <li>Кнопка <strong>« Играть в Luna »</strong> на странице игры и отдельная вкладка в ТВ-режиме.</li>
+    </ul>
+
+    <h2 id="metadonnees">Обложки &amp; метаданные</h2>
+    <p><strong>Настраивать ничего не нужно.</strong> Обложки, описания, оценки критиков, длительность прохождения и системные требования <strong>уже включены</strong>: playR получает их через собственный сервис, со своими доступами к базам <strong>IGDB</strong> и <strong>HowLongToBeat</strong>.</p>
+    <p>Достаточно запустить <strong>Дополнить недостающие сведения</strong> на странице игры или синхронизацию метаданных в ⚙ Настройках.</p>
+
+    <h2 id="tv">ТВ-режим</h2>
+    <p>Полноэкранный интерфейс, рассчитанный на <strong>геймпад</strong> и на расстояние до дивана: крупные обложки, карусели, полная страница игры, сортировка и фильтры — и всё это без мыши.</p>
+    <ul>
+      <li><strong>« Во что поиграть сегодня? »</strong> — в меню <strong>☰</strong>: playR выбирает случайную игру <strong>из того, что у вас на экране</strong> (текущая вкладка и текущие фильтры). <strong>X</strong> запускает, <strong>A</strong> открывает страницу игры, <strong>Y</strong> перебрасывает, <strong>B</strong> закрывает. Игра, выпавшая недавно, сразу снова не выпадет.</li>
+      <li><strong>Экранная заставка</strong> — после нескольких минут бездействия playR показывает подряд скриншоты ваших игр на весь экран, вместе с музыкой. Первое нажатие клавиши или кнопки геймпада возвращает вас ровно туда, где вы были. Настраивается в <strong>⚙ Настройки → Внешний вид</strong> (переключатель и задержка от 3 до 15 минут); по умолчанию включается через 5 минут.</li>
+      <li>Заставка никогда не включается во время игры, во время видео и при открытых Настройках.</li>
+    </ul>
+
+    <h2 id="promos">Желаемое и скидки</h2>
+    <p>Ваши списки желаемого <strong>Steam</strong> и <strong>GOG</strong> собраны вместе, со сравнением цен в Steam, GOG, Epic, Kinguin и примерно тридцати других магазинах. Самое выгодное предложение выделено, а уже купленные игры (или доступные по вашему семейному доступу Steam) помечены.</p>
+    <p>Игра, <strong>ещё не вышедшая,</strong> получает значок: <em>Выходит сегодня</em>, <em>Выходит завтра</em>, <em>Выходит через N дн.</em>, либо дату, если до релиза больше месяца. В день выхода playR пришлёт вам <strong>уведомление 🔔</strong> — только для игр, которых вы действительно ждали, и никогда для тайтла, добавленного уже после релиза.</p>
+    <p>Список желаемого GOG требует, чтобы ваш <strong>профиль GOG был открытым</strong>, как и для библиотеки.</p>
+    <h3>Как узнать, что игра подешевела</h3>
+    <p>playR может предупредить вас, как только игра из вашего списка желаемого получит скидку больше заданной. Настройка находится в разделе <strong>⚙ Настройки → Регион и цены</strong>, в блоке <strong>« Оповещение о скидках из списка желаемого »</strong> — выберите порог, начиная с которого вы хотите получать оповещения (от -10&nbsp;% до -75&nbsp;%, <strong>по умолчанию -30&nbsp;%</strong>), либо <strong>« Выключено »</strong> — чтобы не получать ничего. Не забудьте нажать <strong>Сохранить</strong>.</p>
+    <p>Оповещение приходит в <strong>колокольчик 🔔</strong>: « <em>Название игры</em> со скидкой -45&nbsp;% », вместе с ценой и магазином, у которого она найдена, и ссылка <strong>« Смотреть предложение »</strong> — она сразу открывает страницу игры.</p>
+    <div class="box"><strong>В первый день оповещений нет — это нормально.</strong> playR сначала делает снимок вашего списка желаемого, ничего не показывая, — иначе вы разом получили бы уведомление по каждой игре, которая уже продаётся со скидкой. Вас предупредят о <strong>последующих снижениях цены</strong>. Проверка проходит каждые 6&nbsp;часов, и об одной и той же игре оповещение приходит только один раз за акцию.</div>
+    <p>Показывается цена предложения с <strong>самой большой скидкой</strong>, которое не всегда оказывается самым дешёвым в абсолютном выражении. Оповещения видны в обычном интерфейсе; в ТВ-режиме колокольчика нет, хотя сама настройка там доступна.</p>
+
+    <h2 id="gratuits">Раздачи бесплатных игр</h2>
+    <p>Пункт <strong>Бесплатные игры</strong> на боковой панели: playR показывает там игры, которые сейчас <strong>раздают бесплатно</strong> (Epic, GOG и другие магазины), с датой окончания раздачи. А <strong>уведомление 🔔</strong> предупредит вас, как только появится новая раздача.</p>
+    <ul>
+      <li>Скрыты игры, которыми вы <strong>уже владеете</strong> — незачем их показывать.</li>
+      <li>А <strong>DLC</strong> помечены значком, но остаются видимыми.</li>
+      <li>Кнопка <strong>Забрать</strong> открывает магазин <strong>в окне playR,</strong> которое <strong>сохраняет вашу сессию</strong>: войдите один раз в Epic или GOG, и следующие раздачи забираются подряд без повторного входа.</li>
+    </ul>
+    <div class="box warn"><strong>Steam требует, чтобы вы были авторизованы.</strong> В отличие от Epic или GOG, Steam отказывается добавлять бесплатную игру неавторизованному аккаунту в этом окне. Войдите один раз в окне магазина Steam — дальше всё работает.</div>
+    <img src="../assets/free-games.jpg" alt="Раздел «Бесплатные игры» в playR" style="width:100%;border-radius:14px;border:1px solid var(--line);margin:18px 0;display:block">
+
+    <h2 id="dashboard">Панель статистики</h2>
+    <p>Пункт <strong>Панель статистики</strong> на боковой панели — общий обзор того, чем вы на самом деле владеете:</p>
+    <ul>
+      <li><strong>Пять цифр</strong>: размер библиотеки, общее время в играх, доля игр, <strong>которые ни разу не запускались</strong>, пройденные игры и <strong>оценочная стоимость</strong> коллекции.</li>
+      <li><strong>Шесть разбивок</strong>: по платформам, по статусу, по жанрам, по оценке, по году выхода, а также ваши самые заигранные игры.</li>
+      <li>Кнопка <strong>« Оценить стоимость »</strong> запускает расчёт в фоне: playR ищет <strong>лучшую текущую цену</strong> каждой игры по всем магазинам. Пользоваться приложением в это время можно; ход расчёта отображается.</li>
+    </ul>
+    <p>Статистика отображается <strong>мгновенно</strong>, без сети. Подключение нужно только для оценки стоимости.</p>
+    <img src="../assets/dashboard.jpg" alt="Панель playR" style="width:100%;border-radius:14px;border:1px solid var(--line);margin:18px 0;display:block">
+
+    <h2 id="jaquettes">Сменить обложку</h2>
+    <p>У некоторых игр обложка некрасивая, шаблонная или её вовсе нет. На <strong>странице игры</strong>: <strong>« Сменить обложку »</strong> → playR предлагает сетку изображений из <strong>SteamGridDB</strong>, достаточно одного клика. <strong>« Вернуть по умолчанию »</strong> возвращает исходное изображение.</p>
+    <p>Есть также <strong>массовое заполнение</strong>, которое ищет обложку для всех игр, у которых её нет. Автоматически подставляются только <strong>точные совпадения</strong>; остальное остаётся на ваш ручной выбор.</p>
+    <p>Ваш выбор <strong>переживает синхронизации</strong>: повторная синхронизация платформы его никогда не заменит.</p>
+
+    <div class="box" style="margin-top:48px;text-align:center">
+      <a href="https://github.com/ixelia-fr/playR-releases/releases/latest/download/playR-Setup.exe" class="btn">⬇ Скачать playR</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

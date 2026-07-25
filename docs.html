@@ -24,7 +24,12 @@
   nav .in{max-width:1000px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
   .logo{height:26px;width:auto;display:block}
   .layout{max-width:1000px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:220px 1fr;gap:48px}
-  aside{position:sticky;top:96px;align-self:start;padding-top:56px}
+  /* Le sommaire est plus haut que l'écran depuis qu'il liste les comptes et les
+     sections d'usage (~1275 px) : sans défilement interne, tout ce qui dépasse
+     était inatteignable, la barre étant collée. */
+  aside{position:sticky;top:96px;align-self:start;padding:56px 0 24px;
+    max-height:calc(100vh - 96px);overflow-y:auto;scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.16) transparent}
   aside a{display:block;color:var(--muted);font-size:14.5px;padding:8px 0;border-left:2px solid transparent;padding-left:14px}
   aside a:hover{color:var(--ink);text-decoration:none}
   aside .grp{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5c5972;margin:20px 0 6px;padding-left:14px}
@@ -51,13 +56,27 @@
   .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:11px 20px;
     border-radius:12px;background:linear-gradient(90deg,var(--violet),var(--cyan));color:#08080f}
   .btn:hover{text-decoration:none}
+  /* Sélecteur de langue de la barre du haut (généré par build.mjs), même tracé
+     que l'accueil : la doc est traduite comme le reste du site. */
+  .langs{position:relative}
+  .langs summary{list-style:none;cursor:pointer;font-size:14px;color:var(--muted);
+    white-space:nowrap;display:flex;align-items:center;gap:6px}
+  .langs summary::-webkit-details-marker{display:none}
+  .langs summary:hover,.langs[open] summary{color:var(--ink)}
+  .langs>div{position:absolute;right:0;top:calc(100% + 8px);z-index:60;display:flex;
+    flex-direction:column;min-width:160px;padding:6px;border-radius:14px;
+    border:1px solid var(--line);background:#0c0c17;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+  .langs a{padding:9px 12px;border-radius:9px;font-size:14px;color:var(--muted)}
+  .langs a:hover{background:rgba(139,92,246,.14);color:var(--ink);text-decoration:none}
+  .langs a[aria-current]{color:var(--ink);font-weight:600}
   /* Sous 900 px le sommaire passait à display:none : plus aucun moyen de naviguer
      dans une page longue. Il devient une barre horizontale déroulante, collée sous
      l'en-tête. Les intitulés de groupe n'y ont plus de sens, on les retire. */
   @media(max-width:900px){
     .layout{grid-template-columns:1fr;gap:0;padding:0 18px}
     aside{position:sticky;top:64px;z-index:40;padding:10px 0;display:flex;gap:8px;
-      overflow-x:auto;background:rgba(7,7,13,.92);border-bottom:1px solid var(--line);
+      overflow-x:auto;overflow-y:visible;max-height:none;
+      background:rgba(7,7,13,.92);border-bottom:1px solid var(--line);
       -webkit-overflow-scrolling:touch}
     aside .grp{display:none}
     aside a{flex:none;white-space:nowrap;border:1px solid var(--line);border-radius:999px;
@@ -67,13 +86,56 @@
     pre{padding:14px;font-size:13px}
     table{font-size:14px}
   }
+
+  /* Téléphone. Le sommaire est déjà une barre de pastilles ; restent les blocs
+     de commandes (qu'on colle aux bords pour gagner la largeur des marges) et
+     surtout le tableau des comptes : trois colonnes sur 360 px réduisent la
+     colonne du milieu à une lettre par ligne. On empile chaque ligne. */
+  @media(max-width:560px){
+    nav .in{padding:0 16px;height:58px}
+    .layout{padding:0 16px}
+    aside{gap:6px;padding:8px 0}
+    aside a{padding:6px 12px;font-size:13px}
+    main{padding:26px 0 70px}
+    h1{font-size:clamp(28px,8.5vw,38px)}
+    .intro{font-size:16px}
+    h2{font-size:21px;margin:34px 0 10px}
+    h3{font-size:17px}
+    p,li{font-size:15px}
+    ul,ol{margin-left:18px}
+    .box{padding:14px 15px;border-radius:12px}
+    pre{margin-left:-16px;margin-right:-16px;border-radius:0;border-left:0;border-right:0}
+
+    table,tr,td,th{display:block}
+    /* Empilée, la ligne d'en-tête n'annonce plus rien : elle ferait trois mots
+       orphelins au-dessus du premier service. */
+    tr:first-child{display:none}
+    tr{border-bottom:1px solid var(--line);padding:12px 0}
+    td{border:0;padding:2px 0}
+    td:first-child{color:var(--ink);font-weight:600;font-size:15px}
+  }
 </style>
+  <link rel="canonical" href="https://playrgameslauncher.com/docs.html">
+  <link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/docs.html">
+  <link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/docs.html">
+  <link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/docs.html">
+  <link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/docs.html">
+  <link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/docs.html">
+  <link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/docs.html">
+  <link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/docs.html">
+  <link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/docs.html">
+  <link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/docs.html">
+  <link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/docs.html">
+  <link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/docs.html">
 </head>
 <body>
 <div class="bg-fx"></div>
 <nav><div class="in">
   <a href="index.html" style="color:inherit;display:flex;align-items:center;gap:10px"><svg class="logo" viewBox="0 36 512 180" role="img" aria-label="playR"><g transform="translate(4,89)"><path d="M22.5 0 h 26 v 22.5 h 22.5 v 26 h -22.5 v 22.5 h -26 v -22.5 h -22.5 v -26 h 22.5 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(114,0)" fill="#f1f5f9"><path d="M34 88 C 32 122, 30 162, 29 202 C 29 207, 33.5 207, 35 201 C 39 160, 45 118, 49 88 C 50.5 80, 34.5 80, 34 88 Z"/><path d="M47 92 C 73 83, 102 96, 100 119 C 98 142, 66 152, 39 144 C 32.5 142, 35 131, 42 133.5 C 65 140, 88 132, 89 117 C 90 102, 70 94, 49 101 C 42.5 103, 40.5 90, 47 92 Z"/><path d="M112 50 C 110 90, 108 128, 107 159 C 107 164.5, 111.5 164.5, 113.5 158 C 118 128, 122.5 88, 126 50 C 127 42, 111.5 42, 112 50 Z"/><path d="M191 97 C 166 86, 138 99, 138 123 C 138 146, 163 156, 187 145 C 192.5 142.5, 196.5 149.5, 191 152.5 C 160 167, 125 151, 125 123 C 125 94, 161 77, 193 89.5 C 199.5 92, 197 99.5, 191 97 Z"/><path d="M192 92 C 190 116, 187 139, 187 157 C 187 163.5, 178 163.5, 178 157 C 178 136, 180.5 112, 183 92 C 184 84, 193 84, 192 92 Z"/><path d="M213 96 C 217 119, 225 141, 236 155.5 C 239.5 160, 231.5 166.5, 227 160.5 C 213.5 143, 205 119, 202 97 C 201 89, 212 88, 213 96 Z"/><path d="M264 94 C 256 125, 245 157, 233 183 C 227 196, 216.5 205.5, 205 208 C 198.5 209.5, 197 200.5, 204 198.5 C 214 196, 221.5 186, 227 175 C 239 148, 247.5 120, 253.5 93 C 255.5 85, 266 86, 264 94 Z"/><path d="M290 44 C 294 44, 298 47, 297 53 C 295 65, 290 78, 285 87 C 282.5 91, 277.5 88, 280 84 C 284 76, 287 64, 288 51 C 288.5 45.5, 287 44, 290 44 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(132,0)" fill="var(--violet)"><path d="M300 44 C 296 90, 292 132, 290 164 C 290 170, 279.5 170, 280.5 163.5 C 284 129, 288 87, 292 42 C 293 34, 301 36, 300 44 Z"/><path d="M296 47 C 331 40, 375 47, 377 74 C 379 99, 345 111, 310 109 C 303.5 109, 304.5 97.5, 311 97.5 C 341 99.5, 366 91, 364 74.5 C 362 58, 328 52.5, 298 58 C 291.5 59, 289.5 46, 296 47 Z"/><path d="M317 104 C 338 125, 359 148, 376 169 C 380 174, 370.5 181.5, 365.5 175 C 348 152, 327 129, 308.5 110.5 C 303 105, 312 98.5, 317 104 Z"/></g></svg><span style="font-family:var(--display);font-weight:800;font-size:18px;color:var(--muted)">Doc</span></a>
-  <a href="index.html" style="color:var(--muted);font-size:14px">← Accueil</a>
+  <div style="display:flex;align-items:center;gap:18px">
+    <details class="langs"><summary aria-label="Langue">🌐 Français</summary><div><a href="/docs.html" hreflang="fr" aria-current="page">Français</a><a href="/en/docs.html" hreflang="en">English</a><a href="/de/docs.html" hreflang="de">Deutsch</a><a href="/es/docs.html" hreflang="es">Español</a><a href="/it/docs.html" hreflang="it">Italiano</a><a href="/pt/docs.html" hreflang="pt">Português</a><a href="/nl/docs.html" hreflang="nl">Nederlands</a><a href="/pl/docs.html" hreflang="pl">Polski</a><a href="/ru/docs.html" hreflang="ru">Русский</a><a href="/ja/docs.html" hreflang="ja">日本語</a></div></details>
+    <a href="index.html" style="color:var(--muted);font-size:14px">← Accueil</a>
+  </div>
 </div></nav>
 
 <div class="layout">
@@ -87,11 +149,27 @@
     <a href="#proxmox">Sur Proxmox</a>
     <a href="#docker">Docker (n'importe où)</a>
     <a href="#autres">Portainer / Unraid / TrueNAS…</a>
+    <a href="#appairage">Autoriser un appareil</a>
     <a href="#maj">Mettre à jour</a>
     <div class="grp">Client</div>
     <a href="#client">Installer le client</a>
     <a href="#comptes">Connecter ses comptes</a>
+    <div class="grp">Comptes</div>
+    <a href="#steam-help">Steam</a>
+    <a href="#epic-help">Epic Games</a>
+    <a href="#gog-help">GOG</a>
+    <a href="#amazon-help">Amazon Games</a>
+    <a href="#ea-help">EA</a>
+    <a href="#ubisoft-help">Ubisoft Connect</a>
+    <a href="#battlenet-help">Battle.net</a>
+    <a href="#cloud">Cloud gaming</a>
+    <div class="grp">Fonctionnalités</div>
     <a href="#metadonnees">Jaquettes &amp; métadonnées</a>
+    <a href="#tv">Mode TV</a>
+    <a href="#promos">Envies &amp; Promos</a>
+    <a href="#gratuits">Jeux gratuits</a>
+    <a href="#dashboard">Tableau de bord</a>
+    <a href="#jaquettes">Changer une jaquette</a>
   </aside>
 
   <main>
@@ -188,40 +266,75 @@ docker run -d --name playr --restart unless-stopped \
     </ul>
     <p>Dans tous les cas : image <code>ghcr.io/ixelia-fr/playr:latest</code>, port <code>3000</code>, volume persistant sur <code>/app/data</code>. Adresse pour les clients : <code>http://[IP-de-la-machine]:3000</code>.</p>
 
+    <h2 id="appairage">Autoriser un appareil (code d'appairage)</h2>
+    <p>Votre serveur <strong>n'ouvre pas sa bibliothèque à n'importe qui</strong> : chaque appareil doit être autorisé <strong>une fois</strong> avec un code. Personne d'autre sur votre réseau ne peut lire vos sauvegardes ni piloter playR.</p>
+    <ul>
+      <li><strong>Serveur sur ce PC (installation Windows classique)</strong> : <strong>rien à faire</strong>. playR trouve le code tout seul sur le disque et s'autorise sans rien vous demander.</li>
+      <li><strong>Serveur ailleurs (NAS, Docker, autre PC)</strong> : playR affiche un écran <em>Code d'autorisation</em> et attend un code de la forme <code>ABCD-EFGH-JKMN</code>. Une seule fois par appareil — il s'en souvient ensuite.</li>
+    </ul>
+    <h3>Où trouver le code</h3>
+    <ul>
+      <li><strong>Serveur Windows</strong> : dans la fenêtre <strong>playR Serveur</strong>, bloc <em>Code d'autorisation</em>, avec un bouton <strong>Copier le code</strong>.</li>
+      <li><strong>Serveur Docker / NAS</strong> : il n'y a pas d'écran là-bas, le code est <strong>écrit dans les journaux au démarrage</strong> :
+<pre><code>docker compose logs playr</code></pre>
+      Cherchez la ligne <code>playR — code d'autorisation : XXXX-XXXX-XXXX</code>.</li>
+    </ul>
+    <div class="box"><strong>Le code ne change pas.</strong> Il est créé au tout premier démarrage et conservé à côté de votre bibliothèque. Il n'entre jamais dans les sauvegardes : récupérer un backup ne donne donc pas accès au serveur qui l'a produit.</div>
+
     <h2 id="maj">Mettre à jour le serveur</h2>
+
+    <h3>Serveur Windows</h3>
+    <p><strong>Rien à faire.</strong> Il se met à jour tout seul, en même temps que l'application.</p>
+
+    <h3>Serveur Docker (NAS, CasaOS, Proxmox…)</h3>
     <p><strong>Automatique (inclus par défaut).</strong> Le <code>docker-compose.yml</code> fourni embarque un service <code>playr-updater</code> qui vérifie <strong>toutes les 30 minutes</strong> et met playR à jour tout seul. Rien à configurer, rien à taper. Il ne touche qu'au conteneur playR.</p>
     <p><strong>Manuellement (repli).</strong> Une notification (🔔 en haut à droite) vous prévient quand une version existe. Si vous préférez déclencher vous-même, ou si vous avez installé l'<strong>image seule</strong> (sans le compose), lancez ceci sur la machine hôte — la commande demande son chemin à Docker, vous n'avez pas besoin d'être dans le bon dossier :</p>
 <pre><code>cd "$(docker inspect playr --format '{{index .Config.Labels "com.docker.compose.project.working_dir"}}')" &amp;&amp; docker compose pull &amp;&amp; docker compose up -d</code></pre>
-    <p><strong>Serveur Windows</strong> : il se met à jour tout seul avec l'application.</p>
 
     <h2 id="client">Installer le client</h2>
     <p><a href="https://github.com/ixelia-fr/playR-releases/releases/latest">Téléchargez l'installeur</a> et lancez-le. Au premier lancement, playR <strong>cherche votre bibliothèque</strong> — sur ce PC comme sur le réseau — et vous la fait confirmer. Vous pouvez changer de serveur à tout moment (menu ⚙ → <em>Changer de serveur</em>).</p>
 
     <h2 id="comptes">Connecter ses comptes</h2>
     <p>Chaque serveur démarre <strong>vide</strong> : vous connectez <strong>vos propres</strong> comptes dans <strong>⚙ Paramètres</strong>. Rien n'est partagé.</p>
+    <p>Pour la plupart des plateformes, playR ouvre simplement <strong>une fenêtre de connexion officielle</strong> : vous vous identifiez chez eux, comme d'habitude, et c'est fini. Plus aucun code à recopier.</p>
     <table>
       <tr><th>Service</th><th>Ce qu'il faut</th><th></th></tr>
-      <tr><td>Steam</td><td>Connexion Steam (Connector, <strong>famille incluse</strong>) — ou SteamID + clé API</td><td><a href="#steam-help">Plus d'infos →</a></td></tr>
-      <tr><td>Epic</td><td>Code d'autorisation (un bouton dans l'app)</td><td><a href="#epic-help">Plus d'infos →</a></td></tr>
+      <tr><td>Steam</td><td>Identifiant + mot de passe Steam, puis Steam Guard (<strong>famille incluse</strong>) — ou SteamID + clé API</td><td><a href="#steam-help">Plus d'infos →</a></td></tr>
+      <tr><td>Epic</td><td>Une fenêtre de connexion Epic</td><td><a href="#epic-help">Plus d'infos →</a></td></tr>
       <tr><td>GOG</td><td>URL de votre profil public</td><td><a href="#gog-help">Plus d'infos →</a></td></tr>
-      <tr><td>Amazon</td><td>Un bouton dans l'app (l'appli Amazon Games doit être installée)</td><td><a href="#amazon-help">Plus d'infos →</a></td></tr>
+      <tr><td>Amazon</td><td>Un bouton (l'appli Amazon Games doit être installée sur ce PC)</td><td><a href="#amazon-help">Plus d'infos →</a></td></tr>
+      <tr><td>EA</td><td>Une fenêtre de connexion EA</td><td><a href="#ea-help">Plus d'infos →</a></td></tr>
+      <tr><td>Ubisoft Connect</td><td>Une fenêtre de connexion Ubisoft (double authentification comprise)</td><td><a href="#ubisoft-help">Plus d'infos →</a></td></tr>
+      <tr><td>Battle.net</td><td>Une fenêtre de connexion Battle.net</td><td><a href="#battlenet-help">Plus d'infos →</a></td></tr>
+      <tr><td>GeForce NOW · Amazon Luna</td><td>Un interrupteur / votre niveau d'abonnement</td><td><a href="#cloud">Plus d'infos →</a></td></tr>
       <tr><td>Jaquettes &amp; métadonnées</td><td><strong>Rien — c'est inclus</strong></td><td><a href="#metadonnees">Plus d'infos →</a></td></tr>
     </table>
+    <div class="box"><strong>Le compte est connecté au SERVEUR, pas au PC.</strong> Vous vous connectez depuis l'application, mais c'est votre serveur qui garde l'accès : il continue ensuite à synchroniser tout seul, même application fermée. C'est ce qui rend les installations NAS aussi confortables qu'une installation sur un PC.</div>
 
     <h2 id="steam-help">Steam</h2>
     <p>Deux façons, au choix :</p>
     <ul>
-      <li><strong>Steam Connector (recommandé — inclut les jeux de la famille)</strong> : ⚙ Paramètres → Steam → entrez votre <strong>identifiant et mot de passe Steam</strong>, validez le code <strong>Steam Guard</strong>. Connexion unique (un jeton est stocké, rien n'est renvoyé ailleurs).</li>
-      <li><strong>Ou SteamID + clé API</strong> (jeux possédés uniquement, sans la famille) : votre <strong>SteamID64</strong> (17 chiffres, ex. <code>7656…</code> — trouvable via <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) et une clé gratuite sur <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+      <li><strong>Steam Connector (recommandé — inclut les jeux de la famille)</strong> : ⚙ Paramètres → Steam → entrez votre <strong>identifiant et mot de passe Steam</strong>. Steam Guard vous demande ensuite de confirmer : soit vous <strong>approuvez d'un geste dans l'application Steam Mobile</strong> (playR attend et repart tout seul), soit vous saisissez le <strong>code à 5 caractères</strong>. Connexion unique — un jeton est conservé, votre mot de passe n'est pas stocké. Fonctionne même avec un profil Steam privé.</li>
+      <li><strong>Ou SteamID + clé API</strong> (jeux possédés uniquement, <strong>sans la famille</strong>, et le profil doit être <strong>public</strong>) : votre <strong>SteamID64</strong> (17 chiffres, ex. <code>7656…</code> — trouvable via <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) et une clé gratuite sur <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
     </ul>
+    <p>Si plusieurs comptes Steam ont déjà servi sur ce PC, playR les détecte et les propose en un clic.</p>
 
     <h2 id="epic-help">Epic Games</h2>
+    <h3>La méthode normale — la fenêtre de connexion</h3>
     <ol>
-      <li>⚙ Paramètres → Epic → bouton <strong>« Ouvrir Epic (obtenir le code) »</strong>.</li>
-      <li>Connectez-vous à Epic si besoin : une <strong>page JSON</strong> s'affiche dans le navigateur.</li>
-      <li>Copiez la valeur du champ <code>authorizationCode</code> (une longue suite de caractères).</li>
-      <li>Collez-la dans l'app et cliquez <strong>Valider</strong>. Connexion unique (le refresh token est conservé).</li>
+      <li>⚙ Paramètres → Epic → bouton <strong>« Se connecter dans une fenêtre »</strong>.</li>
+      <li>Une fenêtre de connexion Epic s'ouvre : identifiez-vous normalement.</li>
+      <li>C'est tout — playR récupère l'autorisation tout seul et referme la fenêtre. Connexion unique, rien à copier.</li>
     </ol>
+    <h3>Si la fenêtre ne s'ouvre pas — le code à la main</h3>
+    <p>L'ancienne méthode fonctionne toujours et reste disponible dans l'application, derrière le lien <em>« Un souci ? Saisir un code à la main »</em> :</p>
+    <ol>
+      <li>Bouton <strong>« Ouvrir Epic (obtenir le code) »</strong>.</li>
+      <li>Connectez-vous à Epic si besoin : une <strong>page de texte brut</strong> s'affiche.</li>
+      <li>Copiez la valeur du champ <code>authorizationCode</code> (une longue suite de caractères).</li>
+      <li>Collez-la dans playR et cliquez <strong>Valider</strong>.</li>
+    </ol>
+    <p>Le résultat est le même dans les deux cas : c'est le <strong>serveur</strong> qui garde l'accès et resynchronise ensuite tout seul.</p>
 
     <h2 id="gog-help">GOG</h2>
     <p>GOG n'a pas d'API de connexion : on lit votre <strong>profil public</strong>.</p>
@@ -235,13 +348,96 @@ docker run -d --name playr --restart unless-stopped \
     <p>Amazon ne donne pas de jeton simple : sa bibliothèque est chiffrée avec votre session Windows, elle ne peut donc être lue que <strong>sur votre PC</strong>. playR s'en charge tout seul.</p>
     <ol>
       <li>Installez l'<strong>appli Amazon Games</strong> et ouvrez-la au moins une fois, connecté à votre compte.</li>
-      <li>Dans playR : ⚙ Paramètres → Amazon → <strong>Synchroniser</strong>.</li>
+      <li>Dans playR : ⚙ Paramètres → Amazon → <strong>« Récupérer ma bibliothèque Amazon »</strong>.</li>
     </ol>
     <p>Vos jeux Amazon apparaissent. À faire depuis le PC où Amazon Games est installé.</p>
+
+    <h2 id="ea-help">EA</h2>
+    <ol>
+      <li>⚙ Paramètres → EA → bouton <strong>« Se connecter dans une fenêtre »</strong>.</li>
+      <li>Identifiez-vous sur la page EA qui s'ouvre.</li>
+      <li>playR récupère l'autorisation et synchronise votre bibliothèque EA — <strong>tous vos jeux possédés</strong>, pas seulement ceux installés sur ce PC.</li>
+    </ol>
+    <p>Les jeux EA installés se lancent et s'installent depuis playR, comme les autres.</p>
+
+    <h2 id="ubisoft-help">Ubisoft Connect</h2>
+    <ol>
+      <li>⚙ Paramètres → Ubisoft → bouton <strong>« Se connecter avec la fenêtre Ubisoft »</strong>.</li>
+      <li>Identifiez-vous sur la page Ubisoft. <strong>La double authentification fonctionne</strong> : c'est Ubisoft qui l'affiche, playR ne fait que montrer sa fenêtre.</li>
+    </ol>
+    <p><strong>playR ne voit jamais votre mot de passe</strong> — seul le jeton de session est conservé. La bibliothèque récupérée est celle de votre compte, jeux non installés compris.</p>
+
+    <h2 id="battlenet-help">Battle.net</h2>
+    <p>Deux boutons distincts, selon ce que vous voulez :</p>
+    <ul>
+      <li><strong>« Connecter ma bibliothèque Blizzard »</strong> : ouvre une fenêtre de connexion Battle.net et récupère <strong>les jeux que vous possédez</strong>, installés ou non.</li>
+      <li><strong>« Détecter les jeux Blizzard installés »</strong> : se contente de regarder ce qui est installé sur ce PC, sans connexion.</li>
+    </ul>
+    <div class="box"><strong>Aucun accès n'est conservé côté serveur pour Battle.net</strong> : playR retient seulement la date de la dernière récupération et le nombre de jeux. La contrepartie est qu'il ne peut pas resynchroniser tout seul — refaites « Connecter ma bibliothèque Blizzard » quand vous achetez un jeu. Vous pouvez tout effacer avec <em>Oublier la sync</em>.</div>
+
+    <h2 id="cloud">Cloud gaming — GeForce NOW &amp; Amazon Luna</h2>
+    <p>playR sait repérer les jeux que vous pouvez jouer <strong>en streaming</strong>, sans les installer. Tout se règle dans <strong>⚙ Paramètres → Cloud Gaming</strong>.</p>
+    <h3>GeForce NOW</h3>
+    <p>Un simple interrupteur : <strong>« Je suis abonné à GeForce NOW »</strong>. GeForce NOW <strong>n'ajoute aucun jeu</strong> à votre bibliothèque — il signale ceux que vous <strong>possédez déjà</strong> et qui sont jouables en streaming.</p>
+    <ul>
+      <li>Une entrée <strong>GeForce NOW</strong> apparaît dans la barre latérale, avec le nombre de jeux concernés.</li>
+      <li>Sur la fiche d'un jeu : bouton <strong>« Jouer via GeForce NOW »</strong>. Sur un PC où l'application GeForce NOW est installée, le jeu <strong>démarre directement</strong> dedans, et playR revient au premier plan à la fin de la session.</li>
+      <li>En Mode TV, un onglet <strong>GeForce NOW</strong> s'ajoute dès qu'il y a des jeux à y montrer.</li>
+    </ul>
+    <h3>Amazon Luna</h3>
+    <p>Ici on choisit son <strong>niveau d'abonnement</strong> : <strong>Pas abonné</strong>, <strong>Amazon Prime</strong> ou <strong>Premium</strong>. Contrairement à GeForce NOW, Luna est une <strong>vraie plateforme</strong> : ses jeux inclus s'ajoutent à votre bibliothèque, un peu comme le partage familial Steam.</p>
+    <ul>
+      <li><strong>Amazon Prime</strong> donne le catalogue inclus avec Prime ; <strong>Premium</strong> ajoute les jeux réservés à l'abonnement Luna.</li>
+      <li>Repasser sur <strong>Pas abonné</strong> retire les jeux Luna de la bibliothèque.</li>
+      <li>Bouton <strong>« Jouer sur Luna »</strong> sur la fiche, et onglet dédié en Mode TV.</li>
+    </ul>
 
     <h2 id="metadonnees">Jaquettes &amp; métadonnées</h2>
     <p><strong>Rien à configurer.</strong> Les jaquettes, descriptions, notes critiques, durées de jeu et configurations requises sont <strong>incluses</strong> : playR les récupère via son propre service, avec ses propres accès aux bases <strong>IGDB</strong> et <strong>HowLongToBeat</strong>.</p>
     <p>Il suffit de lancer <strong>Compléter les informations manquantes</strong> depuis une fiche de jeu, ou la synchronisation des métadonnées depuis ⚙ Paramètres.</p>
+
+    <h2 id="tv">Le Mode TV</h2>
+    <p>Une interface plein écran conçue pour la <strong>manette</strong> et la distance du canapé : grandes jaquettes, carrousels, fiche complète, tri et filtres, le tout sans souris.</p>
+    <ul>
+      <li><strong>« Que jouer ce soir ? »</strong> — dans le menu <strong>☰</strong> : playR tire un jeu au hasard <strong>parmi ce que vous regardez</strong> (l'onglet et les filtres en cours). <strong>X</strong> lance, <strong>A</strong> ouvre la fiche, <strong>Y</strong> relance, <strong>B</strong> ferme. Un jeu déjà tiré récemment ne ressort pas tout de suite.</li>
+      <li><strong>Écran de veille</strong> — après quelques minutes sans rien toucher, playR enchaîne les captures d'écran de vos jeux en plein écran, musique comprise. Le premier appui sur une touche ou la manette vous ramène exactement où vous étiez. Réglable dans <strong>⚙ Paramètres → Apparence</strong> (interrupteur + délai de 3 à 15 minutes) ; actif par défaut au bout de 5 minutes.</li>
+      <li>La veille ne se déclenche jamais pendant qu'un jeu tourne, pendant une vidéo, ou les Paramètres ouverts.</li>
+    </ul>
+
+    <h2 id="promos">Envies &amp; Promos</h2>
+    <p>Vos listes d'envies <strong>Steam</strong> et <strong>GOG</strong> réunies, avec les prix comparés sur Steam, GOG, Epic, Kinguin et une trentaine de boutiques. Le moins cher est mis en avant, et les jeux que vous possédez déjà (ou disponibles dans votre partage familial Steam) sont signalés.</p>
+    <p>Un jeu <strong>pas encore sorti</strong> affiche un badge : <em>Sort aujourd'hui</em>, <em>Sort demain</em>, <em>Sort dans N j</em>, ou la date au-delà d'un mois. Le jour de la sortie, playR vous prévient par une <strong>notification 🔔</strong> — uniquement pour les jeux que vous attendiez vraiment, jamais pour un titre ajouté déjà sorti.</p>
+    <p>La wishlist GOG suppose que votre <strong>profil GOG est public</strong>, comme pour la bibliothèque.</p>
+    <h3>Être prévenu quand un jeu baisse</h3>
+    <p>playR peut vous avertir dès qu'un jeu de votre liste d'envies dépasse une remise donnée. Le réglage est dans <strong>⚙ Paramètres → Région &amp; prix</strong>, sous <strong>« Alerte promo (liste d'envies) »</strong> : choisissez le seuil à partir duquel vous voulez être prévenu (de -10&nbsp;% à -75&nbsp;%, <strong>-30&nbsp;% par défaut</strong>), ou <strong>« Désactivée »</strong> pour ne rien recevoir. N'oubliez pas <strong>Enregistrer</strong>.</p>
+    <p>L'alerte arrive dans la <strong>cloche 🔔</strong> : « <em>Nom du jeu</em> est à -45&nbsp;% », avec le prix et la boutique concernée, et un lien <strong>« Voir l'offre »</strong> qui ouvre directement la page du jeu.</p>
+    <div class="box"><strong>Pas d'alerte le premier jour, c'est normal.</strong> playR commence par photographier l'état de vos envies sans rien afficher — sinon vous recevriez d'un coup une notification pour chaque jeu déjà en promo. Vous serez prévenu des baisses <strong>suivantes</strong>. Le contrôle a lieu toutes les 6&nbsp;heures, et un même jeu ne vous alerte qu'une fois par promotion.</div>
+    <p>Le prix annoncé est celui de l'offre <strong>la plus remisée</strong>, qui n'est pas toujours la moins chère en valeur absolue. Les alertes s'affichent dans l'interface normale ; le Mode TV n'a pas de cloche, même si le réglage y est accessible.</p>
+
+    <h2 id="gratuits">Jeux gratuits à réclamer</h2>
+    <p>Entrée <strong>Jeux gratuits</strong> dans la barre latérale : playR y liste les jeux actuellement <strong>offerts</strong> (Epic, GOG et d'autres boutiques), avec la date de fin de l'offre. Une <strong>notification 🔔</strong> vous prévient dès qu'une nouvelle offre apparaît.</p>
+    <ul>
+      <li>Les jeux que vous <strong>possédez déjà</strong> sont masqués — inutile de les voir.</li>
+      <li>Les <strong>DLC</strong> sont marqués d'un badge, mais restés visibles.</li>
+      <li>Le bouton <strong>Réclamer</strong> ouvre la boutique <strong>dans une fenêtre de playR</strong> qui <strong>garde votre session</strong> : connectez-vous une fois à Epic ou GOG, les réclamations suivantes s'enchaînent sans reconnexion.</li>
+    </ul>
+    <div class="box warn"><strong>Steam demande d'être connecté.</strong> Contrairement à Epic ou GOG, Steam refuse d'ajouter un jeu gratuit à un compte non identifié dans cette fenêtre. Connectez-vous une fois dans la fenêtre de la boutique Steam, et ça passe ensuite.</div>
+    <img src="assets/free-games.jpg" alt="La vue Jeux gratuits de playR" style="width:100%;border-radius:14px;border:1px solid var(--line);margin:18px 0;display:block">
+
+    <h2 id="dashboard">Tableau de bord</h2>
+    <p>Entrée <strong>Tableau de bord</strong> dans la barre latérale — une vue d'ensemble de ce que vous possédez vraiment :</p>
+    <ul>
+      <li><strong>Cinq chiffres</strong> : taille de la bibliothèque, temps de jeu total, part de jeux <strong>jamais lancés</strong>, jeux terminés, et <strong>valeur estimée</strong> de la collection.</li>
+      <li><strong>Six répartitions</strong> : par plateforme, par statut, par genre, par note, par année de sortie, et vos jeux les plus joués.</li>
+      <li>Le bouton <strong>« Estimer la valeur »</strong> lance un calcul en tâche de fond : playR cherche le <strong>meilleur prix actuel</strong> de chaque jeu, toutes boutiques confondues. Vous pouvez continuer à utiliser l'application pendant ce temps ; la progression s'affiche.</li>
+    </ul>
+    <p>Les statistiques s'affichent <strong>instantanément</strong>, sans réseau. Seule l'estimation de valeur demande une connexion.</p>
+    <img src="assets/dashboard.jpg" alt="Le tableau de bord de playR" style="width:100%;border-radius:14px;border:1px solid var(--line);margin:18px 0;display:block">
+
+    <h2 id="jaquettes">Changer une jaquette</h2>
+    <p>Certains jeux ont une jaquette laide, générique ou absente. Depuis la <strong>fiche du jeu</strong> : <strong>« Changer la jaquette »</strong> → playR propose une grille de visuels issus de <strong>SteamGridDB</strong>, un clic suffit. <strong>« Rétablir par défaut »</strong> revient au visuel d'origine.</p>
+    <p>Il existe aussi un <strong>remplissage en masse</strong>, qui va chercher une jaquette pour tous les jeux qui n'en ont pas. Il ne remplit automatiquement que les correspondances <strong>certaines</strong> ; le reste vous est laissé au choix manuel.</p>
+    <p>Votre choix <strong>survit aux synchronisations</strong> : une resynchro de la plateforme ne le remplace jamais.</p>
 
     <div class="box" style="margin-top:48px;text-align:center">
       <a href="https://github.com/ixelia-fr/playR-releases/releases/latest/download/playR-Setup.exe" class="btn">⬇ Télécharger playR</a>
