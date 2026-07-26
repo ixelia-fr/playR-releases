@@ -50,6 +50,9 @@
   code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13.5px;font-family:ui-monospace,monospace;color:#d6d2e6}
   pre{background:#0c0c17;border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;margin:14px 0}
   pre code{background:none;padding:0;color:#cdd6e6;line-height:1.6}
+  /* Précision secondaire à l'intérieur d'une étape : elle doit se lire APRÈS
+     l'instruction, pas à égalité avec elle. */
+  .hint{display:block;margin-top:4px;color:var(--muted);font-size:14px}
   .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
   .warn{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
   .warn strong{color:#fbbf24}
@@ -343,10 +346,28 @@ docker run -d --name playr --restart unless-stopped \
     <h2 id="steam-help">Steam</h2>
     <p>Dwa sposoby do wyboru:</p>
     <ul>
-      <li><strong>Steam Connector (zalecany — obejmuje gry rodzinne)</strong>: ⚙ Ustawienia → Steam → wpisz swój <strong>login i hasło Steam</strong>. Steam Guard poprosi potem o potwierdzenie: albo <strong>zatwierdzasz jednym gestem w aplikacji Steam Mobile</strong> (playR czeka i sam rusza dalej), albo wpisujesz <strong>5-znakowy kod</strong>. Logujesz się tylko raz — zapisywany jest token, twoje hasło nie jest przechowywane. Działa nawet z prywatnym profilem Steam.</li>
-      <li><strong>Albo SteamID i klucz API</strong> (tylko gry, które posiadasz, <strong>bez rodziny</strong>, a profil musi być <strong>publiczny</strong>): twój <strong>SteamID64</strong> (17 cyfr, np. <code>7656…</code> — znajdziesz go przez <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) i darmowy klucz na <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+      <li><strong>Metoda 1 — Steam Connector (zalecane)</strong>: dane logowania do Steama w ⚙ Ustawienia → Steam i gotowe. Obejmuje gry rodzinne i działa z prywatnym profilem.</li>
+      <li><strong>Metoda 2 — SteamID + klucz API</strong>: tylko gry, które masz na własność, bez rodzinnych. Trzeba zdobyć dwie rzeczy — poniżej.</li>
     </ul>
     <p>Jeśli na tym komputerze używano już kilku kont Steam, playR wykryje je i zaproponuje jednym kliknięciem.</p>
+
+    <h3>Jak znaleźć swój SteamID64</h3>
+    <p>To nie twój nick, tylko 17-cyfrowy numer zaczynający się od 7656.</p>
+    <p>Na <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a> wklej adres swojego profilu, a nie nick:</p>
+<pre><code>https://steamcommunity.com/id/VOTRE-PSEUDO/</code></pre>
+    <p>Kliknij lookup — wiersz steamID64 podaje ten numer.</p>
+    <p class="hint">Ten adres odczytasz w Steamie: twoja nazwa u góry, potem Profil. Jeśli wygląda już jak https://steamcommunity.com/profiles/7656…, masz te 17 cyfr przed sobą.</p>
+
+    <h3>Jak zdobyć klucz API</h3>
+    <p>Na <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a> — będąc zalogowanym na swoje konto:</p>
+    <ol>
+      <li>Nazwa domeny: <code>http://localhost:3000</code></li>
+      <li>Zaznacz „Akceptuję warunki korzystania ze Steam Web API”, inaczej przycisk nic nie zrobi.</li>
+      <li>Kliknij Uzyskaj — pojawi się klucz, 32 znaki, do skopiowania.</li>
+    </ol>
+    <p>SteamID64 i klucz wklejasz w ⚙ Ustawienia → Steam.</p>
+    <div class="box"><strong>Twój profil Steam musi być publiczny</strong> — inaczej nie pojawi się żadna gra: Profil → Edytuj profil → Prywatność → „Szczegóły gier” na Publiczne.</div>
+    <div class="box warn"><strong>Klucz API jest wart tyle co hasło.</strong> Nigdzie go nie publikuj. Jeśli wycieknie, poproś o nowy — stary natychmiast przestaje działać.</div>
 
     <h2 id="epic-help">Epic Games</h2>
     <h3>Zwykła metoda — okno logowania</h3>
@@ -437,6 +458,16 @@ docker run -d --name playr --restart unless-stopped \
     <p>Twoje listy życzeń <strong>Steam</strong> i <strong>GOG</strong> zebrane w jednym miejscu, z cenami porównanymi na Steamie, GOG, Epicu, Kinguinie i w około trzydziestu innych sklepach. Najtańsza oferta jest wyróżniona, a gry, które już masz (albo które są dostępne w twoim udostępnianiu rodzinnym Steam), są oznaczone.</p>
     <p>Gra <strong>jeszcze niewydana</strong> ma plakietkę: <em>Premiera dzisiaj</em>, <em>Premiera jutro</em>, <em>Premiera za N dni</em>, albo data, jeśli do premiery zostało ponad miesiąc. W dniu premiery playR przyśle ci <strong>powiadomienie 🔔</strong> — tylko przy grach, na które naprawdę czekałeś, nigdy przy tytule dodanym już po premierze.</p>
     <p>Lista życzeń GOG wymaga, żeby twój <strong>profil GOG był publiczny</strong>, tak samo jak przy bibliotece.</p>
+
+    <h3>Twoja lista życzeń playR</h3>
+    <p>Steam i GOG znają tylko własne gry. Na całą resztę playR ma własną listę:</p>
+    <ol>
+      <li>Wyszukaj grę w pasku wyszukiwania — w trybie TV jest to lupa. Znajdzie też to, czego nie masz.</li>
+      <li>Otwórz jej kartę i kliknij serce.</li>
+    </ol>
+    <p>Trafia do sekcji Życzenia i promocje z fioletową plakietką R i jest tam traktowana jak reszta: porównane ceny, oznaczenie premiery, powiadomienie o promocji. To samo serce ją usuwa.</p>
+    <div class="box">Ta lista żyje na serwerze: taka sama na wszystkich twoich komputerach i w trybie TV, objęta kopiami zapasowymi.</div>
+
     <h3>Powiadomienie, gdy gra tanieje</h3>
     <p>playR może cię powiadomić, gdy tylko gra z twojej listy życzeń przekroczy zadaną zniżkę. Ustawienie znajdziesz w <strong>⚙ Ustawienia → Region i ceny</strong>, w sekcji <strong>„Alert o promocjach z listy życzeń”</strong>: wybierz próg, od którego chcesz dostawać powiadomienia (od -10&nbsp;% do -75&nbsp;%, <strong>domyślnie -30&nbsp;%</strong>), albo <strong>„Wyłączone”</strong> — wtedy nic nie dostaniesz. Nie zapomnij kliknąć <strong>Zapisz</strong>.</p>
     <p>Alert pojawia się na <strong>dzwonku 🔔</strong>: « <em>Nazwa gry</em> ma zniżkę -45&nbsp;% », wraz z ceną i sklepem, którego dotyczy, oraz linkiem <strong>„Zobacz ofertę”</strong> otwierającym od razu stronę gry.</p>

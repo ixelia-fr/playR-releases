@@ -50,6 +50,9 @@
   code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13.5px;font-family:ui-monospace,monospace;color:#d6d2e6}
   pre{background:#0c0c17;border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;margin:14px 0}
   pre code{background:none;padding:0;color:#cdd6e6;line-height:1.6}
+  /* Précision secondaire à l'intérieur d'une étape : elle doit se lire APRÈS
+     l'instruction, pas à égalité avec elle. */
+  .hint{display:block;margin-top:4px;color:var(--muted);font-size:14px}
   .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
   .warn{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
   .warn strong{color:#fbbf24}
@@ -343,10 +346,28 @@ docker run -d --name playr --restart unless-stopped \
     <h2 id="steam-help">Steam</h2>
     <p>Twee manieren, kies zelf:</p>
     <ul>
-      <li><strong>Steam Connector (aanbevolen — inclusief de games van het gezin)</strong>: ⚙ Instellingen → Steam → typ je <strong>Steam-gebruikersnaam en -wachtwoord</strong>. Steam Guard vraagt je daarna om te bevestigen: ofwel <strong>keur je het met één tik goed in de Steam Mobile-app</strong> (playR wacht en gaat vanzelf verder), ofwel typ je de <strong>code van 5 tekens</strong>. Eén keer inloggen — er wordt een token bewaard, je wachtwoord wordt niet opgeslagen. Werkt zelfs met een privé Steam-profiel.</li>
-      <li><strong>Of SteamID + API-sleutel</strong> (alleen games die je zelf bezit, <strong>zonder het gezin</strong>, en het profiel moet <strong>openbaar</strong> zijn): je <strong>SteamID64</strong> (17 cijfers, bijv. <code>7656…</code> — te vinden via <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) en een gratis sleutel op <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+      <li><strong>Methode 1 — Steam Connector (aanbevolen)</strong>: je Steam-inloggegevens in ⚙ Instellingen → Steam, en klaar. Inclusief de gezinsgames en werkt met een privéprofiel.</li>
+      <li><strong>Methode 2 — SteamID + API-sleutel</strong>: alleen de games die je zelf hebt, zonder die van het gezin. Twee dingen op te halen, hieronder.</li>
     </ul>
     <p>Als er op deze pc al meerdere Steam-accounts zijn gebruikt, herkent playR ze en biedt ze met één klik aan.</p>
+
+    <h3>Je SteamID64 vinden</h3>
+    <p>Dit is niet je gebruikersnaam, maar een getal van 17 cijfers dat begint met 7656.</p>
+    <p>Op <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>, plak het adres van je profiel — niet je gebruikersnaam:</p>
+<pre><code>https://steamcommunity.com/id/VOTRE-PSEUDO/</code></pre>
+    <p>Klik op lookup: de regel steamID64 geeft het getal.</p>
+    <p class="hint">Dat adres lees je in Steam: je naam bovenaan, dan Profiel. Lijkt het al op https://steamcommunity.com/profiles/7656…, dan staan de 17 cijfers er al.</p>
+
+    <h3>Je API-sleutel aanvragen</h3>
+    <p>Op <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>, terwijl je bent aangemeld bij je account:</p>
+    <ol>
+      <li>Domeinnaam: <code>http://localhost:3000</code></li>
+      <li>Vink "Ik ga akkoord met de gebruiksvoorwaarden van de Steam Web API" aan, anders doet de knop niets.</li>
+      <li>Klik op Verkrijgen: de sleutel verschijnt, 32 tekens, om te kopiëren.</li>
+    </ol>
+    <p>De SteamID64 en de sleutel gaan naar ⚙ Instellingen → Steam.</p>
+    <div class="box"><strong>Je Steam-profiel moet openbaar zijn</strong>, anders komt er geen enkele game door: Profiel → Profiel bewerken → Privacy-instellingen → "Spelgegevens" op Openbaar.</div>
+    <div class="box warn"><strong>Een API-sleutel is net zoveel waard als een wachtwoord.</strong> Publiceer hem nergens. Lekt hij uit, vraag dan een nieuwe aan: de oude werkt meteen niet meer.</div>
 
     <h2 id="epic-help">Epic Games</h2>
     <h3>De normale methode — het inlogvenster</h3>
@@ -437,6 +458,16 @@ docker run -d --name playr --restart unless-stopped \
     <p>Je wishlists van <strong>Steam</strong> en <strong>GOG</strong> samengebracht, met de prijzen vergeleken op Steam, GOG, Epic, Kinguin en zo'n dertig winkels. De goedkoopste wordt uitgelicht, en games die je al hebt (of die beschikbaar zijn via je Steam-gezinsdelen) worden gemarkeerd.</p>
     <p>Bij een game <strong>die nog niet uit is</strong> verschijnt een label: <em>Vandaag uit</em>, <em>Morgen uit</em>, <em>Over N d uit</em>, of de datum als het meer dan een maand duurt. Op de dag van verschijnen waarschuwt playR je met een <strong>melding 🔔</strong> — alleen voor de games waar je echt op wachtte, nooit voor een titel die al uit was toen je hem toevoegde.</p>
     <p>Voor de GOG-wishlist moet je <strong>GOG-profiel openbaar zijn</strong>, net als voor de bibliotheek.</p>
+
+    <h3>Je playR-wenslijst</h3>
+    <p>Steam en GOG kennen alleen hun eigen games. Voor al de rest heeft playR een eigen lijst:</p>
+    <ol>
+      <li>Zoek de game in de zoekbalk — in tv-modus het vergrootglas. Ze vindt ook wat je niet bezit.</li>
+      <li>Open de pagina en klik op het hartje.</li>
+    </ol>
+    <p>Hij komt in Wenslijst &amp; Aanbiedingen terecht met een paars R-label en wordt daar behandeld als alle andere: vergeleken prijzen, releaselabel, aanbiedingsmelding. Hetzelfde hartje haalt hem weg.</p>
+    <div class="box">Deze lijst leeft op de server: dezelfde vanaf al je pc's en vanuit tv-modus, en opgenomen in de back-ups.</div>
+
     <h3>Gewaarschuwd worden als een game in prijs daalt</h3>
     <p>playR kan je waarschuwen zodra een game op je wishlist een bepaalde korting overschrijdt. De instelling staat in <strong>⚙ Instellingen → Regio &amp; prijzen</strong>, onder <strong>‘Verlanglijst-dealmelding’</strong>: kies vanaf welke drempel je gewaarschuwd wilt worden (van -10&nbsp;% tot -75&nbsp;%, <strong>standaard -30&nbsp;%</strong>), of <strong>‘Uit’</strong> om niets te ontvangen. Vergeet niet te klikken op <strong>Opslaan</strong>.</p>
     <p>De melding verschijnt in de <strong>bel 🔔</strong>: « <em>Naam van de game</em> is -45&nbsp;% », met de prijs en de betreffende winkel, en een link <strong>‘Bekijk aanbieding’</strong> die direct de pagina van de game opent.</p>

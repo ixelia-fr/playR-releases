@@ -50,6 +50,9 @@
   code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13.5px;font-family:ui-monospace,monospace;color:#d6d2e6}
   pre{background:#0c0c17;border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;margin:14px 0}
   pre code{background:none;padding:0;color:#cdd6e6;line-height:1.6}
+  /* Précision secondaire à l'intérieur d'une étape : elle doit se lire APRÈS
+     l'instruction, pas à égalité avec elle. */
+  .hint{display:block;margin-top:4px;color:var(--muted);font-size:14px}
   .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
   .warn{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
   .warn strong{color:#fbbf24}
@@ -343,10 +346,28 @@ docker run -d --name playr --restart unless-stopped \
     <h2 id="steam-help">Steam</h2>
     <p>Два способа на выбор:</p>
     <ul>
-      <li><strong>Steam Connector (рекомендуется — включает игры семейной библиотеки)</strong>: ⚙ Настройки → Steam → введите свои <strong>логин и пароль Steam</strong>. Затем Steam Guard попросит подтвердить вход: либо вы <strong>подтверждаете одним касанием в приложении Steam Mobile</strong> (playR подождёт и продолжит сам), либо вводите <strong>код из 5 символов</strong>. Вход один раз — сохраняется токен, ваш пароль не хранится. Работает даже с закрытым профилем Steam.</li>
-      <li><strong>Или SteamID и ключ API</strong> (только купленные игры, <strong>без семейной библиотеки</strong>, и профиль должен быть <strong>открытым</strong>): ваш <strong>SteamID64</strong> (17 цифр, например, <code>7656…</code> — найти можно через <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) и бесплатный ключ на <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+      <li><strong>Способ 1 — Steam Connector (рекомендуется)</strong>: ваши данные Steam в ⚙ Настройки → Steam, и всё. Включает игры из семейного доступа и работает с закрытым профилем.</li>
+      <li><strong>Способ 2 — SteamID + ключ API</strong>: только ваши собственные игры, без семейных. Нужно раздобыть две вещи, см. ниже.</li>
     </ul>
     <p>Если на этом компьютере уже использовалось несколько аккаунтов Steam, playR их обнаружит и предложит в один клик.</p>
+
+    <h3>Как узнать свой SteamID64</h3>
+    <p>Это не ваш ник, а 17-значное число, начинающееся с 7656.</p>
+    <p>На <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a> вставьте адрес своего профиля, а не ник:</p>
+<pre><code>https://steamcommunity.com/id/VOTRE-PSEUDO/</code></pre>
+    <p>Нажмите lookup: нужное число будет в строке steamID64.</p>
+    <p class="hint">Этот адрес виден в Steam: ваше имя вверху, затем «Профиль». Если он уже выглядит как https://steamcommunity.com/profiles/7656…, то 17 цифр перед вами.</p>
+
+    <h3>Как получить ключ API</h3>
+    <p>На <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a> — войдя в свою учётную запись:</p>
+    <ol>
+      <li>Доменное имя: <code>http://localhost:3000</code></li>
+      <li>Отметьте «Я принимаю условия использования Steam Web API», иначе кнопка ничего не сделает.</li>
+      <li>Нажмите «Получить»: появится ключ из 32 символов, скопируйте его.</li>
+    </ol>
+    <p>SteamID64 и ключ вставляются в ⚙ Настройки → Steam.</p>
+    <div class="box"><strong>Ваш профиль Steam должен быть открытым</strong> — иначе не подтянется ни одной игры: «Профиль» → «Редактировать профиль» → «Настройки приватности» → «Информация об играх» на «Открытый».</div>
+    <div class="box warn"><strong>Ключ API равносилен паролю.</strong> Нигде его не публикуйте. Если он утечёт, запросите новый — старый сразу перестанет работать.</div>
 
     <h2 id="epic-help">Epic Games</h2>
     <h3>Обычный способ — окно входа</h3>
@@ -437,6 +458,16 @@ docker run -d --name playr --restart unless-stopped \
     <p>Ваши списки желаемого <strong>Steam</strong> и <strong>GOG</strong> собраны вместе, со сравнением цен в Steam, GOG, Epic, Kinguin и примерно тридцати других магазинах. Самое выгодное предложение выделено, а уже купленные игры (или доступные по вашему семейному доступу Steam) помечены.</p>
     <p>Игра, <strong>ещё не вышедшая,</strong> получает значок: <em>Выходит сегодня</em>, <em>Выходит завтра</em>, <em>Выходит через N дн.</em>, либо дату, если до релиза больше месяца. В день выхода playR пришлёт вам <strong>уведомление 🔔</strong> — только для игр, которых вы действительно ждали, и никогда для тайтла, добавленного уже после релиза.</p>
     <p>Список желаемого GOG требует, чтобы ваш <strong>профиль GOG был открытым</strong>, как и для библиотеки.</p>
+
+    <h3>Ваш список желаемого playR</h3>
+    <p>Steam и GOG знают только свои игры. Для всего остального у playR есть собственный список:</p>
+    <ol>
+      <li>Найдите игру в строке поиска — в режиме ТВ это лупа. Он находит и то, чего у вас нет.</li>
+      <li>Откройте её карточку и нажмите на сердечко.</li>
+    </ol>
+    <p>Она попадает в «Желаемое и скидки» с фиолетовым значком R, и дальше с ней всё как с остальными: сравнение цен, отметка о выходе, уведомление о скидке. То же сердечко её убирает.</p>
+    <div class="box">Этот список хранится на сервере: одинаковый на всех ваших компьютерах и в режиме ТВ, и попадает в резервные копии.</div>
+
     <h3>Как узнать, что игра подешевела</h3>
     <p>playR может предупредить вас, как только игра из вашего списка желаемого получит скидку больше заданной. Настройка находится в разделе <strong>⚙ Настройки → Регион и цены</strong>, в блоке <strong>« Оповещение о скидках из списка желаемого »</strong> — выберите порог, начиная с которого вы хотите получать оповещения (от -10&nbsp;% до -75&nbsp;%, <strong>по умолчанию -30&nbsp;%</strong>), либо <strong>« Выключено »</strong> — чтобы не получать ничего. Не забудьте нажать <strong>Сохранить</strong>.</p>
     <p>Оповещение приходит в <strong>колокольчик 🔔</strong>: « <em>Название игры</em> со скидкой -45&nbsp;% », вместе с ценой и магазином, у которого она найдена, и ссылка <strong>« Смотреть предложение »</strong> — она сразу открывает страницу игры.</p>

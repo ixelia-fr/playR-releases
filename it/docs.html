@@ -50,6 +50,9 @@
   code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13.5px;font-family:ui-monospace,monospace;color:#d6d2e6}
   pre{background:#0c0c17;border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;margin:14px 0}
   pre code{background:none;padding:0;color:#cdd6e6;line-height:1.6}
+  /* Précision secondaire à l'intérieur d'une étape : elle doit se lire APRÈS
+     l'instruction, pas à égalité avec elle. */
+  .hint{display:block;margin-top:4px;color:var(--muted);font-size:14px}
   .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
   .warn{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
   .warn strong{color:#fbbf24}
@@ -343,10 +346,28 @@ docker run -d --name playr --restart unless-stopped \
     <h2 id="steam-help">Steam</h2>
     <p>Due modi, a scelta:</p>
     <ul>
-      <li><strong>Steam Connector (consigliato — include i giochi della famiglia)</strong>: ⚙ Impostazioni → Steam → inserisci il tuo <strong>nome utente e password Steam</strong>. Steam Guard ti chiede poi di confermare: puoi <strong>approvare con un tocco nell'applicazione Steam Mobile</strong> (playR aspetta e riparte da solo), oppure inserire il <strong>codice di 5 caratteri</strong>. Accesso unico: viene conservato un token, la tua password non viene salvata. Funziona anche con un profilo Steam privato.</li>
-      <li><strong>Oppure SteamID + chiave API</strong> (solo i giochi posseduti, <strong>senza la famiglia</strong>, e il profilo deve essere <strong>pubblico</strong>): il tuo <strong>SteamID64</strong> (17 cifre, es. <code>7656…</code> — reperibile tramite <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) e una chiave gratuita su <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+      <li><strong>Metodo 1 — Steam Connector (consigliato)</strong>: le tue credenziali Steam in ⚙ Impostazioni → Steam, tutto qui. Include i giochi della famiglia e funziona con un profilo privato.</li>
+      <li><strong>Metodo 2 — SteamID + chiave API</strong>: solo i giochi che possiedi, senza quelli della famiglia. Due cose da recuperare, qui sotto.</li>
     </ul>
     <p>Se su questo PC sono già stati usati più account Steam, playR li rileva e li propone con un clic.</p>
+
+    <h3>Trovare il proprio SteamID64</h3>
+    <p>Non è il tuo nickname, ma un numero di 17 cifre che inizia con 7656.</p>
+    <p>Su <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>, incolla l'indirizzo del tuo profilo — non il nickname:</p>
+<pre><code>https://steamcommunity.com/id/VOTRE-PSEUDO/</code></pre>
+    <p>Clicca su lookup: la riga steamID64 ti dà il numero.</p>
+    <p class="hint">Questo indirizzo si legge in Steam: il tuo nome in alto, poi Profilo. Se somiglia già a https://steamcommunity.com/profiles/7656…, le 17 cifre sono già lì.</p>
+
+    <h3>Ottenere la propria chiave API</h3>
+    <p>Su <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>, connesso al tuo account:</p>
+    <ol>
+      <li>Nome di dominio: <code>http://localhost:3000</code></li>
+      <li>Spunta « Accetto i termini di utilizzo della Steam Web API », altrimenti il pulsante non fa nulla.</li>
+      <li>Clicca su Ottieni: compare la chiave, 32 caratteri, da copiare.</li>
+    </ol>
+    <p>SteamID64 e chiave si incollano in ⚙ Impostazioni → Steam.</p>
+    <div class="box"><strong>Il tuo profilo Steam deve essere pubblico</strong>, altrimenti non arriva nessun gioco: Profilo → Modifica profilo → Privacy → « Dettagli di gioco » su Pubblico.</div>
+    <div class="box warn"><strong>Una chiave API vale quanto una password.</strong> Non pubblicarla da nessuna parte. Se trapela, chiedine un'altra: la vecchia smette subito di funzionare.</div>
 
     <h2 id="epic-help">Epic Games</h2>
     <h3>Il metodo normale — la finestra di accesso</h3>
@@ -437,6 +458,16 @@ docker run -d --name playr --restart unless-stopped \
     <p>Le tue wishlist <strong>Steam</strong> e <strong>GOG</strong> riunite, con i prezzi confrontati su Steam, GOG, Epic, Kinguin e una trentina di negozi. Il più economico è messo in evidenza e i giochi che possiedi già (o disponibili nella tua condivisione famiglia Steam) vengono segnalati.</p>
     <p>Un gioco <strong>non ancora uscito</strong> mostra un badge: <em>Esce oggi</em>, <em>Esce domani</em>, <em>Esce tra N g</em>, oppure la data se manca più di un mese. Il giorno dell'uscita, playR ti avvisa con una <strong>notifica 🔔</strong> — solo per i giochi che aspettavi davvero, mai per un titolo aggiunto quando è già uscito.</p>
     <p>La wishlist GOG richiede che il tuo <strong>profilo GOG sia pubblico</strong>, come per la libreria.</p>
+
+    <h3>La tua lista dei desideri playR</h3>
+    <p>Steam e GOG conoscono soltanto i propri giochi. Per tutto il resto, playR ha la sua lista:</p>
+    <ol>
+      <li>Cerca il gioco nella barra di ricerca — la lente, in modalità TV. Trova anche ciò che non possiedi.</li>
+      <li>Apri la sua scheda e clicca sul cuore.</li>
+    </ol>
+    <p>Arriva in Desideri &amp; Offerte con un bollino viola con la R, e lì è trattato come gli altri: prezzi confrontati, badge di uscita, avviso promo. Lo stesso cuore lo toglie.</p>
+    <div class="box">Questa lista vive sul server: la stessa da tutti i tuoi PC e dalla modalità TV, e inclusa nei backup.</div>
+
     <h3>Farsi avvisare quando un gioco cala di prezzo</h3>
     <p>playR può avvisarti non appena un gioco della tua lista dei desideri supera uno sconto stabilito. L'impostazione si trova in <strong>⚙ Impostazioni → Regione e prezzi</strong>, alla voce <strong>« Avviso offerte lista desideri »</strong>: scegli la soglia a partire dalla quale vuoi essere avvisato (da -10&nbsp;% a -75&nbsp;%, <strong>-30&nbsp;% per impostazione predefinita</strong>), oppure <strong>« Disattivato »</strong> per non ricevere nulla. Non dimenticare <strong>Salva</strong>.</p>
     <p>L'avviso arriva nella <strong>campanella 🔔</strong>: « <em>Nome del gioco</em> è a -45&nbsp;% », con il prezzo e il negozio interessato, e un link <strong>« Vedi offerta »</strong> che apre direttamente la pagina del gioco.</p>

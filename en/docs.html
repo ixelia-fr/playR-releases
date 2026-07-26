@@ -50,6 +50,9 @@
   code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13.5px;font-family:ui-monospace,monospace;color:#d6d2e6}
   pre{background:#0c0c17;border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;margin:14px 0}
   pre code{background:none;padding:0;color:#cdd6e6;line-height:1.6}
+  /* Précision secondaire à l'intérieur d'une étape : elle doit se lire APRÈS
+     l'instruction, pas à égalité avec elle. */
+  .hint{display:block;margin-top:4px;color:var(--muted);font-size:14px}
   .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
   .warn{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
   .warn strong{color:#fbbf24}
@@ -343,10 +346,28 @@ docker run -d --name playr --restart unless-stopped \
     <h2 id="steam-help">Steam</h2>
     <p>Two ways, take your pick:</p>
     <ul>
-      <li><strong>Steam Connector (recommended, family games included)</strong>: ⚙ Settings → Steam → enter your <strong>Steam username and password</strong>. Steam Guard then asks you to confirm: either you <strong>approve it with a tap in the Steam Mobile app</strong> (playR waits and carries on by itself), or you type the <strong>5-character code</strong>. One sign-in, once — a token is kept, your password is not stored. Works even with a private Steam profile.</li>
-      <li><strong>Or SteamID + API key</strong> (owned games only, <strong>no family library</strong>, and the profile has to be <strong>public</strong>): your <strong>SteamID64</strong> (17 digits, e.g. <code>7656…</code> — found via <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) and a free key from <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+      <li><strong>Method 1 — Steam Connector (recommended)</strong>: your Steam credentials in ⚙ Settings → Steam, and that's it. Includes family games and works with a private profile.</li>
+      <li><strong>Method 2 — SteamID + API key</strong>: only the games you own, without the family ones. Two things to fetch, below.</li>
     </ul>
     <p>If several Steam accounts have already been used on this PC, playR spots them and offers them in one click.</p>
+
+    <h3>Finding your SteamID64</h3>
+    <p>It is not your nickname, but a 17-digit number starting with 7656.</p>
+    <p>On <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>, paste your profile address — not your nickname:</p>
+<pre><code>https://steamcommunity.com/id/VOTRE-PSEUDO/</code></pre>
+    <p>Click lookup: the steamID64 line gives you the number.</p>
+    <p class="hint">You can read that address in Steam: your name at the top, then Profile. If it already looks like https://steamcommunity.com/profiles/7656…, the 17 digits are right there.</p>
+
+    <h3>Getting your API key</h3>
+    <p>On <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>, while signed in to your account:</p>
+    <ol>
+      <li>Domain Name: <code>http://localhost:3000</code></li>
+      <li>Tick "I agree to the Steam Web API Terms of Use", otherwise the button does nothing.</li>
+      <li>Click Register: the key appears, 32 characters, ready to copy.</li>
+    </ol>
+    <p>The SteamID64 and the key go into ⚙ Settings → Steam.</p>
+    <div class="box"><strong>Your Steam profile must be public</strong>, otherwise no game comes through: Profile → Edit Profile → Privacy Settings → "Game details" set to Public.</div>
+    <div class="box warn"><strong>An API key is as good as a password.</strong> Never publish it anywhere. If it leaks, request a new one: the old key stops working immediately.</div>
 
     <h2 id="epic-help">Epic Games</h2>
     <h3>The normal method — the sign-in window</h3>
@@ -437,6 +458,16 @@ docker run -d --name playr --restart unless-stopped \
     <p>Your <strong>Steam</strong> and <strong>GOG</strong> wishlists in one place, with prices compared across Steam, GOG, Epic, Kinguin and some thirty other stores. The cheapest is highlighted, and the games you already own (or that are available through your Steam family sharing) are flagged.</p>
     <p>A game <strong>that is not out yet</strong> shows a badge: <em>Out today</em>, <em>Out tomorrow</em>, <em>Out in N d</em>, or the date when it is more than a month away. On release day, playR tells you with a <strong>🔔 notification</strong> — only for the games you were really waiting for, never for a title added after it was already out.</p>
     <p>The GOG wishlist assumes that your <strong>GOG profile is public</strong>, just like for the library.</p>
+
+    <h3>Your playR wishlist</h3>
+    <p>Steam and GOG only know their own games. For everything else, playR has a list of its own:</p>
+    <ol>
+      <li>Search for the game in the search bar — the magnifying glass, in TV mode. It also finds what you do not own.</li>
+      <li>Open its page and click the heart.</li>
+    </ol>
+    <p>It lands in Wishlist &amp; Deals with a purple R badge, and is treated there like all the rest: compared prices, release badge, deal alert. The same heart removes it.</p>
+    <div class="box">This list lives on the server: the same from all your PCs and from TV mode, and included in backups.</div>
+
     <h3>Getting alerted when a game drops in price</h3>
     <p>playR can warn you as soon as a game on your wishlist goes past a given discount. The setting lives in <strong>⚙ Settings → Region &amp; prices</strong>, under <strong>“Wishlist deal alert”</strong>: pick the threshold above which you want to be warned (from -10&nbsp;% to -75&nbsp;%, <strong>-30&nbsp;% by default</strong>), or <strong>“Off”</strong> to receive nothing at all. Do not forget to <strong>Save</strong>.</p>
     <p>The alert lands in the <strong>🔔 bell</strong>: « <em>Game name</em> is -45&nbsp;% », with the price and the store concerned, and a <strong>“View deal”</strong> link that opens the game page directly.</p>

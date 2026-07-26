@@ -50,6 +50,9 @@
   code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13.5px;font-family:ui-monospace,monospace;color:#d6d2e6}
   pre{background:#0c0c17;border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;margin:14px 0}
   pre code{background:none;padding:0;color:#cdd6e6;line-height:1.6}
+  /* Précision secondaire à l'intérieur d'une étape : elle doit se lire APRÈS
+     l'instruction, pas à égalité avec elle. */
+  .hint{display:block;margin-top:4px;color:var(--muted);font-size:14px}
   .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
   .warn{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
   .warn strong{color:#fbbf24}
@@ -343,10 +346,28 @@ docker run -d --name playr --restart unless-stopped \
     <h2 id="steam-help">Steam</h2>
     <p>Zwei Wege, ganz wie du magst:</p>
     <ul>
-      <li><strong>Steam Connector (empfohlen — mit den Spielen der Familie)</strong>: ⚙ Einstellungen → Steam → gib deinen <strong>Steam-Benutzernamen und dein Passwort ein</strong>. Steam Guard bittet dich dann um eine Bestätigung: Entweder <strong>bestätigst du mit einem Tipp in der Steam Mobile-App</strong> (playR wartet und macht von selbst weiter), oder du gibst den <strong>5-stelligen Code ein</strong>. Einmal anmelden genügt — gespeichert wird ein Token, dein Passwort nicht. Funktioniert auch mit einem privaten Steam-Profil.</li>
-      <li><strong>Oder SteamID + API-Schlüssel</strong> (nur gekaufte Spiele, <strong>ohne die Familie</strong>, und das Profil muss <strong>öffentlich</strong> sein): deine <strong>SteamID64</strong> (17 Ziffern, z. B. <code>7656…</code> — zu finden über <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) und ein kostenloser Schlüssel auf <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+      <li><strong>Methode 1 — Steam Connector (empfohlen)</strong>: deine Steam-Zugangsdaten unter ⚙ Einstellungen → Steam, mehr nicht. Schließt die Familienspiele ein und funktioniert auch mit privatem Profil.</li>
+      <li><strong>Methode 2 — SteamID + API-Schlüssel</strong>: nur deine eigenen Spiele, ohne die der Familie. Zwei Dinge sind dafür nötig, siehe unten.</li>
     </ul>
     <p>Wenn auf diesem PC schon mehrere Steam-Konten benutzt wurden, erkennt playR sie und bietet sie dir mit einem Klick an.</p>
+
+    <h3>Die SteamID64 finden</h3>
+    <p>Das ist nicht dein Benutzername, sondern eine 17-stellige Zahl, die mit 7656 beginnt.</p>
+    <p>Auf <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>, füge die Adresse deines Profils ein — nicht deinen Benutzernamen:</p>
+<pre><code>https://steamcommunity.com/id/VOTRE-PSEUDO/</code></pre>
+    <p>Klicke auf lookup: Die Zeile steamID64 liefert die Zahl.</p>
+    <p class="hint">Diese Adresse siehst du in Steam: dein Name oben, dann Profil. Sieht sie bereits aus wie https://steamcommunity.com/profiles/7656…, hast du die 17 Ziffern schon vor dir.</p>
+
+    <h3>Den API-Schlüssel erhalten</h3>
+    <p>Auf <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>, während du in deinem Konto angemeldet bist:</p>
+    <ol>
+      <li>Domain-Name: <code>http://localhost:3000</code></li>
+      <li>Setze das Häkchen bei „Ich stimme den Nutzungsbedingungen der Steam-Web-API zu“, sonst tut die Schaltfläche nichts.</li>
+      <li>Klicke auf Registrieren: Der Schlüssel erscheint, 32 Zeichen, zum Kopieren.</li>
+    </ol>
+    <p>SteamID64 und Schlüssel kommen unter ⚙ Einstellungen → Steam.</p>
+    <div class="box"><strong>Dein Steam-Profil muss öffentlich sein</strong>, sonst kommt kein einziges Spiel an: Profil → Profil bearbeiten → Privatsphäre-Einstellungen → „Spieldetails“ auf Öffentlich.</div>
+    <div class="box warn"><strong>Ein API-Schlüssel ist so viel wert wie ein Passwort.</strong> Veröffentliche ihn nirgendwo. Sickert er durch, fordere einfach einen neuen an: Der alte funktioniert sofort nicht mehr.</div>
 
     <h2 id="epic-help">Epic Games</h2>
     <h3>Der normale Weg — das Anmeldefenster</h3>
@@ -437,6 +458,16 @@ docker run -d --name playr --restart unless-stopped \
     <p>Deine Wunschlisten von <strong>Steam</strong> und <strong>GOG</strong> an einem Ort, mit Preisvergleich über Steam, GOG, Epic, Kinguin und rund dreißig weitere Shops. Das günstigste Angebot wird hervorgehoben, und Spiele, die du schon besitzt (oder die über deinen Steam-Familienzugriff verfügbar sind), werden markiert.</p>
     <p>Ein Spiel <strong>das noch nicht erschienen ist</strong> zeigt einen Hinweis: <em>Erscheint heute</em>, <em>Erscheint morgen</em>, <em>Erscheint in N Tagen</em>, oder das Datum, wenn es mehr als einen Monat hin ist. Am Erscheinungstag meldet sich playR mit einer <strong>Benachrichtigung 🔔</strong> — nur für Spiele, auf die du wirklich gewartet hast, nie für einen Titel, der beim Hinzufügen schon draußen war.</p>
     <p>Für die GOG-Wunschliste muss dein <strong>GOG-Profil öffentlich sein</strong>, genau wie für die Bibliothek.</p>
+
+    <h3>Deine playR-Wunschliste</h3>
+    <p>Steam und GOG kennen nur ihre eigenen Spiele. Für alles andere hat playR eine eigene Liste:</p>
+    <ol>
+      <li>Such das Spiel in der Suchleiste — im TV-Modus die Lupe. Sie findet auch, was du nicht besitzt.</li>
+      <li>Öffne seine Seite und klicke auf das Herz.</li>
+    </ol>
+    <p>Es landet mit einem violetten R-Abzeichen in Wunschliste &amp; Angebote und wird dort behandelt wie alle anderen: Preisvergleich, Erscheinungs-Hinweis, Angebots-Meldung. Dasselbe Herz entfernt es wieder.</p>
+    <div class="box">Diese Liste liegt auf dem Server: von allen deinen PCs und im TV-Modus dieselbe, und in den Sicherungen enthalten.</div>
+
     <h3>Benachrichtigt werden, wenn ein Preis fällt</h3>
     <p>playR kann dich benachrichtigen, sobald ein Spiel auf deiner Wunschliste einen bestimmten Rabatt überschreitet. Die Einstellung findest du unter <strong>⚙ Einstellungen → Region &amp; Preise</strong>, im Abschnitt <strong>„Wunschlisten-Angebotsalarm“</strong>: Wähle die Schwelle, ab der du benachrichtigt werden willst (von -10&nbsp;% bis -75&nbsp;%, <strong>standardmäßig -30&nbsp;%</strong>), oder <strong>„Aus“,</strong> um gar nichts zu erhalten. Zum Schluss: <strong>Speichern</strong>.</p>
     <p>Der Alarm landet in der <strong>Glocke 🔔</strong>: « <em>Spielname</em> ist -45&nbsp;% », mit dem Preis und dem betreffenden Shop, und einem Link <strong>„Angebot ansehen“,</strong> der direkt die Seite des Spiels öffnet.</p>

@@ -50,6 +50,9 @@
   code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13.5px;font-family:ui-monospace,monospace;color:#d6d2e6}
   pre{background:#0c0c17;border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;margin:14px 0}
   pre code{background:none;padding:0;color:#cdd6e6;line-height:1.6}
+  /* Précision secondaire à l'intérieur d'une étape : elle doit se lire APRÈS
+     l'instruction, pas à égalité avec elle. */
+  .hint{display:block;margin-top:4px;color:var(--muted);font-size:14px}
   .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
   .warn{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
   .warn strong{color:#fbbf24}
@@ -343,10 +346,28 @@ docker run -d --name playr --restart unless-stopped \
     <h2 id="steam-help">Steam</h2>
     <p>2 つの方法から選べます:</p>
     <ul>
-      <li><strong>Steam Connector（おすすめ — ファミリーのゲームも含まれます）</strong>: ⚙ 設定 → Steam → <strong>Steam のユーザー名とパスワード</strong>を入力します。続いて Steam Guard の確認が必要です。 <strong>Steam Mobile アプリでワンタップ承認する</strong> （playR は待機して自動で再開します）か、 <strong>5 文字のコードを入力</strong>するかを選べます。ログインは一度だけ — 保存されるのはトークンで、パスワードは保存されません。非公開の Steam プロフィールでも動作します。</li>
-      <li><strong>または SteamID と API キー</strong> （所有ゲームのみで、 <strong>ファミリーは含まれません</strong>。プロフィールは <strong>公開</strong>である必要があります）: あなたの <strong>SteamID64</strong> （17 桁、例: <code>7656…</code> ）— 確認は <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>から。API キーは無料で <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+      <li><strong>方法 1 — Steam Connector（おすすめ）</strong> ：⚙ 設定 → Steam に Steam のログイン情報を入力するだけ。ファミリーのゲームも含まれ、非公開プロフィールでも使えます。</li>
+      <li><strong>方法 2 — SteamID ＋ API キー</strong> ：自分が所有しているゲームのみ（ファミリー分は含まれません）。用意するものは 2 つ、以下のとおりです。</li>
     </ul>
     <p>この PC で複数の Steam アカウントを使ったことがあれば、playR がそれらを検出し、ワンクリックで選べるようにします。</p>
+
+    <h3>SteamID64 を調べる</h3>
+    <p>ニックネームではなく、7656 で始まる 17 桁の数字です。</p>
+    <p>まず <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>で、ニックネームではなくプロフィールのアドレスを貼り付けます：</p>
+<pre><code>https://steamcommunity.com/id/VOTRE-PSEUDO/</code></pre>
+    <p>lookup を押すと、steamID64 の行にその数字が表示されます。</p>
+    <p class="hint">このアドレスは Steam で確認できます。画面上部の自分の名前から「プロフィール」へ。すでに https://steamcommunity.com/profiles/7656… の形なら、17 桁の数字はそこにあります。</p>
+
+    <h3>API キーを取得する</h3>
+    <p>まず <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>（アカウントにログインした状態で）：</p>
+    <ol>
+      <li>ドメイン名： <code>http://localhost:3000</code></li>
+      <li>「Steam Web API 利用規約に同意する」にチェックを入れます。入れないとボタンは反応しません。</li>
+      <li>「取得」を押すと 32 文字のキーが表示されるので、コピーします。</li>
+    </ol>
+    <p>SteamID64 とキーは ⚙ 設定 → Steam に貼り付けます。</p>
+    <div class="box"><strong>Steam のプロフィールは公開に設定してください</strong>。そうしないとゲームが 1 本も取得できません。プロフィール → プロフィールを編集 → プライバシー設定 →「ゲームの詳細」を「公開」に。</div>
+    <div class="box warn"><strong>API キーはパスワードと同じ重みを持ちます。</strong> どこにも公開しないでください。漏れた場合は新しいキーを発行すれば、古いキーはただちに使えなくなります。</div>
 
     <h2 id="epic-help">Epic Games</h2>
     <h3>通常の方法 — ログインウィンドウ</h3>
@@ -437,6 +458,16 @@ docker run -d --name playr --restart unless-stopped \
     <p>ウィッシュリストは <strong>Steam</strong> と <strong>GOG</strong> の分をひとつにまとめ、Steam・GOG・Epic・Kinguin ほか約 30 のストアで価格を比較します。最安値が強調され、すでに所有しているゲーム（または Steam のファミリーシェアで遊べるゲーム）には印が付きます。</p>
     <p>まだ <strong>発売されていない</strong> ゲームにはバッジが付きます: <em>本日発売</em>, <em>明日発売</em>, <em>あと N 日</em>、1 か月以上先なら日付が表示されます。発売日には playR が <strong>通知 🔔</strong> でお知らせします — 本当に待っていたゲームだけで、追加した時点ですでに発売済みのタイトルには通知しません。</p>
     <p>GOG のウィッシュリストは、ライブラリと同じく <strong>GOG のプロフィールが公開されていること</strong>が前提です。</p>
+
+    <h3>playR のウィッシュリスト</h3>
+    <p>Steam と GOG が把握しているのは自社のゲームだけです。それ以外は、playR 独自のリストが受け持ちます：</p>
+    <ol>
+      <li>検索バー（TV モードでは虫めがね）でゲームを探します。持っていないゲームも見つかります。</li>
+      <li>そのページを開き、ハートを押します。</li>
+    </ol>
+    <p>「ウィッシュリスト &amp; セール」に紫の R マーク付きで並び、ほかと同じ扱いになります。価格比較、発売の表示、セール通知。同じハートで外せます。</p>
+    <div class="box">このリストはサーバー上にあります。どの PC からでも、TV モードからでも同じ内容で、バックアップにも含まれます。</div>
+
     <h3>値下がりの通知を受け取る</h3>
     <p>playR は、ウィッシュリストのゲームが指定した割引率を超えたときにお知らせできます。設定は <strong>⚙ 設定 → 地域と価格</strong>の <strong>「ウィッシュリストのセール通知」</strong> にあります。通知を受け取りたい割引率のしきい値を選んでください（-10&nbsp;% 〜 -75&nbsp;%、 <strong>標準は -30&nbsp;%</strong>）。または <strong>「オフ」</strong> を選ぶと何も届きません。最後に忘れずに <strong>保存</strong>.</p>
     <p>通知が届く先は <strong>🔔 のベル</strong>: « <em>ゲーム名</em> が -45&nbsp;% オフ »、価格と対象ストアも表示されます。さらに <strong>「セールを見る」</strong> のリンクから、ゲームのページを直接開けます。</p>

@@ -50,6 +50,9 @@
   code{background:rgba(255,255,255,.07);padding:2px 7px;border-radius:6px;font-size:13.5px;font-family:ui-monospace,monospace;color:#d6d2e6}
   pre{background:#0c0c17;border:1px solid var(--line);border-radius:12px;padding:18px;overflow-x:auto;margin:14px 0}
   pre code{background:none;padding:0;color:#cdd6e6;line-height:1.6}
+  /* Précision secondaire à l'intérieur d'une étape : elle doit se lire APRÈS
+     l'instruction, pas à égalité avec elle. */
+  .hint{display:block;margin-top:4px;color:var(--muted);font-size:14px}
   .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:16px 0}
   .warn{border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.06)}
   .warn strong{color:#fbbf24}
@@ -343,10 +346,28 @@ docker run -d --name playr --restart unless-stopped \
     <h2 id="steam-help">Steam</h2>
     <p>Dos formas, a elegir:</p>
     <ul>
-      <li><strong>Steam Connector (recomendado — incluye los juegos de la familia)</strong>: ⚙ Ajustes → Steam → introduce tu <strong>usuario y contraseña de Steam</strong>. Steam Guard te pide después que confirmes: o bien <strong>lo apruebas con un toque en la aplicación Steam Mobile</strong> (playR espera y sigue solo), o bien escribes el <strong>código de 5 caracteres</strong>. Un solo inicio de sesión — se guarda un token, tu contraseña no se almacena. Funciona incluso con un perfil de Steam privado.</li>
-      <li><strong>O SteamID + clave API</strong> (solo los juegos que tienes, <strong>sin la familia</strong>, y el perfil debe ser <strong>público</strong>): tu <strong>SteamID64</strong> (17 cifras, p. ej. <code>7656…</code> — se encuentra en <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) y una clave gratuita en <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+      <li><strong>Método 1 — Steam Connector (recomendado)</strong>: tus credenciales de Steam en ⚙ Ajustes → Steam, y ya está. Incluye los juegos de la familia y funciona con un perfil privado.</li>
+      <li><strong>Método 2 — SteamID + clave de API</strong>: solo los juegos que posees, sin los de la familia. Hay que conseguir dos cosas, abajo.</li>
     </ul>
     <p>Si en este PC ya se han usado varias cuentas de Steam, playR las detecta y las propone con un clic.</p>
+
+    <h3>Encontrar tu SteamID64</h3>
+    <p>No es tu apodo, sino un número de 17 cifras que empieza por 7656.</p>
+    <p>En <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>, pega la dirección de tu perfil, no tu apodo:</p>
+<pre><code>https://steamcommunity.com/id/VOTRE-PSEUDO/</code></pre>
+    <p>Haz clic en lookup: la línea steamID64 te da el número.</p>
+    <p class="hint">Esa dirección se ve en Steam: tu nombre arriba y luego Perfil. Si ya se parece a https://steamcommunity.com/profiles/7656…, las 17 cifras están a la vista.</p>
+
+    <h3>Obtener tu clave de API</h3>
+    <p>En <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>, con la sesión iniciada en tu cuenta:</p>
+    <ol>
+      <li>Nombre de dominio: <code>http://localhost:3000</code></li>
+      <li>Marca «Acepto los términos de uso de la API Web de Steam»; si no, el botón no hace nada.</li>
+      <li>Haz clic en Obtener: aparece la clave, 32 caracteres, para copiar.</li>
+    </ol>
+    <p>El SteamID64 y la clave se pegan en ⚙ Ajustes → Steam.</p>
+    <div class="box"><strong>Tu perfil de Steam debe ser público</strong>, si no, no llega ningún juego: Perfil → Editar perfil → Privacidad → «Detalles del juego» en Público.</div>
+    <div class="box warn"><strong>Una clave de API vale lo que una contraseña.</strong> No la publiques en ninguna parte. Si se filtra, pide otra: la anterior deja de funcionar de inmediato.</div>
 
     <h2 id="epic-help">Epic Games</h2>
     <h3>El método normal — la ventana de inicio de sesión</h3>
@@ -437,6 +458,16 @@ docker run -d --name playr --restart unless-stopped \
     <p>Tus listas de deseados <strong>Steam</strong> y <strong>GOG</strong> reunidas, con los precios comparados en Steam, GOG, Epic, Kinguin y una treintena de tiendas. Se destaca el más barato y se señalan los juegos que ya tienes (o disponibles en tu acceso familiar de Steam).</p>
     <p>Un juego <strong>que aún no ha salido</strong> muestra una etiqueta: <em>Sale hoy</em>, <em>Sale mañana</em>, <em>Sale en N d</em>, o la fecha si falta más de un mes. El día del lanzamiento, playR te avisa con una <strong>notificación 🔔</strong> — solo para los juegos que de verdad esperabas, nunca para un título añadido cuando ya había salido.</p>
     <p>La lista de deseados de GOG requiere que tu <strong>perfil de GOG sea público</strong>, igual que para la biblioteca.</p>
+
+    <h3>Tu lista de deseos playR</h3>
+    <p>Steam y GOG solo conocen sus propios juegos. Para todo lo demás, playR tiene su propia lista:</p>
+    <ol>
+      <li>Busca el juego en la barra de búsqueda; en modo TV, la lupa. También encuentra lo que no tienes.</li>
+      <li>Abre su ficha y haz clic en el corazón.</li>
+    </ol>
+    <p>Llega a Deseos y ofertas con un distintivo violeta con una R, y allí se trata como los demás: precios comparados, distintivo de lanzamiento, aviso de oferta. El mismo corazón lo quita.</p>
+    <div class="box">Esta lista vive en el servidor: la misma desde todos tus PC y desde el modo TV, e incluida en las copias de seguridad.</div>
+
     <h3>Que te avisen cuando un juego baje de precio</h3>
     <p>playR puede avisarte en cuanto un juego de tu lista de deseados supere un descuento determinado. El ajuste está en <strong>⚙ Ajustes → Región y precios</strong>, en <strong>« Alerta de ofertas de la lista »</strong>: elige el umbral a partir del cual quieres que te avisen (de -10&nbsp;% a -75&nbsp;%, <strong>-30&nbsp;% por defecto</strong>), o <strong>« Desactivada »</strong> para no recibir nada. No olvides <strong>Guardar</strong>.</p>
     <p>La alerta llega a la <strong>campana 🔔</strong>: « <em>Nombre del juego</em> está a -45&nbsp;% », con el precio y la tienda correspondiente, y un enlace <strong>« Ver oferta »</strong> que abre directamente la página del juego.</p>
