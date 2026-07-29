@@ -298,20 +298,24 @@ docker run -d --name playr --restart unless-stopped \
     </ul>
     <p>Dans tous les cas : image <code>ghcr.io/ixelia-fr/playr:latest</code>, port <code>3000</code>, volume persistant sur <code>/app/data</code>. Adresse pour les clients : <code>http://[IP-de-la-machine]:3000</code>.</p>
 
-    <h2 id="appairage">Autoriser un appareil (code d'appairage)</h2>
-    <p>Votre serveur <strong>n'ouvre pas sa bibliothèque à n'importe qui</strong> : chaque appareil doit être autorisé <strong>une fois</strong> avec un code. Personne d'autre sur votre réseau ne peut lire vos sauvegardes ni piloter playR.</p>
+    <h2 id="appairage">Autoriser un appareil</h2>
+    <p>Votre serveur <strong>n'ouvre pas sa bibliothèque à n'importe qui</strong> : chaque appareil doit être autorisé <strong>une fois</strong> — ensuite il s'en souvient. Personne d'autre sur votre réseau ne peut lire vos sauvegardes ni piloter playR.</p>
     <ul>
-      <li><strong>Serveur sur ce PC (installation Windows classique)</strong> : <strong>rien à faire</strong>. playR trouve le code tout seul sur le disque et s'autorise sans rien vous demander.</li>
-      <li><strong>Serveur ailleurs (NAS, Docker, autre PC)</strong> : playR affiche un écran <em>Code d'autorisation</em> et attend un code de la forme <code>ABCD-EFGH-JKMN</code>. Une seule fois par appareil — il s'en souvient ensuite.</li>
+      <li><strong>Le premier appareil</strong> : rien à saisir. Sur un serveur tout neuf, le premier appareil qui se présente en devient le <strong>propriétaire</strong> — ouvrez playR dans la foulée de l'installation.</li>
+      <li><strong>Les appareils suivants</strong> : le nouvel appareil affiche un <strong>code à 2 chiffres</strong>. Sur un appareil déjà autorisé, une notification arrive (et une invite à la manette en Mode TV) : vérifiez que le code affiché est le même, puis <strong>Autoriser</strong>. Un clic, rien à recopier.</li>
+      <li><strong>Serveur sur ce PC (installation Windows classique)</strong> : <strong>rien à faire</strong> non plus. playR trouve le code tout seul sur le disque et s'autorise sans rien vous demander.</li>
     </ul>
-    <h3>Où trouver le code</h3>
+    <h3>Voir et révoquer les appareils</h3>
+    <p>Dans playR : <strong>Paramètres</strong> → <strong>Appareils</strong>. Vous y trouvez les appareils autorisés et leur dernière visite ; vous pouvez les renommer et les <strong>révoquer</strong>. Un téléphone perdu se révoque tout seul, sans toucher aux autres appareils.</p>
+    <h3>En secours : le code d'autorisation</h3>
+    <p>Il sert dans deux cas : vous n'avez <strong>aucun appareil autorisé sous la main</strong> (tous perdus ou révoqués), ou quelqu'un d'autre a pris votre serveur avant vous au tout premier démarrage. Sur l'écran d'appairage, cliquez sur <em>J'ai un code d'autorisation</em>.</p>
     <ul>
       <li><strong>Serveur Windows</strong> : dans la fenêtre <strong>playR Serveur</strong>, bloc <em>Code d'autorisation</em>, avec un bouton <strong>Copier le code</strong>.</li>
       <li><strong>Serveur Docker / NAS</strong> : il n'y a pas d'écran là-bas, le code est <strong>écrit dans les journaux au démarrage</strong> :
 <pre><code>docker compose logs playr</code></pre>
       Cherchez la ligne <code>playR — code d'autorisation : XXXX-XXXX-XXXX</code>.</li>
     </ul>
-    <div class="box"><strong>Le code ne change pas.</strong> Il est créé au tout premier démarrage et conservé à côté de votre bibliothèque. Il n'entre jamais dans les sauvegardes : récupérer un backup ne donne donc pas accès au serveur qui l'a produit.</div>
+    <div class="box"><strong>Le code ne change pas.</strong> Il est créé au tout premier démarrage et conservé à côté de votre bibliothèque. Il n'entre jamais dans les sauvegardes : récupérer un backup ne donne donc pas accès au serveur qui l'a produit. Gardez-le comme un mot de passe : il permet de réautoriser un appareil, même révoqué.</div>
 
     <h2 id="maj">Mettre à jour le serveur</h2>
 

@@ -298,20 +298,24 @@ docker run -d --name playr --restart unless-stopped \
     </ul>
     <p>In alle gevallen: image <code>ghcr.io/ixelia-fr/playr:latest</code>, poort <code>3000</code>, persistent volume op <code>/app/data</code>. Adres voor de clients: <code>http://[IP-de-la-machine]:3000</code>.</p>
 
-    <h2 id="appairage">Een apparaat toestaan (koppelcode)</h2>
-    <p>Je server <strong>opent zijn bibliotheek niet voor zomaar iedereen</strong>: elk apparaat moet <strong>eenmalig</strong> met een code worden toegestaan. Niemand anders in je netwerk kan je back-ups lezen of playR bedienen.</p>
+    <h2 id="appairage">Een apparaat toestaan</h2>
+    <p>Je server <strong>opent zijn bibliotheek niet voor zomaar iedereen</strong>: elk apparaat moet <strong>eenmalig</strong> worden toegestaan — daarna onthoudt het dat. Niemand anders in je netwerk kan je back-ups lezen of playR bedienen.</p>
     <ul>
-      <li><strong>Server op deze pc (gewone Windows-installatie)</strong>: <strong>niets te doen</strong>. playR vindt de code vanzelf op de schijf en geeft zichzelf toegang zonder je iets te vragen.</li>
-      <li><strong>Server elders (NAS, Docker, andere pc)</strong>: playR toont een scherm <em>Autorisatiecode</em> en wacht op een code in de vorm <code>ABCD-EFGH-JKMN</code>. Eén keer per apparaat — daarna onthoudt hij het.</li>
+      <li><strong>Het eerste apparaat</strong>: niets in te typen. Op een gloednieuwe server wordt het eerste apparaat dat zich meldt de <strong>eigenaar</strong> — open playR meteen na de installatie.</li>
+      <li><strong>De volgende apparaten</strong>: het nieuwe apparaat toont een <strong>code van 2 cijfers</strong>. Op een apparaat dat al is toegestaan verschijnt een melding (en in Tv-modus een vraag via de controller): controleer of dezelfde code wordt getoond en kies dan <strong>Autoriseren</strong>. Eén klik, niets over te typen.</li>
+      <li><strong>Server op deze pc (gewone Windows-installatie)</strong>: <strong>niets te doen</strong> ook hier. playR vindt de code vanzelf op de schijf en geeft zichzelf toegang zonder je iets te vragen.</li>
     </ul>
-    <h3>Waar vind je de code</h3>
+    <h3>Apparaten bekijken en intrekken</h3>
+    <p>In playR: <strong>Instellingen</strong> → <strong>Apparaten</strong>. Daar zie je de toegestane apparaten en hun laatste bezoek; je kunt ze hernoemen of <strong>intrekken</strong>. Een verloren telefoon trek je apart in, zonder de andere apparaten aan te raken.</p>
+    <h3>Als terugval: de autorisatiecode</h3>
+    <p>Hij helpt in twee gevallen: je hebt <strong>geen toegestaan apparaat bij de hand</strong> (allemaal kwijt of ingetrokken), of iemand anders heeft je server bij de allereerste start vóór jou geclaimd. Klik op het autorisatiescherm op <em>J'ai un code d'autorisation</em>.</p>
     <ul>
       <li><strong>Windows-server</strong>: in het venster <strong>playR Serveur</strong>, blok <em>Autorisatiecode</em>, met een knop <strong>Code kopiëren</strong>.</li>
       <li><strong>Docker- / NAS-server</strong>: daar is geen scherm, de code wordt <strong>bij het opstarten in de logs geschreven</strong>:
 <pre><code>docker compose logs playr</code></pre>
       Zoek de regel <code>playR — code d'autorisation : XXXX-XXXX-XXXX</code>.</li>
     </ul>
-    <div class="box"><strong>De code verandert niet.</strong> Hij wordt bij de allereerste start aangemaakt en naast je bibliotheek bewaard. Hij komt nooit in de back-ups terecht: een back-up terugzetten geeft dus geen toegang tot de server die hem heeft gemaakt.</div>
+    <div class="box"><strong>De code verandert niet.</strong> Hij wordt bij de allereerste start aangemaakt en naast je bibliotheek bewaard. Hij komt nooit in de back-ups terecht: een back-up terugzetten geeft dus geen toegang tot de server die hem heeft gemaakt. Bewaar hem als een wachtwoord: ermee kun je een apparaat opnieuw toestaan, ook een ingetrokken apparaat.</div>
 
     <h2 id="maj">De server bijwerken</h2>
 

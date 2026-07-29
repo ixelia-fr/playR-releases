@@ -298,20 +298,24 @@ docker run -d --name playr --restart unless-stopped \
     </ul>
     <p>Em todos os casos: imagem <code>ghcr.io/ixelia-fr/playr:latest</code>, porta <code>3000</code>, volume persistente em <code>/app/data</code>. Endereço para os clientes: <code>http://[IP-de-la-machine]:3000</code>.</p>
 
-    <h2 id="appairage">Autorizar um dispositivo (código de emparelhamento)</h2>
-    <p>O seu servidor <strong>não abre a sua biblioteca a qualquer um</strong>: cada dispositivo tem de ser autorizado <strong>uma vez</strong> com um código. Mais ninguém na sua rede pode ler as suas cópias de segurança nem controlar o playR.</p>
+    <h2 id="appairage">Autorizar um dispositivo</h2>
+    <p>O seu servidor <strong>não abre a sua biblioteca a qualquer um</strong>: cada dispositivo tem de ser autorizado <strong>uma vez</strong> — depois fica memorizado. Mais ninguém na sua rede pode ler as suas cópias de segurança nem controlar o playR.</p>
     <ul>
-      <li><strong>Servidor neste PC (instalação Windows clássica)</strong>: <strong>nada a fazer</strong>. O playR encontra o código sozinho no disco e autoriza-se sem lhe perguntar nada.</li>
-      <li><strong>Servidor noutro sítio (NAS, Docker, outro PC)</strong>: o playR mostra um ecrã <em>Código de autorização</em> e aguarda um código do tipo <code>ABCD-EFGH-JKMN</code>. Apenas uma vez por dispositivo — depois fica memorizado.</li>
+      <li><strong>O primeiro dispositivo</strong>: nada a escrever. Num servidor acabado de instalar, o primeiro dispositivo que aparece torna-se o seu <strong>proprietário</strong> — abra o playR logo a seguir à instalação.</li>
+      <li><strong>Os dispositivos seguintes</strong>: o novo dispositivo mostra um <strong>código de 2 dígitos</strong>. Num dispositivo já autorizado surge uma notificação (e um aviso com comando no Modo TV): confirme que o código mostrado é o mesmo e carregue em <strong>Autorizar</strong>. Um clique, nada para copiar.</li>
+      <li><strong>Servidor neste PC (instalação Windows clássica)</strong>: <strong>nada a fazer</strong> aqui também. O playR encontra o código sozinho no disco e autoriza-se sem lhe perguntar nada.</li>
     </ul>
-    <h3>Onde encontrar o código</h3>
+    <h3>Ver e revogar os dispositivos</h3>
+    <p>No playR: <strong>Configurações</strong> → <strong>Dispositivos</strong>. Aí encontra os dispositivos autorizados e a sua última visita; pode renomeá-los e <strong>revogá-los</strong>. Um telemóvel perdido revoga-se sozinho, sem mexer nos outros dispositivos.</p>
+    <h3>Em recurso: o código de autorização</h3>
+    <p>Serve em dois casos: não tem <strong>nenhum dispositivo autorizado à mão</strong> (todos perdidos ou revogados), ou outra pessoa ficou com o seu servidor antes de si no primeiro arranque. No ecrã de autorização, clique em <em>J'ai un code d'autorisation</em>.</p>
     <ul>
       <li><strong>Servidor Windows</strong>: na janela <strong>playR Serveur</strong>, bloco <em>Código de autorização</em>, com um botão <strong>Copiar o código</strong>.</li>
       <li><strong>Servidor Docker / NAS</strong>: aí não há ecrã, o código é <strong>escrito nos registos no arranque</strong>:
 <pre><code>docker compose logs playr</code></pre>
       Procure a linha <code>playR — code d'autorisation : XXXX-XXXX-XXXX</code>.</li>
     </ul>
-    <div class="box"><strong>O código não muda.</strong> É criado logo no primeiro arranque e guardado junto da sua biblioteca. Nunca entra nas cópias de segurança: recuperar um backup não dá, portanto, acesso ao servidor que o produziu.</div>
+    <div class="box"><strong>O código não muda.</strong> É criado logo no primeiro arranque e guardado junto da sua biblioteca. Nunca entra nas cópias de segurança: recuperar um backup não dá, portanto, acesso ao servidor que o produziu. Guarde-o como uma palavra-passe: permite voltar a autorizar um dispositivo, mesmo revogado.</div>
 
     <h2 id="maj">Atualizar o servidor</h2>
 

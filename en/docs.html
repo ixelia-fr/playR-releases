@@ -298,20 +298,24 @@ docker run -d --name playr --restart unless-stopped \
     </ul>
     <p>In every case: image <code>ghcr.io/ixelia-fr/playr:latest</code>, port <code>3000</code>, persistent volume on <code>/app/data</code>. Address for your clients: <code>http://[IP-de-la-machine]:3000</code>.</p>
 
-    <h2 id="appairage">Approve a device (pairing code)</h2>
-    <p>Your server <strong>does not open its library to just anyone</strong>: each device has to be approved <strong>once</strong> with a code. Nobody else on your network can read your backups or drive playR.</p>
+    <h2 id="appairage">Approve a device</h2>
+    <p>Your server <strong>does not open its library to just anyone</strong>: each device has to be approved <strong>once</strong> — after that it remembers. Nobody else on your network can read your backups or drive playR.</p>
     <ul>
-      <li><strong>Server on this PC (standard Windows install)</strong>: <strong>nothing to do</strong>. playR finds the code on disk by itself and approves itself without asking you anything.</li>
-      <li><strong>Server elsewhere (NAS, Docker, another PC)</strong>: playR shows an <em>Authorization code</em> screen and waits for a code in the form <code>ABCD-EFGH-JKMN</code>. Once per device only — it remembers it afterwards.</li>
+      <li><strong>The first device</strong>: nothing to type. On a brand-new server, the first device that shows up becomes its <strong>owner</strong> — open playR right after installing.</li>
+      <li><strong>The next devices</strong>: the new device shows a <strong>2-digit code</strong>. On a device that is already approved, a notification appears (and a controller prompt in TV Mode): check that the code shown is the same, then <strong>Authorize</strong>. One click, nothing to copy out.</li>
+      <li><strong>Server on this PC (standard Windows install)</strong>: <strong>nothing to do</strong> either. playR finds the code on disk by itself and approves itself without asking you anything.</li>
     </ul>
-    <h3>Where to find the code</h3>
+    <h3>See and revoke devices</h3>
+    <p>In playR: <strong>Settings</strong> → <strong>Devices</strong>. There you find the approved devices and when each was last seen; you can rename them or <strong>revoke them</strong>. A lost phone can be revoked on its own, without touching the other devices.</p>
+    <h3>As a fallback: the authorization code</h3>
+    <p>It is useful in two cases: you have <strong>no approved device at hand</strong> (all lost or revoked), or someone else claimed your server before you on the very first startup. On the pairing screen, click <em>J'ai un code d'autorisation</em>.</p>
     <ul>
       <li><strong>Windows server</strong>: in the <strong>playR Serveur</strong> window, in the <em>Authorization code</em> block, with a button labeled <strong>Copy the code</strong>.</li>
       <li><strong>Docker / NAS server</strong>: there is no screen over there, so the code is <strong>written to the logs on startup</strong>:
 <pre><code>docker compose logs playr</code></pre>
       Look for the line <code>playR — code d'autorisation : XXXX-XXXX-XXXX</code>.</li>
     </ul>
-    <div class="box"><strong>The code never changes.</strong> It is created on the very first startup and kept next to your library. It never goes into backups: restoring a backup therefore gives no access to the server that produced it.</div>
+    <div class="box"><strong>The code never changes.</strong> It is created on the very first startup and kept next to your library. It never goes into backups: restoring a backup therefore gives no access to the server that produced it. Keep it like a password: it can approve a device again, even a revoked one.</div>
 
     <h2 id="maj">Updating the server</h2>
 

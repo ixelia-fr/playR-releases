@@ -298,20 +298,24 @@ docker run -d --name playr --restart unless-stopped \
     </ul>
     <p>いずれの場合も、イメージは <code>ghcr.io/ixelia-fr/playr:latest</code>、ポートは <code>3000</code>、永続ボリュームは <code>/app/data</code>。クライアント用のアドレス: <code>http://[IP-de-la-machine]:3000</code>.</p>
 
-    <h2 id="appairage">機器を承認する（ペアリングコード）</h2>
-    <p>あなたのサーバーは <strong>誰にでもライブラリを開くわけではありません</strong> 。それぞれの機器を <strong>一度だけ</strong> コードで承認する必要があります。同じネットワーク上のほかの人が、あなたのバックアップを読んだり playR を操作したりすることはできません。</p>
+    <h2 id="appairage">機器を承認する</h2>
+    <p>あなたのサーバーは <strong>誰にでもライブラリを開くわけではありません</strong> 。それぞれの機器を <strong>一度だけ</strong> 承認すれば、あとは記憶されます。同じネットワーク上のほかの人が、あなたのバックアップを読んだり playR を操作したりすることはできません。</p>
     <ul>
-      <li><strong>この PC にサーバーがある場合（通常の Windows インストール）</strong>: <strong>何もする必要はありません</strong>。playR がディスク上のコードを自動で見つけ、何も尋ねずに承認を済ませます。</li>
-      <li><strong>サーバーが別の場所にある場合（NAS、Docker、ほかの PC）</strong>: playR が <em>認証コード</em> の画面を表示し、次の形式のコードを待ちます: <code>ABCD-EFGH-JKMN</code>。機器ごとに一度だけで、以降は記憶されます。</li>
+      <li><strong>最初の機器</strong> ：入力は不要です。新しいサーバーでは、最初に接続した機器がその <strong>所有者</strong> になります。インストールしたらすぐに playR を開いてください。</li>
+      <li><strong>そのあとの機器</strong> ：新しい機器に <strong>2 桁のコード</strong>が表示されます。すでに承認済みの機器に通知が届きます（TV モードではコントローラーで操作できる確認画面が出ます）。同じコードが表示されていることを確かめて、 <strong>許可</strong>を選ぶだけです。書き写すものはありません。</li>
+      <li><strong>この PC にサーバーがある場合（通常の Windows インストール）</strong>: <strong>何もする必要はありません</strong> 。playR がディスク上のコードを自動で見つけ、何も尋ねずに承認を済ませます。</li>
     </ul>
-    <h3>コードの場所</h3>
+    <h3>機器の確認と取り消し</h3>
+    <p>playR で： <strong>設定</strong> → <strong>デバイス</strong>。承認済みの機器と最終アクセスが一覧で表示されます。名前の変更や <strong>取り消し</strong>ができます。なくした電話だけを取り消せば、ほかの機器はそのままです。</p>
+    <h3>予備手段：認証コード</h3>
+    <p>次の 2 つの場合に使います。 <strong>承認済みの機器が手元にない</strong> 場合（すべて紛失または取り消し済み）、または初回起動時にほかの人が先にサーバーを取得してしまった場合です。承認画面で次のリンクをクリックしてください： <em>J'ai un code d'autorisation</em>.</p>
     <ul>
       <li><strong>Windows サーバー</strong>: <strong>playR Serveur</strong>のウィンドウ内、 <em>認証コード</em>の欄にあります。ボタンの名前は <strong>コードをコピー</strong>.</li>
       <li><strong>Docker / NAS サーバー</strong>: そちらには画面がないため、コードは <strong>起動時にログへ書き出されます</strong>:
 <pre><code>docker compose logs playr</code></pre>
       次の行を探してください: <code>playR — code d'autorisation : XXXX-XXXX-XXXX</code>.</li>
     </ul>
-    <div class="box"><strong>コードは変わりません。</strong> 初回起動時に作成され、ライブラリのそばに保存されます。バックアップに含まれることは決してありません。そのため、バックアップを入手しても、それを作ったサーバーにアクセスできるわけではありません。</div>
+    <div class="box"><strong>コードは変わりません。</strong> 初回起動時に作成され、ライブラリのそばに保存されます。バックアップに含まれることは決してありません。そのため、バックアップを入手しても、それを作ったサーバーにアクセスできるわけではありません。パスワードと同じように保管してください。このコードがあれば、取り消した機器でも再び承認できます。</div>
 
     <h2 id="maj">サーバーを更新する</h2>
 

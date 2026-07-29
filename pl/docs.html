@@ -298,20 +298,24 @@ docker run -d --name playr --restart unless-stopped \
     </ul>
     <p>W każdym przypadku: obraz <code>ghcr.io/ixelia-fr/playr:latest</code>, port <code>3000</code>, trwały wolumen na <code>/app/data</code>. Adres dla klientów: <code>http://[IP-de-la-machine]:3000</code>.</p>
 
-    <h2 id="appairage">Autoryzacja urządzenia (kod parowania)</h2>
-    <p>Twój serwer <strong>nie otwiera biblioteki przed byle kim</strong>: każde urządzenie trzeba <strong>raz</strong> autoryzować kodem. Nikt inny w twojej sieci nie odczyta twoich kopii zapasowych ani nie będzie sterować playR.</p>
+    <h2 id="appairage">Autoryzacja urządzenia</h2>
+    <p>Twój serwer <strong>nie otwiera biblioteki przed byle kim</strong>: każde urządzenie trzeba <strong>raz</strong> autoryzować — potem zapamiętuje autoryzację. Nikt inny w twojej sieci nie odczyta twoich kopii zapasowych ani nie będzie sterować playR.</p>
     <ul>
-      <li><strong>Serwer na tym komputerze (zwykła instalacja Windows)</strong>: <strong>nic nie musisz robić</strong>. playR sam znajduje kod na dysku i autoryzuje się, o nic nie pytając.</li>
-      <li><strong>Serwer gdzie indziej (NAS, Docker, inny komputer)</strong>: playR pokazuje ekran <em>Kod autoryzacji</em> i czeka na kod w postaci <code>ABCD-EFGH-JKMN</code>. Tylko raz na urządzenie — potem już go pamięta.</li>
+      <li><strong>Pierwsze urządzenie</strong>: nic nie wpisujesz. Na zupełnie nowym serwerze pierwsze urządzenie, które się zgłosi, zostaje jego <strong>właścicielem</strong> — otwórz playR zaraz po instalacji.</li>
+      <li><strong>Kolejne urządzenia</strong>: nowe urządzenie pokazuje <strong>dwucyfrowy kod</strong>. Na urządzeniu już autoryzowanym pojawia się powiadomienie (a w Trybie TV monit obsługiwany padem): sprawdź, czy widnieje ten sam kod, i wybierz <strong>Autoryzuj</strong>. Jedno kliknięcie, nic do przepisywania.</li>
+      <li><strong>Serwer na tym komputerze (zwykła instalacja Windows)</strong>: <strong>nic nie musisz robić</strong> również tutaj. playR sam znajduje kod na dysku i autoryzuje się, o nic nie pytając.</li>
     </ul>
-    <h3>Gdzie znaleźć kod</h3>
+    <h3>Podgląd i odwoływanie urządzeń</h3>
+    <p>W playR: <strong>Ustawienia</strong> → <strong>Urządzenia</strong>. Znajdziesz tam autoryzowane urządzenia i ich ostatnią wizytę; możesz zmienić ich nazwę lub je <strong>odwołać</strong>. Zgubiony telefon odwołasz osobno, nie ruszając pozostałych urządzeń.</p>
+    <h3>Awaryjnie: kod autoryzacji</h3>
+    <p>Przydaje się w dwóch przypadkach: nie masz <strong>pod ręką żadnego autoryzowanego urządzenia</strong> (wszystkie zgubione lub odwołane) albo ktoś inny przejął twój serwer przed tobą przy pierwszym uruchomieniu. Na ekranie autoryzacji kliknij <em>J'ai un code d'autorisation</em>.</p>
     <ul>
       <li><strong>Serwer Windows</strong>: w oknie <strong>playR Serveur</strong>, sekcja <em>Kod autoryzacji</em>, z przyciskiem <strong>Kopiuj kod</strong>.</li>
       <li><strong>Serwer Docker / NAS</strong>: tam nie ma żadnego ekranu, kod jest <strong>zapisywany w dziennikach przy starcie</strong>:
 <pre><code>docker compose logs playr</code></pre>
       Poszukaj linii <code>playR — code d'autorisation : XXXX-XXXX-XXXX</code>.</li>
     </ul>
-    <div class="box"><strong>Kod się nie zmienia.</strong> Powstaje przy pierwszym uruchomieniu i jest przechowywany obok twojej biblioteki. Nigdy nie trafia do kopii zapasowych: odzyskanie kopii nie daje więc dostępu do serwera, który ją utworzył.</div>
+    <div class="box"><strong>Kod się nie zmienia.</strong> Powstaje przy pierwszym uruchomieniu i jest przechowywany obok twojej biblioteki. Nigdy nie trafia do kopii zapasowych: odzyskanie kopii nie daje więc dostępu do serwera, który ją utworzył. Traktuj go jak hasło: pozwala ponownie autoryzować urządzenie, nawet odwołane.</div>
 
     <h2 id="maj">Aktualizacja serwera</h2>
 

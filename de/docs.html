@@ -298,20 +298,24 @@ docker run -d --name playr --restart unless-stopped \
     </ul>
     <p>In allen Fällen: Image <code>ghcr.io/ixelia-fr/playr:latest</code>, Port <code>3000</code>, dauerhaftes Volume auf <code>/app/data</code>. Adresse für die Clients: <code>http://[IP-de-la-machine]:3000</code>.</p>
 
-    <h2 id="appairage">Ein Gerät freigeben (Kopplungscode)</h2>
-    <p>Dein Server <strong>öffnet seine Bibliothek nicht für jeden</strong>: Jedes Gerät muss <strong>einmalig</strong> mit einem Code freigegeben werden. Sonst kann niemand in deinem Netzwerk deine Sicherungen lesen oder playR steuern.</p>
+    <h2 id="appairage">Ein Gerät freigeben</h2>
+    <p>Dein Server <strong>öffnet seine Bibliothek nicht für jeden</strong>: Jedes Gerät muss <strong>einmalig</strong> freigegeben werden — danach merkt es sich das. Sonst kann niemand in deinem Netzwerk deine Sicherungen lesen oder playR steuern.</p>
     <ul>
-      <li><strong>Server auf diesem PC (normale Windows-Installation)</strong>: <strong>nichts zu tun</strong>. playR findet den Code von selbst auf der Festplatte und gibt sich frei, ohne dich zu fragen.</li>
-      <li><strong>Server woanders (NAS, Docker, anderer PC)</strong>: playR zeigt einen Bildschirm <em>Freigabecode</em> und wartet auf einen Code der Form <code>ABCD-EFGH-JKMN</code>. Nur einmal pro Gerät — danach merkt playR es sich.</li>
+      <li><strong>Das erste Gerät</strong>: nichts einzugeben. Auf einem brandneuen Server wird das erste Gerät, das sich meldet, zum <strong>Besitzer</strong> — öffne playR gleich nach der Installation.</li>
+      <li><strong>Die weiteren Geräte</strong>: auf dem neuen Gerät erscheint ein <strong>zweistelliger Code</strong>. Auf einem bereits freigegebenen Gerät erscheint eine Benachrichtigung (im TV-Modus eine Abfrage per Controller): Prüfe, ob dort derselbe Code steht, und wähle dann <strong>Autorisieren</strong>. Ein Klick, nichts abzutippen.</li>
+      <li><strong>Server auf diesem PC (normale Windows-Installation)</strong>: <strong>nichts zu tun</strong> auch hier. playR findet den Code von selbst auf der Festplatte und gibt sich frei, ohne dich zu fragen.</li>
     </ul>
-    <h3>Wo du den Code findest</h3>
+    <h3>Geräte ansehen und Zugriff entziehen</h3>
+    <p>In playR: <strong>Einstellungen</strong> → <strong>Geräte</strong>. Dort siehst du die freigegebenen Geräte und ihren letzten Besuch; du kannst sie umbenennen oder ihnen den Zugriff <strong>entziehen</strong>. Einem verlorenen Telefon kann man den Zugriff einzeln entziehen, ohne die anderen Geräte anzurühren.</p>
+    <h3>Als Notlösung: der Freigabecode</h3>
+    <p>Er hilft in zwei Fällen: du hast <strong>kein freigegebenes Gerät zur Hand</strong> (alle verloren oder entzogen), oder jemand anderes hat deinen Server beim allerersten Start vor dir übernommen. Klicke auf dem Freigabe-Bildschirm auf <em>J'ai un code d'autorisation</em>.</p>
     <ul>
       <li><strong>Windows-Server</strong>: im Fenster <strong>playR Serveur</strong>, Block <em>Freigabecode</em>, mit der Schaltfläche <strong>Code kopieren</strong>.</li>
       <li><strong>Docker- / NAS-Server</strong>: dort gibt es keine Oberfläche, der Code wird <strong>beim Start in die Protokolle geschrieben</strong>:
 <pre><code>docker compose logs playr</code></pre>
       Suche die Zeile <code>playR — code d'autorisation : XXXX-XXXX-XXXX</code>.</li>
     </ul>
-    <div class="box"><strong>Der Code ändert sich nicht.</strong> Er wird beim allerersten Start erzeugt und neben deiner Bibliothek gespeichert. In die Sicherungen wandert er nie: Wer eine Sicherung bekommt, hat damit also keinen Zugang zu dem Server, der sie erstellt hat.</div>
+    <div class="box"><strong>Der Code ändert sich nicht.</strong> Er wird beim allerersten Start erzeugt und neben deiner Bibliothek gespeichert. In die Sicherungen wandert er nie: Wer eine Sicherung bekommt, hat damit also keinen Zugang zu dem Server, der sie erstellt hat. Behandle ihn wie ein Passwort: Mit ihm lässt sich ein Gerät wieder freigeben, auch ein Gerät, dem der Zugriff entzogen wurde.</div>
 
     <h2 id="maj">Den Server aktualisieren</h2>
 
