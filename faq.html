@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FAQ — playR, le lanceur de jeux universel</title>
+<meta name="description" content="Les questions fréquentes sur playR : quelles boutiques, quel prix, faut-il un serveur, émulateurs et ROMs, Steam Deck et Linux, mode console à la manette, confidentialité des données." />
+<!-- Icônes et balises de partage : voir index.html. -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#07070d">
+<link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+<link href="https://fonts.bunny.net/css?family=bricolage-grotesque:300,400,600,700,800|instrument-sans:400,400i,600,700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#07070d;--ink:#eae7f2;--muted:#9a97ac;--violet:#8b5cf6;--cyan:#22d3ee;
+    --line:rgba(255,255,255,.08);--card:rgba(255,255,255,.03);
+    --display:'Bricolage Grotesque',sans-serif;--body:'Instrument Sans',sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+  .bg-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(60vw 50vw at 82% -10%,rgba(139,92,246,.22),transparent 60%),
+    radial-gradient(50vw 50vw at 5% 8%,rgba(34,211,238,.12),transparent 55%)}
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,7,13,.65);border-bottom:1px solid var(--line)}
+  nav .in{max-width:900px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .logo{height:26px;width:auto;display:block}
+  main{max-width:900px;margin:0 auto;padding:56px 24px 120px}
+  h1{font-family:var(--display);font-weight:700;letter-spacing:-.03em;font-size:clamp(34px,6vw,52px);margin-bottom:14px}
+  .intro{color:var(--muted);font-size:18px;max-width:66ch}
+  p,li{color:#c9c6d6;font-size:15.5px}
+  p+p{margin-top:10px}
+  ul{margin:10px 0 0 22px}li{margin:5px 0}
+  strong{color:var(--ink)}
+  .pill{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;background:rgba(139,92,246,.16);
+    border:1px solid rgba(139,92,246,.35);color:#c4b5fd;margin-bottom:10px}
+
+  /* Sommaire : sur une page de questions, savoir en un coup d'œil si la sienne
+     y est vaut mieux que faire défiler quinze réponses. */
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin:30px 0 10px}
+  .toc a{border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13.5px;color:var(--muted)}
+  .toc a:hover{border-color:rgba(139,92,246,.45);color:var(--ink);text-decoration:none}
+
+  .qa{padding-top:24px;margin-top:34px;border-top:1px solid var(--line);scroll-margin-top:88px}
+  .qa h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:23px;margin-bottom:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:11px 20px;
+    border-radius:12px;background:linear-gradient(90deg,var(--violet),var(--cyan));color:#08080f}
+  .btn:hover{text-decoration:none}
+  .btn-ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+  .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+
+  .langs{position:relative}
+  .langs summary{list-style:none;cursor:pointer;font-size:14px;color:var(--muted);
+    white-space:nowrap;display:flex;align-items:center;gap:6px}
+  .langs summary::-webkit-details-marker{display:none}
+  .langs summary:hover,.langs[open] summary{color:var(--ink)}
+  .langs>div{position:absolute;right:0;top:calc(100% + 8px);z-index:60;display:flex;
+    flex-direction:column;min-width:160px;padding:6px;border-radius:14px;
+    border:1px solid var(--line);background:#0c0c17;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+  .langs a{padding:9px 12px;border-radius:9px;font-size:14px;color:var(--muted)}
+  .langs a:hover{background:rgba(139,92,246,.14);color:var(--ink);text-decoration:none}
+  .langs a[aria-current]{color:var(--ink);font-weight:600}
+
+  @media(max-width:560px){
+    nav .in{padding:0 16px;height:58px}
+    .tag{display:none}
+    nav .in>div{gap:14px}
+    main{padding:30px 16px 80px}
+    h1{font-size:clamp(28px,8.5vw,38px)}
+    .intro{font-size:16px}
+    .qa h2{font-size:20px}
+    .qa{margin-top:28px;padding-top:20px}
+  }
+</style>
+  <link rel="canonical" href="https://playrgameslauncher.com/faq.html">
+  <link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html">
+  <link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html">
+  <link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html">
+  <link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html">
+  <link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html">
+  <link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html">
+  <link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html">
+  <link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html">
+  <link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html">
+  <link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html">
+  <link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="playR">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale:alternate" content="pt_PT">
+  <meta property="og:locale:alternate" content="nl_NL">
+  <meta property="og:locale:alternate" content="pl_PL">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <meta property="og:url" content="https://playrgameslauncher.com/faq.html">
+  <meta property="og:title" content="FAQ — playR, le lanceur de jeux universel">
+  <meta property="og:description" content="Les questions fréquentes sur playR : quelles boutiques, quel prix, faut-il un serveur, émulateurs et ROMs, Steam Deck et Linux, mode console à la manette, confidentialité des données.">
+  <meta property="og:image" content="https://playrgameslauncher.com/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FAQ — playR, le lanceur de jeux universel">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAQ — playR, le lanceur de jeux universel">
+  <meta name="twitter:description" content="Les questions fréquentes sur playR : quelles boutiques, quel prix, faut-il un serveur, émulateurs et ROMs, Steam Deck et Linux, mode console à la manette, confidentialité des données.">
+  <meta name="twitter:image" content="https://playrgameslauncher.com/assets/og.jpg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://playrgameslauncher.com/#site","name":"playR","url":"https://playrgameslauncher.com/","inLanguage":"fr","publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}},{"@type":"FAQPage","@id":"https://playrgameslauncher.com/faq.html#faq","name":"FAQ — playR, le lanceur de jeux universel","description":"Les questions fréquentes sur playR : quelles boutiques, quel prix, faut-il un serveur, émulateurs et ROMs, Steam Deck et Linux, mode console à la manette, confidentialité des données.","url":"https://playrgameslauncher.com/faq.html","inLanguage":"fr","isPartOf":{"@id":"https://playrgameslauncher.com/#site"},"about":{"@id":"https://playrgameslauncher.com/#app"},"publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"},"mainEntity":[{"@type":"Question","name":"C'est quoi, un lanceur de jeux universel ?","acceptedAnswer":{"@type":"Answer","text":"Un logiciel tout-en-un qui réunit en une seule bibliothèque les jeux achetés sur plusieurs boutiques. Au lieu d'ouvrir Steam, puis Epic, puis GOG pour retrouver un titre, vous ouvrez une seule application, qui affiche tout et lance le jeu dans la bonne boutique. On parle aussi de bibliothèque unifiée, ou de gestionnaire de bibliothèque de jeux quand l'outil sert surtout à ranger, trier et étiqueter une grande collection."}},{"@type":"Question","name":"playR est-il gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Tout ce que décrit ce site est gratuit : l'application, le serveur chez vous, les synchronisations, le mode console. Sans publicité, sans abonnement, et sans compte à créer chez nous — les seuls comptes qui comptent sont ceux de vos boutiques, qui restent les vôtres. Des options payantes pourront s'ajouter plus tard, pour des services qui coûtent réellement à faire tourner — par exemple un serveur hébergé par nos soins, pour atteindre sa bibliothèque de l'extérieur. Elles resteront facultatives : la version gratuite ne sera pas amputée pour autant."}},{"@type":"Question","name":"Quelles boutiques playR réunit-il ?","acceptedAnswer":{"@type":"Answer","text":"Huit plateformes PC : Steam (bibliothèque famille comprise), Epic Games, GOG, Amazon Games, EA, Ubisoft Connect, Battle.net et Riot Games — ce dernier ne demandant aucun compte : ses jeux apparaissent dès que son client est installé. S'y ajoutent trois bibliothèques console : Xbox, PlayStation Network et Nintendo. S'y ajoute le cloud gaming : les jeux de votre bibliothèque jouables sur GeForce NOW et Amazon Luna sont repérés et se lancent depuis playR, sans rien installer."}},{"@type":"Question","name":"playR affiche-t-il mes jeux Xbox, PlayStation et Nintendo ?","acceptedAnswer":{"@type":"Answer","text":"Oui, et c'est l'une des choses qu'aucun autre lanceur ne fait d'origine. Xbox (jeux console et PC), PlayStation Network et Nintendo se connectent chacun par une fenêtre de connexion officielle, et leurs jeux rejoignent la même bibliothèque que ceux de vos boutiques PC. Deux limites à connaître : Nintendo ne se connecte que depuis l'application de bureau, et n'expose pas le temps de jeu. Côté Xbox, playR remonte les jeux de votre compte, pas le catalogue Game Pass auquel votre abonnement donne droit."}},{"@type":"Question","name":"playR gère-t-il les émulateurs, les ROMs et les jeux rétro ?","acceptedAnswer":{"@type":"Answer","text":"Non, et ce n'est pas un oubli : playR ne gère que les jeux achetés sur les boutiques officielles. Ni émulateurs, ni ROMs, ni scan de fichiers locaux — cette partie-là est hors de son périmètre, et le restera. Si c'est ce que vous cherchez, LaunchBox et Playnite le font très bien. Voir qui fait quoi dans le comparatif."}},{"@type":"Question","name":"Faut-il un serveur ? Ça marche sur un NAS ?","acceptedAnswer":{"@type":"Answer","text":"playR se compose d'un serveur, qui héberge la bibliothèque, et d'un client, l'application que vous ouvrez. Sur un seul PC, l'installeur Windows pose les deux d'un coup : vous n'avez rien à configurer, et vous n'avez même pas à savoir qu'il y a un serveur. Si vous préférez qu'il tourne ailleurs, le serveur est une image Docker : NAS Synology, CasaOS, Proxmox, Unraid, TrueNAS, Portainer… La documentation détaille chaque cas."}},{"@type":"Question","name":"Mes données partent-elles quelque part ?","acceptedAnswer":{"@type":"Answer","text":"Votre bibliothèque reste sur votre machine. Elle n'est copiée sur aucun serveur à nous, et chaque appareil doit être autorisé une fois avec un code avant de pouvoir s'y connecter. playR envoie des statistiques d'usage anonymes — jamais votre adresse IP, ni un identifiant de compte, ni le contenu de votre bibliothèque. Elles sont annoncées à l'installation, énumérées dans les réglages, et se coupent d'un interrupteur."}},{"@type":"Question","name":"Faut-il donner ses mots de passe ?","acceptedAnswer":{"@type":"Answer","text":"Non. playR passe par les fenêtres de connexion officielles des plateformes, ou par des jetons d'accès : vous vous identifiez chez elles, et playR ne conserve aucun mot de passe. Steam suit le même principe : sa connexion officielle, validation Steam Guard comprise, c'est elle qui donne accès à la bibliothèque famille. Une seconde méthode existe si vous la préférez, avec votre SteamID et une clé d'API publique — mais elle ne remonte pas la bibliothèque famille."}},{"@type":"Question","name":"playR fonctionne-t-il sous Linux, sur Steam Deck ou sur une ROG Ally ?","acceptedAnswer":{"@type":"Answer","text":"Sur une ROG Ally ou une autre console portable sous Windows, oui : c'est un PC Windows, playR s'y installe comme partout ailleurs, et le mode console à la manette y est tout indiqué. Sous Linux et sur Steam Deck, le serveur tourne déjà (c'est une image Docker), mais l'application cliente est aujourd'hui Windows seulement. Un client Linux, appuyé sur Wine et Proton, est en préparation. En attendant, Heroic Games Launcher est le bon outil pour ça — et nous le disons noir sur blanc. Voir le comparatif des lanceurs."}},{"@type":"Question","name":"Peut-on jouer à la manette, sur la télé du salon ?","acceptedAnswer":{"@type":"Answer","text":"Oui : c'est le Mode TV, un vrai mode console. Une interface plein écran pilotée entièrement à la manette — grandes jaquettes, carrousels, fiches, tri et filtres — sans jamais toucher la souris. Il marche sur la télé du salon comme sur l'écran du PC. Il ajoute deux choses qu'on ne trouve pas ailleurs : un tirage au sort « Que jouer ce soir ? », et un écran de veille en diaporama de captures après quelques minutes d'inactivité."}},{"@type":"Question","name":"playR télécharge-t-il les jeux ?","acceptedAnswer":{"@type":"Answer","text":"Non. playR déclenche l'installation et le lancement via la boutique officielle qui possède le jeu : rien ne transite par nous, et vos jeux restent gérés par leurs boutiques. Quand vous possédez un même jeu sur plusieurs d'entre elles, playR vous laisse choisir laquelle utiliser."}},{"@type":"Question","name":"Combien de PC peuvent se connecter à la même bibliothèque ?","acceptedAnswer":{"@type":"Answer","text":"Autant que vous voulez. Chaque appareil est autorisé une fois avec un code, puis retrouve la même bibliothèque, à jour, avec vos notes, vos listes et vos statuts. C'est ce qui distingue playR des lanceurs de bureau, qui gardent leur bibliothèque sur la machine où ils sont installés."}},{"@type":"Question","name":"Quelle différence avec Playnite, GOG Galaxy ou Heroic ?","acceptedAnswer":{"@type":"Answer","text":"Trois choses qu'aucun d'eux ne fait d'origine : un serveur chez vous partagé par tous vos PC, un comparateur de prix pour vos listes d'envies, et les alertes sur les jeux offerts. En revanche, playR n'est pas ouvert, n'a pas d'extensions communautaires et ne fait pas de rétro. Le tableau comparatif met tout ça côte à côte."}},{"@type":"Question","name":"Dans quelles langues playR existe-t-il ?","acceptedAnswer":{"@type":"Answer","text":"Neuf : français, anglais, allemand, espagnol, italien, portugais, néerlandais, polonais, russe et japonais. Les fiches de jeux suivent la langue choisie."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"playR","item":"https://playrgameslauncher.com/"},{"@type":"ListItem","position":2,"name":"FAQ — playR, le lanceur de jeux universel","item":"https://playrgameslauncher.com/faq.html"}]}]}</script>
+</head>
+<body>
+<div class="bg-fx"></div>
+<nav><div class="in">
+  <a href="index.html" style="color:inherit;display:flex;align-items:center;gap:10px"><svg class="logo" viewBox="0 36 512 180" role="img" aria-label="playR"><g transform="translate(4,89)"><path d="M22.5 0 h 26 v 22.5 h 22.5 v 26 h -22.5 v 22.5 h -26 v -22.5 h -22.5 v -26 h 22.5 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(114,0)" fill="#f1f5f9"><path d="M34 88 C 32 122, 30 162, 29 202 C 29 207, 33.5 207, 35 201 C 39 160, 45 118, 49 88 C 50.5 80, 34.5 80, 34 88 Z"/><path d="M47 92 C 73 83, 102 96, 100 119 C 98 142, 66 152, 39 144 C 32.5 142, 35 131, 42 133.5 C 65 140, 88 132, 89 117 C 90 102, 70 94, 49 101 C 42.5 103, 40.5 90, 47 92 Z"/><path d="M112 50 C 110 90, 108 128, 107 159 C 107 164.5, 111.5 164.5, 113.5 158 C 118 128, 122.5 88, 126 50 C 127 42, 111.5 42, 112 50 Z"/><path d="M191 97 C 166 86, 138 99, 138 123 C 138 146, 163 156, 187 145 C 192.5 142.5, 196.5 149.5, 191 152.5 C 160 167, 125 151, 125 123 C 125 94, 161 77, 193 89.5 C 199.5 92, 197 99.5, 191 97 Z"/><path d="M192 92 C 190 116, 187 139, 187 157 C 187 163.5, 178 163.5, 178 157 C 178 136, 180.5 112, 183 92 C 184 84, 193 84, 192 92 Z"/><path d="M213 96 C 217 119, 225 141, 236 155.5 C 239.5 160, 231.5 166.5, 227 160.5 C 213.5 143, 205 119, 202 97 C 201 89, 212 88, 213 96 Z"/><path d="M264 94 C 256 125, 245 157, 233 183 C 227 196, 216.5 205.5, 205 208 C 198.5 209.5, 197 200.5, 204 198.5 C 214 196, 221.5 186, 227 175 C 239 148, 247.5 120, 253.5 93 C 255.5 85, 266 86, 264 94 Z"/><path d="M290 44 C 294 44, 298 47, 297 53 C 295 65, 290 78, 285 87 C 282.5 91, 277.5 88, 280 84 C 284 76, 287 64, 288 51 C 288.5 45.5, 287 44, 290 44 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(132,0)" fill="var(--violet)"><path d="M300 44 C 296 90, 292 132, 290 164 C 290 170, 279.5 170, 280.5 163.5 C 284 129, 288 87, 292 42 C 293 34, 301 36, 300 44 Z"/><path d="M296 47 C 331 40, 375 47, 377 74 C 379 99, 345 111, 310 109 C 303.5 109, 304.5 97.5, 311 97.5 C 341 99.5, 366 91, 364 74.5 C 362 58, 328 52.5, 298 58 C 291.5 59, 289.5 46, 296 47 Z"/><path d="M317 104 C 338 125, 359 148, 376 169 C 380 174, 370.5 181.5, 365.5 175 C 348 152, 327 129, 308.5 110.5 C 303 105, 312 98.5, 317 104 Z"/></g></svg><span class="tag" style="font-family:var(--display);font-weight:800;font-size:18px;color:var(--muted)">FAQ</span></a>
+  <div style="display:flex;align-items:center;gap:18px">
+    <details class="langs"><summary aria-label="Langue">🌐 Français</summary><div><a href="/faq.html" hreflang="fr" aria-current="page">Français</a><a href="/en/faq.html" hreflang="en">English</a><a href="/de/faq.html" hreflang="de">Deutsch</a><a href="/es/faq.html" hreflang="es">Español</a><a href="/it/faq.html" hreflang="it">Italiano</a><a href="/pt/faq.html" hreflang="pt">Português</a><a href="/nl/faq.html" hreflang="nl">Nederlands</a><a href="/pl/faq.html" hreflang="pl">Polski</a><a href="/ru/faq.html" hreflang="ru">Русский</a><a href="/ja/faq.html" hreflang="ja">日本語</a></div></details>
+    <a href="comparatif.html" style="color:var(--muted);font-size:14px">Comparatif</a>
+    <a href="index.html" style="color:var(--muted);font-size:14px">← Accueil</a>
+  </div>
+</div></nav>
+
+<main>
+  <span class="pill">Questions fréquentes</span>
+  <h1>Tout ce qu'on nous demande sur playR</h1>
+  <p class="intro">Des réponses courtes, y compris quand la réponse est « non ».</p>
+
+  <div class="toc">
+    <a href="#universel">Lanceur universel&nbsp;?</a>
+    <a href="#prix">Prix</a>
+    <a href="#boutiques">Boutiques</a>
+    <a href="#consoles">Xbox, PlayStation, Nintendo</a>
+    <a href="#emulateurs">Émulateurs</a>
+    <a href="#serveur">Serveur &amp; NAS</a>
+    <a href="#donnees">Données</a>
+    <a href="#steam">Mot de passe Steam</a>
+    <a href="#linux">Linux &amp; Steam Deck</a>
+    <a href="#console">Manette &amp; télé</a>
+    <a href="#telecharger">Téléchargement des jeux</a>
+    <a href="#pc">Plusieurs PC</a>
+    <a href="#concurrents">Face aux autres</a>
+    <a href="#langues">Langues</a>
+  </div>
+
+  <article class="qa" id="universel">
+    <h2>C'est quoi, un lanceur de jeux universel&nbsp;?</h2>
+    <p>Un logiciel tout-en-un qui réunit en une seule bibliothèque les jeux achetés sur plusieurs boutiques. Au lieu d'ouvrir Steam, puis Epic, puis GOG pour retrouver un titre, vous ouvrez une seule application, qui affiche tout et lance le jeu dans la bonne boutique.</p>
+    <p>On parle aussi de bibliothèque unifiée, ou de gestionnaire de bibliothèque de jeux quand l'outil sert surtout à ranger, trier et étiqueter une grande collection.</p>
+  </article>
+
+  <article class="qa" id="prix">
+    <h2>playR est-il gratuit&nbsp;?</h2>
+    <p>Oui. Tout ce que décrit ce site est gratuit : l'application, le serveur chez vous, les synchronisations, le mode console. Sans publicité, sans abonnement, et sans compte à créer chez nous — les seuls comptes qui comptent sont ceux de vos boutiques, qui restent les vôtres.</p>
+    <p>Des options payantes pourront s'ajouter plus tard, pour des services qui coûtent réellement à faire tourner — par exemple un serveur hébergé par nos soins, pour atteindre sa bibliothèque de l'extérieur. Elles resteront facultatives : la version gratuite ne sera pas amputée pour autant.</p>
+  </article>
+
+  <article class="qa" id="boutiques">
+    <h2>Quelles boutiques playR réunit-il&nbsp;?</h2>
+    <p>Huit plateformes PC : Steam (bibliothèque famille comprise), Epic Games, GOG, Amazon Games, EA, Ubisoft Connect, Battle.net et Riot Games — ce dernier ne demandant aucun compte : ses jeux apparaissent dès que son client est installé.</p>
+    <p>S'y ajoutent trois bibliothèques console : Xbox, PlayStation Network et Nintendo.</p>
+    <p>S'y ajoute le cloud gaming : les jeux de votre bibliothèque jouables sur GeForce NOW et Amazon Luna sont repérés et se lancent depuis playR, sans rien installer.</p>
+  </article>
+
+  <article class="qa" id="consoles">
+    <h2>playR affiche-t-il mes jeux Xbox, PlayStation et Nintendo&nbsp;?</h2>
+    <p>Oui, et c'est l'une des choses qu'aucun autre lanceur ne fait d'origine. Xbox (jeux console et PC), PlayStation Network et Nintendo se connectent chacun par une fenêtre de connexion officielle, et leurs jeux rejoignent la même bibliothèque que ceux de vos boutiques PC.</p>
+    <p>Deux limites à connaître : Nintendo ne se connecte que depuis l'application de bureau, et n'expose pas le temps de jeu. Côté Xbox, playR remonte les jeux de votre compte, pas le catalogue Game Pass auquel votre abonnement donne droit.</p>
+  </article>
+
+  <article class="qa" id="emulateurs">
+    <h2>playR gère-t-il les émulateurs, les ROMs et les jeux rétro&nbsp;?</h2>
+    <p>Non, et ce n'est pas un oubli : playR ne gère que les jeux achetés sur les boutiques officielles. Ni émulateurs, ni ROMs, ni scan de fichiers locaux — cette partie-là est hors de son périmètre, et le restera.</p>
+    <p>Si c'est ce que vous cherchez, LaunchBox et Playnite le font très bien.</p>
+    <p><a href="comparatif.html">Voir qui fait quoi dans le comparatif.</a></p>
+  </article>
+
+  <article class="qa" id="serveur">
+    <h2>Faut-il un serveur&nbsp;? Ça marche sur un NAS&nbsp;?</h2>
+    <p>playR se compose d'un serveur, qui héberge la bibliothèque, et d'un client, l'application que vous ouvrez. Sur un seul PC, l'installeur Windows pose les deux d'un coup : vous n'avez rien à configurer, et vous n'avez même pas à savoir qu'il y a un serveur.</p>
+    <p>Si vous préférez qu'il tourne ailleurs, le serveur est une image Docker : NAS Synology, CasaOS, Proxmox, Unraid, TrueNAS, Portainer…</p>
+    <p><a href="docs.html">La documentation détaille chaque cas.</a></p>
+  </article>
+
+  <article class="qa" id="donnees">
+    <h2>Mes données partent-elles quelque part&nbsp;?</h2>
+    <p>Votre bibliothèque reste sur votre machine. Elle n'est copiée sur aucun serveur à nous, et chaque appareil doit être autorisé une fois avec un code avant de pouvoir s'y connecter.</p>
+    <p>playR envoie des statistiques d'usage anonymes — jamais votre adresse IP, ni un identifiant de compte, ni le contenu de votre bibliothèque. Elles sont annoncées à l'installation, énumérées dans les réglages, et se coupent d'un interrupteur.</p>
+  </article>
+
+  <article class="qa" id="steam">
+    <h2>Faut-il donner ses mots de passe&nbsp;?</h2>
+    <p>Non. playR passe par les fenêtres de connexion officielles des plateformes, ou par des jetons d'accès : vous vous identifiez chez elles, et playR ne conserve aucun mot de passe.</p>
+    <p>Steam suit le même principe : sa connexion officielle, validation Steam Guard comprise, c'est elle qui donne accès à la bibliothèque famille. Une seconde méthode existe si vous la préférez, avec votre SteamID et une clé d'API publique — mais elle ne remonte pas la bibliothèque famille.</p>
+  </article>
+
+  <article class="qa" id="linux">
+    <h2>playR fonctionne-t-il sous Linux, sur Steam Deck ou sur une ROG Ally&nbsp;?</h2>
+    <p>Sur une ROG Ally ou une autre console portable sous Windows, oui : c'est un PC Windows, playR s'y installe comme partout ailleurs, et le mode console à la manette y est tout indiqué.</p>
+    <p>Sous Linux et sur Steam Deck, le serveur tourne déjà (c'est une image Docker), mais l'application cliente est aujourd'hui Windows seulement. Un client Linux, appuyé sur Wine et Proton, est en préparation. En attendant, Heroic Games Launcher est le bon outil pour ça — et nous le disons noir sur blanc.</p>
+    <p><a href="comparatif.html">Voir le comparatif des lanceurs.</a></p>
+  </article>
+
+  <article class="qa" id="console">
+    <h2>Peut-on jouer à la manette, sur la télé du salon&nbsp;?</h2>
+    <p>Oui : c'est le Mode TV, un vrai mode console. Une interface plein écran pilotée entièrement à la manette — grandes jaquettes, carrousels, fiches, tri et filtres — sans jamais toucher la souris. Il marche sur la télé du salon comme sur l'écran du PC.</p>
+    <p>Il ajoute deux choses qu'on ne trouve pas ailleurs : un tirage au sort « Que jouer ce soir ? », et un écran de veille en diaporama de captures après quelques minutes d'inactivité.</p>
+  </article>
+
+  <article class="qa" id="telecharger">
+    <h2>playR télécharge-t-il les jeux&nbsp;?</h2>
+    <p>Non. playR déclenche l'installation et le lancement via la boutique officielle qui possède le jeu : rien ne transite par nous, et vos jeux restent gérés par leurs boutiques. Quand vous possédez un même jeu sur plusieurs d'entre elles, playR vous laisse choisir laquelle utiliser.</p>
+  </article>
+
+  <article class="qa" id="pc">
+    <h2>Combien de PC peuvent se connecter à la même bibliothèque&nbsp;?</h2>
+    <p>Autant que vous voulez. Chaque appareil est autorisé une fois avec un code, puis retrouve la même bibliothèque, à jour, avec vos notes, vos listes et vos statuts. C'est ce qui distingue playR des lanceurs de bureau, qui gardent leur bibliothèque sur la machine où ils sont installés.</p>
+  </article>
+
+  <article class="qa" id="concurrents">
+    <h2>Quelle différence avec Playnite, GOG Galaxy ou Heroic&nbsp;?</h2>
+    <p>Trois choses qu'aucun d'eux ne fait d'origine : un serveur chez vous partagé par tous vos PC, un comparateur de prix pour vos listes d'envies, et les alertes sur les jeux offerts. En revanche, playR n'est pas ouvert, n'a pas d'extensions communautaires et ne fait pas de rétro.</p>
+    <p><a href="comparatif.html">Le tableau comparatif met tout ça côte à côte.</a></p>
+  </article>
+
+  <article class="qa" id="langues">
+    <h2>Dans quelles langues playR existe-t-il&nbsp;?</h2>
+    <p>Neuf : français, anglais, allemand, espagnol, italien, portugais, néerlandais, polonais, russe et japonais. Les fiches de jeux suivent la langue choisie.</p>
+  </article>
+
+  <div class="cta">
+    <a href="https://github.com/ixelia-fr/playR-releases/releases/latest/download/playR-Setup.exe" class="btn">⬇ Télécharger pour Windows<span data-version></span></a>
+    <a href="comparatif.html" class="btn btn-ghost">Voir le comparatif</a>
+    <a href="docs.html" class="btn btn-ghost">Lire la documentation</a>
+  </div>
+</main>
+
+<script>
+  // Numéro de version lu sur la dernière release publiée — même mécanique que
+  // l'accueil, pour ne pas avoir à retoucher la page à chaque publication.
+  fetch('https://api.github.com/repos/ixelia-fr/playR-releases/releases/latest')
+    .then((r) => (r.ok ? r.json() : null))
+    .then((rel) => {
+      const v = rel && rel.tag_name && rel.tag_name.replace(/^desktop-v?/, '');
+      if (!v) return;
+      document.querySelectorAll('[data-version]').forEach((el) => { el.textContent = ` (v${v})`; });
+    })
+    .catch(() => {});
+</script>
+</body>
+</html>

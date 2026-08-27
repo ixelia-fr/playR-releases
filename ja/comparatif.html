@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>比較：playR、Playnite、GOG Galaxy、Heroic、LaunchBox</title>
+<meta name="description" content="ユニバーサルゲームランチャーの比較：playR、Playnite、GOG Galaxy 2.0、Heroic Games Launcher、LaunchBox。対応ストア、コントローラーモード、エミュレーター、セルフホスト、価格まで、何ができて何ができないかを整理します。" />
+<!-- Icônes et balises de partage : voir index.html. -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#07070d">
+<link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+<link href="https://fonts.bunny.net/css?family=bricolage-grotesque:300,400,600,700,800|instrument-sans:400,400i,600,700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#07070d;--ink:#eae7f2;--muted:#9a97ac;--violet:#8b5cf6;--cyan:#22d3ee;
+    --line:rgba(255,255,255,.08);--card:rgba(255,255,255,.03);
+    --display:'Bricolage Grotesque',sans-serif;--body:'Instrument Sans',sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+  .bg-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(60vw 50vw at 82% -10%,rgba(139,92,246,.22),transparent 60%),
+    radial-gradient(50vw 50vw at 5% 8%,rgba(34,211,238,.12),transparent 55%)}
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,7,13,.65);border-bottom:1px solid var(--line)}
+  nav .in{max-width:1180px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .logo{height:26px;width:auto;display:block}
+  main{max-width:1180px;margin:0 auto;padding:56px 24px 120px}
+  h1{font-family:var(--display);font-weight:700;letter-spacing:-.03em;font-size:clamp(34px,6vw,52px);margin-bottom:14px}
+  h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:28px;margin:64px 0 14px;
+    padding-top:22px;border-top:1px solid var(--line);scroll-margin-top:88px}
+  h3{font-family:var(--display);font-weight:600;font-size:19px;margin:0 0 6px}
+  p,li{color:#c9c6d6;font-size:15.5px}
+  .intro{color:var(--muted);font-size:18px;max-width:70ch}
+  .intro+.intro{margin-top:12px}
+  strong{color:var(--ink)}
+  .pill{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;background:rgba(139,92,246,.16);
+    border:1px solid rgba(139,92,246,.35);color:#c4b5fd;margin-bottom:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:11px 20px;
+    border-radius:12px;background:linear-gradient(90deg,var(--violet),var(--cyan));color:#08080f}
+  .btn:hover{text-decoration:none}
+  .btn-ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+
+  /* Six colonnes ne tiennent pas sous 1000 px : le tableau défile
+     horizontalement, et la colonne des critères reste collée à gauche —
+     sans elle, une case « Oui » au milieu du défilement ne veut plus rien dire. */
+  .tw{overflow-x:auto;margin:26px 0 10px;border:1px solid var(--line);border-radius:16px;
+    -webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:900px}
+  th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{position:sticky;top:0;background:#0c0c17;font-family:var(--display);font-weight:700;
+    font-size:15px;color:var(--ink);white-space:nowrap;z-index:2}
+  tbody th{font-weight:600;color:var(--ink);font-size:14.5px;background:rgba(12,12,23,.94);
+    position:sticky;left:0;z-index:1;min-width:230px}
+  td{color:#c9c6d6}
+  /* La colonne playR : c'est notre page, on l'assume en la marquant plutôt qu'en
+     la déguisant en colonne neutre. */
+  .me{background:rgba(139,92,246,.09)}
+  thead .me{background:#140f26;color:#c4b5fd}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+  td ul{list-style:none;margin:0;padding:0}
+  td li{margin:0 0 3px}
+  td li:last-child{margin-bottom:0}
+  /* Précision dans une liste : ce n'est pas un élément de la liste, et ça ne
+     doit pas s'aligner comme tel. */
+  td li.nb{color:var(--muted);font-size:13px;font-style:italic;margin-top:6px}
+  td .det{display:block;color:var(--muted);font-size:13px;font-style:italic;margin-top:3px}
+  td.yes{color:#4ade80}
+  td.no{color:#8b8799}
+  td.part{color:#fbbf24}
+  td.soon{color:#22d3ee}
+  /* Une case courte (« Oui », « Non ») supporte le gras ; une case longue
+     deviendrait un pâté. */
+  td.court{font-weight:600}
+  .note{color:var(--muted);font-size:13.5px;margin-bottom:40px}
+
+  .verdicts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:26px}
+  .v{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+  .v.me{border-color:rgba(139,92,246,.4)}
+  .v p{color:var(--muted);font-size:15px}
+  .v p+p{margin-top:10px}
+  .v .contre{color:#8b8799;font-size:14px}
+  .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+
+  .langs{position:relative}
+  .langs summary{list-style:none;cursor:pointer;font-size:14px;color:var(--muted);
+    white-space:nowrap;display:flex;align-items:center;gap:6px}
+  .langs summary::-webkit-details-marker{display:none}
+  .langs summary:hover,.langs[open] summary{color:var(--ink)}
+  .langs>div{position:absolute;right:0;top:calc(100% + 8px);z-index:60;display:flex;
+    flex-direction:column;min-width:160px;padding:6px;border-radius:14px;
+    border:1px solid var(--line);background:#0c0c17;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+  .langs a{padding:9px 12px;border-radius:9px;font-size:14px;color:var(--muted)}
+  .langs a:hover{background:rgba(139,92,246,.14);color:var(--ink);text-decoration:none}
+  .langs a[aria-current]{color:var(--ink);font-weight:600}
+
+  @media(max-width:560px){
+    nav .in{padding:0 16px;height:58px}
+    .tag{display:none}
+    nav .in>div{gap:14px}
+    main{padding:30px 16px 80px}
+    h1{font-size:clamp(28px,8.5vw,38px)}
+    .intro{font-size:16px}
+    h2{font-size:22px;margin:44px 0 12px}
+    /* Collé aux bords : sur 360 px, les marges coûtent une colonne entière. */
+    .tw{margin-left:-16px;margin-right:-16px;border-radius:0;border-left:0;border-right:0}
+    tbody th{min-width:170px;font-size:13.5px}
+    table{font-size:13.5px}
+    th,td{padding:11px 12px}
+  }
+</style>
+  <link rel="canonical" href="https://playrgameslauncher.com/ja/comparatif.html">
+  <link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html">
+  <link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html">
+  <link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html">
+  <link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html">
+  <link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html">
+  <link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html">
+  <link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html">
+  <link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html">
+  <link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html">
+  <link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html">
+  <link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="playR">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale:alternate" content="pt_PT">
+  <meta property="og:locale:alternate" content="nl_NL">
+  <meta property="og:locale:alternate" content="pl_PL">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:url" content="https://playrgameslauncher.com/ja/comparatif.html">
+  <meta property="og:title" content="比較：playR、Playnite、GOG Galaxy、Heroic、LaunchBox">
+  <meta property="og:description" content="ユニバーサルゲームランチャーの比較：playR、Playnite、GOG Galaxy 2.0、Heroic Games Launcher、LaunchBox。対応ストア、コントローラーモード、エミュレーター、セルフホスト、価格まで、何ができて何ができないかを整理します。">
+  <meta property="og:image" content="https://playrgameslauncher.com/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="比較：playR、Playnite、GOG Galaxy、Heroic、LaunchBox">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="比較：playR、Playnite、GOG Galaxy、Heroic、LaunchBox">
+  <meta name="twitter:description" content="ユニバーサルゲームランチャーの比較：playR、Playnite、GOG Galaxy 2.0、Heroic Games Launcher、LaunchBox。対応ストア、コントローラーモード、エミュレーター、セルフホスト、価格まで、何ができて何ができないかを整理します。">
+  <meta name="twitter:image" content="https://playrgameslauncher.com/assets/og.jpg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://playrgameslauncher.com/ja/#site","name":"playR","url":"https://playrgameslauncher.com/ja/","inLanguage":"ja","publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}},{"@type":"TechArticle","@id":"https://playrgameslauncher.com/ja/comparatif.html#doc","headline":"比較：playR、Playnite、GOG Galaxy、Heroic、LaunchBox","description":"ユニバーサルゲームランチャーの比較：playR、Playnite、GOG Galaxy 2.0、Heroic Games Launcher、LaunchBox。対応ストア、コントローラーモード、エミュレーター、セルフホスト、価格まで、何ができて何ができないかを整理します。","url":"https://playrgameslauncher.com/ja/comparatif.html","inLanguage":"ja","isPartOf":{"@id":"https://playrgameslauncher.com/ja/#site"},"about":{"@id":"https://playrgameslauncher.com/ja/#app"},"publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"playR","item":"https://playrgameslauncher.com/ja/"},{"@type":"ListItem","position":2,"name":"比較：playR、Playnite、GOG Galaxy、Heroic、LaunchBox","item":"https://playrgameslauncher.com/ja/comparatif.html"}]}]}</script>
+</head>
+<body>
+<div class="bg-fx"></div>
+<nav><div class="in">
+  <a href="index.html" style="color:inherit;display:flex;align-items:center;gap:10px"><svg class="logo" viewBox="0 36 512 180" role="img" aria-label="playR"><g transform="translate(4,89)"><path d="M22.5 0 h 26 v 22.5 h 22.5 v 26 h -22.5 v 22.5 h -26 v -22.5 h -22.5 v -26 h 22.5 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(114,0)" fill="#f1f5f9"><path d="M34 88 C 32 122, 30 162, 29 202 C 29 207, 33.5 207, 35 201 C 39 160, 45 118, 49 88 C 50.5 80, 34.5 80, 34 88 Z"/><path d="M47 92 C 73 83, 102 96, 100 119 C 98 142, 66 152, 39 144 C 32.5 142, 35 131, 42 133.5 C 65 140, 88 132, 89 117 C 90 102, 70 94, 49 101 C 42.5 103, 40.5 90, 47 92 Z"/><path d="M112 50 C 110 90, 108 128, 107 159 C 107 164.5, 111.5 164.5, 113.5 158 C 118 128, 122.5 88, 126 50 C 127 42, 111.5 42, 112 50 Z"/><path d="M191 97 C 166 86, 138 99, 138 123 C 138 146, 163 156, 187 145 C 192.5 142.5, 196.5 149.5, 191 152.5 C 160 167, 125 151, 125 123 C 125 94, 161 77, 193 89.5 C 199.5 92, 197 99.5, 191 97 Z"/><path d="M192 92 C 190 116, 187 139, 187 157 C 187 163.5, 178 163.5, 178 157 C 178 136, 180.5 112, 183 92 C 184 84, 193 84, 192 92 Z"/><path d="M213 96 C 217 119, 225 141, 236 155.5 C 239.5 160, 231.5 166.5, 227 160.5 C 213.5 143, 205 119, 202 97 C 201 89, 212 88, 213 96 Z"/><path d="M264 94 C 256 125, 245 157, 233 183 C 227 196, 216.5 205.5, 205 208 C 198.5 209.5, 197 200.5, 204 198.5 C 214 196, 221.5 186, 227 175 C 239 148, 247.5 120, 253.5 93 C 255.5 85, 266 86, 264 94 Z"/><path d="M290 44 C 294 44, 298 47, 297 53 C 295 65, 290 78, 285 87 C 282.5 91, 277.5 88, 280 84 C 284 76, 287 64, 288 51 C 288.5 45.5, 287 44, 290 44 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(132,0)" fill="var(--violet)"><path d="M300 44 C 296 90, 292 132, 290 164 C 290 170, 279.5 170, 280.5 163.5 C 284 129, 288 87, 292 42 C 293 34, 301 36, 300 44 Z"/><path d="M296 47 C 331 40, 375 47, 377 74 C 379 99, 345 111, 310 109 C 303.5 109, 304.5 97.5, 311 97.5 C 341 99.5, 366 91, 364 74.5 C 362 58, 328 52.5, 298 58 C 291.5 59, 289.5 46, 296 47 Z"/><path d="M317 104 C 338 125, 359 148, 376 169 C 380 174, 370.5 181.5, 365.5 175 C 348 152, 327 129, 308.5 110.5 C 303 105, 312 98.5, 317 104 Z"/></g></svg><span class="tag" style="font-family:var(--display);font-weight:800;font-size:18px;color:var(--muted)">比較</span></a>
+  <div style="display:flex;align-items:center;gap:18px">
+    <details class="langs"><summary aria-label="Langue">🌐 日本語</summary><div><a href="/comparatif.html" hreflang="fr">Français</a><a href="/en/comparatif.html" hreflang="en">English</a><a href="/de/comparatif.html" hreflang="de">Deutsch</a><a href="/es/comparatif.html" hreflang="es">Español</a><a href="/it/comparatif.html" hreflang="it">Italiano</a><a href="/pt/comparatif.html" hreflang="pt">Português</a><a href="/nl/comparatif.html" hreflang="nl">Nederlands</a><a href="/pl/comparatif.html" hreflang="pl">Polski</a><a href="/ru/comparatif.html" hreflang="ru">Русский</a><a href="/ja/comparatif.html" hreflang="ja" aria-current="page">日本語</a></div></details>
+    <a href="faq.html" style="color:var(--muted);font-size:14px">よくある質問</a>
+    <a href="index.html" style="color:var(--muted);font-size:14px">← ホーム</a>
+  </div>
+</div></nav>
+
+<main>
+  <span class="pill">2026 年 8 月時点</span>
+  <h1>ユニバーサルゲームランチャーはどれを選ぶべきか</h1>
+  <p class="intro">Steam、Epic、GOG などを 1 つのライブラリにまとめられるソフトは複数あり、そのやり方はそれぞれ違います。何ができて、何ができないのかを整理しました。</p>
+  <p class="intro"><strong>公平な立場ではない点を先に明記します。このページは playR の開発チームが書いています。</strong> そのため下の表には検証できる事実だけを載せ、その後の解説では、あなたの用途により適した製品があればそちらを勧めています。playR が最適でないケースは確かにあります。</p>
+
+  <h2 id="tableau">比較表</h2>
+  <div class="tw">
+  <table>
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th class="me">playR</th>
+        <th>Playnite</th>
+        <th>GOG Galaxy 2.0</th>
+        <th>Heroic</th>
+        <th>LaunchBox</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>PC ストア</th>
+        <td class="me "><ul><li>Steam</li><li>Epic Games</li><li>GOG</li><li>Amazon Games</li><li>EA</li><li>Ubisoft Connect</li><li>Battle.net</li><li>Riot Games</li></ul></td>
+        <td class=""><ul><li>Steam</li><li>Epic Games</li><li>GOG</li><li>Amazon Games</li><li>EA</li><li>Ubisoft Connect</li><li>Battle.net</li><li>itch.io</li><li class="nb">拡張機能経由</li></ul></td>
+        <td class=""><ul><li>GOG</li><li class="nb">その他はコミュニティ製の連携で対応</li></ul></td>
+        <td class=""><ul><li>Epic Games</li><li>GOG</li><li>Amazon Games</li><li class="nb">Steam は非対応</li></ul></td>
+        <td class="">インストール済みゲームの取り込み</td>
+      </tr>
+      <tr>
+        <th>コンソールのライブラリ</th>
+        <td class="me "><ul><li>Xbox</li><li>PlayStation</li><li>Nintendo</li></ul></td>
+        <td class="part">拡張機能で対応</td>
+        <td class="part">コミュニティ製の連携で対応</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+      </tr>
+      <tr>
+        <th>Steam のファミリーライブラリ</th>
+        <td class="me yes court">はい</td>
+        <td class="part">拡張機能で対応</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+      </tr>
+      <tr>
+        <th>クラウドゲーミング</th>
+        <td class="me "><ul><li>GeForce NOW</li><li>Amazon Luna</li></ul></td>
+        <td class="part">拡張機能で対応</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+      </tr>
+      <tr>
+        <th>エミュレーターとレトロゲーム</th>
+        <td class="me no court">いいえ</td>
+        <td class="yes court">はい</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+        <td class="yes">はい<span class="det">最も得意とする分野</span></td>
+      </tr>
+      <tr>
+        <th>コンソールモード：全画面・コントローラー操作</th>
+        <td class="me yes">はい<span class="det">TV モード</span></td>
+        <td class="yes">はい<span class="det">Fullscreen モード</span></td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+        <td class="yes">はい<span class="det">有料の Big Box で</span></td>
+      </tr>
+      <tr>
+        <th>自宅サーバーで、複数の PC が同じライブラリを共有</th>
+        <td class="me yes court">はい</td>
+        <td class="part">いいえ<span class="det">データベースを共有ドライブに置くことは可能</span></td>
+        <td class="no">いいえ<span class="det">ライブラリはその PC に留まる</span></td>
+        <td class="no">いいえ<span class="det">ライブラリはその PC に留まる</span></td>
+        <td class="no">いいえ<span class="det">ライブラリはその PC に留まる</span></td>
+      </tr>
+      <tr>
+        <th>ウィッシュリストの価格比較</th>
+        <td class="me yes">はい<span class="det">約 30 のストアを横断</span></td>
+        <td class="part">拡張機能で対応</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+      </tr>
+      <tr>
+        <th>無料配布ゲームの通知</th>
+        <td class="me yes court">はい</td>
+        <td class="part">拡張機能で対応</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+      </tr>
+      <tr>
+        <th>評価と自分のリスト</th>
+        <td class="me yes court">はい</td>
+        <td class="yes court">はい</td>
+        <td class="part">タグとフィルター</td>
+        <td class="part">お気に入りとカテゴリーのみ</td>
+        <td class="yes court">はい</td>
+      </tr>
+      <tr>
+        <th>進行状況：未プレイ／プレイ中／クリア</th>
+        <td class="me yes">はい<span class="det">ジャケットに色付きのドット</span></td>
+        <td class="yes court">はい</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+        <td class="yes court">はい</td>
+      </tr>
+      <tr>
+        <th>ドラッグ＆ドロップだけでゲームを振り分け</th>
+        <td class="me yes">はい<span class="det">リストと進行状況</span></td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+      </tr>
+      <tr>
+        <th>ダッシュボード：コレクション全体の統計</th>
+        <td class="me yes">はい<span class="det">コレクションの推定価値も表示</span></td>
+        <td class="part">プレイ時間<span class="det">統計は拡張機能で</span></td>
+        <td class="part">プレイ時間<span class="det">ゲームごと、全体像はなし</span></td>
+        <td class="part">プレイ時間<span class="det">のみ</span></td>
+        <td class="part">プレイ時間<span class="det">のみ</span></td>
+      </tr>
+      <tr>
+        <th>インターフェースの翻訳</th>
+        <td class="me yes court">9 言語</td>
+        <td class="yes court">はい</td>
+        <td class="yes court">はい</td>
+        <td class="yes court">はい</td>
+        <td class="yes court">はい</td>
+      </tr>
+      <tr>
+        <th>拡張機能</th>
+        <td class="me no court">いいえ</td>
+        <td class="yes">はい<span class="det">最も充実したエコシステム</span></td>
+        <td class="part">はい<span class="det">ただし 2021 年から更新停止</span></td>
+        <td class="no court">いいえ</td>
+        <td class="yes">はい<span class="det">テーマとプラグイン</span></td>
+      </tr>
+      <tr>
+        <th>対応 OS</th>
+        <td class="me "><ul><li>Windows</li><li class="nb">サーバーは Docker でも動作（NAS、CasaOS、Proxmox）</li><li class="nb">Linux と Steam Deck は対応予定</li></ul></td>
+        <td class=""><ul><li>Windows</li><li class="nb">Linux 版を開発中</li></ul></td>
+        <td class=""><ul><li>Windows</li><li>macOS</li><li class="nb">Linux 版を予告</li></ul></td>
+        <td class="yes"><ul><li>Windows</li><li>macOS</li><li>Linux</li><li>Steam Deck</li></ul></td>
+        <td class=""><ul><li>Windows</li><li>Android</li></ul></td>
+      </tr>
+      <tr>
+        <th>Linux で遊ぶための Wine と Proton</th>
+        <td class="me soon court">対応予定</td>
+        <td class="no court">いいえ</td>
+        <td class="no court">いいえ</td>
+        <td class="yes">はい<span class="det">まさに本業</span></td>
+        <td class="no court">いいえ</td>
+      </tr>
+      <tr>
+        <th>オープンソース</th>
+        <td class="me no court">いいえ</td>
+        <td class="yes court">はい</td>
+        <td class="no court">いいえ</td>
+        <td class="yes court">はい</td>
+        <td class="no court">いいえ</td>
+      </tr>
+      <tr>
+        <th>価格</th>
+        <td class="me yes court">無料</td>
+        <td class="yes court">無料</td>
+        <td class="yes court">無料</td>
+        <td class="yes court">無料</td>
+        <td class="">無料<span class="det">ただし Big Box は有料</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">2026 年 8 月時点で、各プロジェクトの公式サイトとリポジトリを確認して作成しました。これらのソフトは変化が速いため、誤りや古くなった記述があればお知らせください。修正します。</p>
+
+  <h2 id="lequel">用途別のおすすめ</h2>
+  <div class="verdicts">
+    <div class="v me">
+      <h3>playR</h3>
+      <p>複数のストアにゲームが分散し、家に PC が何台もあり、どこでも同じライブラリを見たい人向けです。リビングのテレビとコントローラーにも対応します。この一覧で唯一サーバー方式で動作し、ライブラリは自分の 1 台に置き、ほかの端末がそこへ接続します。さらに、ウィッシュリストの価格比較、無料配布の通知、クラウドゲーミングを備えます。いずれも他社が標準では備えていない機能です。ゲームをリストや進行状況に振り分ける操作も、ドラッグ＆ドロップひとつで完了します。他社ではメニュー操作が必要な場面です。</p>
+      <p><strong>複数の PC で同じライブラリを使いたい方、コントローラー操作も含めて統一したい方に向いています。</strong></p>
+      <p class="contre">レトロ、今すぐの Linux、オープンソースを求めるなら向きません。</p>
+    </div>
+    <div class="v">
+      <h3>Playnite</h3>
+      <p>設定項目が多いデスクトップ型ランチャーで、コントローラー向けの全画面モードとコミュニティ製拡張機能を備えます。エミュレーターにも対応します。ただし主要な機能はほぼすべて拡張機能頼みで、1 つずつ探し、入れ、設定する必要があります。導入は長く面倒で、構成を変えるたびにやり直しになります。ライブラリもインストールした 1 台に留まります。</p>
+      <p><strong>Windows PC 1 台で遊び、設定に時間をかけることが苦にならないなら向いています。</strong></p>
+      <p class="contre">設定なしですぐ使いたい方、複数の PC で同じライブラリを見たい方には向きません。</p>
+    </div>
+    <div class="v">
+      <h3>GOG Galaxy 2.0</h3>
+      <p>GOG 純正のクライアントで、コミュニティ製の連携を入れれば他プラットフォームも表示できます。ただしそれらは 2021 年以降更新が止まり、本体もほとんど進化していません。</p>
+      <p><strong>GOG がメインのストアで、必要な連携がまだ動いているなら、これで十分です。</strong></p>
+      <p class="contre">新機能を期待する方には向きません。本体も連携も更新が止まっています。</p>
+    </div>
+    <div class="v">
+      <h3>Heroic Games Launcher</h3>
+      <p>Epic・GOG・Amazon 向けのオープンソースのランチャーで、Wine と Proton を使ってこれらのゲームを導入・実行します。Steam やその他のストアには対応せず、コレクション管理はお気に入りとカテゴリー止まりです。</p>
+      <p><strong>Linux や Steam Deck で遊ぶなら、これを選んでください。</strong></p>
+      <p class="contre">ゲームの大半が Steam にある方、大きなコレクションを整理したい方には向きません。</p>
+    </div>
+    <div class="v">
+      <h3>LaunchBox</h3>
+      <p>レトロコレクション向けの構成です。エミュレーター、ジャケット、スキン、そして有料の Big Box によるコントローラー向け全画面ショーケースを備えます。PC ゲームについては、すでに導入済みのものを取り込むだけです。</p>
+      <p><strong>コレクションの中心がコンソールやアーケードなら、こちらが適任です。playR が踏み込まない領域であり、今後も踏み込みません。</strong></p>
+      <p class="contre">PC ストアをまとめることが第一の目的なら向きません。</p>
+    </div>
+  </div>
+  </div>
+
+  <h2 id="essayer">playR を試す</h2>
+  <p class="intro">無料、インストーラーは 1 つ、Windows 10 / 11 対応。サーバーも同時に導入でき、NAS 上で動かすこともできます。</p>
+  <div class="cta">
+    <a href="https://github.com/ixelia-fr/playR-releases/releases/latest/download/playR-Setup.exe" class="btn">⬇ Windows 版をダウンロード<span data-version></span></a>
+    <a href="faq.html" class="btn btn-ghost">よくある質問を読む</a>
+    <a href="docs.html" class="btn btn-ghost">ドキュメントを見る</a>
+  </div>
+</main>
+
+<script>
+  // Numéro de version lu sur la dernière release publiée — même mécanique que
+  // l'accueil, pour ne pas avoir à retoucher la page à chaque publication.
+  fetch('https://api.github.com/repos/ixelia-fr/playR-releases/releases/latest')
+    .then((r) => (r.ok ? r.json() : null))
+    .then((rel) => {
+      const v = rel && rel.tag_name && rel.tag_name.replace(/^desktop-v?/, '');
+      if (!v) return;
+      document.querySelectorAll('[data-version]').forEach((el) => { el.textContent = ` (v${v})`; });
+    })
+    .catch(() => {});
+</script>
+</body>
+</html>

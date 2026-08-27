@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>playR — все ваши игры в одной библиотеке.</title>
-<meta name="description" content="playR объединяет Steam, Epic, GOG, Amazon, EA, Ubisoft и Battle.net в одну библиотеку: запускайте игры, смотрите их описания, сравнивайте цены из списков желаемого. Облачный гейминг GeForce NOW и Amazon Luna, ТВ-режим с геймпадом, размещение на своём сервере, 9 языков." />
+<title>playR — универсальный игровой лаунчер и единая библиотека</title>
+<meta name="description" content="Универсальный игровой лаунчер «всё в одном» на вашем сервере: playR объединяет Steam, Epic, GOG, Amazon, EA, Ubisoft, Battle.net и Riot Games в одну библиотеку — плюс ваши игры с Xbox, PlayStation и Nintendo. Сравнение цен по спискам желаемого, оповещения о бесплатных играх, облачные игры, консольный режим с геймпадом, 9 языков." />
 <!-- Icônes : le « R » du logo (même tracé que src/components/Logo.jsx), posé sur
      une tuile sombre — sans elle, le violet disparaît dans l'onglet d'un
      navigateur en thème clair. Chemins absolus : les pages de langue vivent un
@@ -156,6 +156,13 @@
   h2{font-family:var(--display);font-weight:700;letter-spacing:-.03em;line-height:1;
     font-size:clamp(32px,5vw,56px);margin:14px 0 0}
   .lead{color:var(--muted);font-size:18px;max-width:52ch;margin-top:18px}
+  /* Section « En un mot » : des définitions, pas des arguments. Deux colonnes
+     pour qu'elle ne pousse pas le reste de la page vers le bas. */
+  .dfn{display:grid;grid-template-columns:1fr 1fr;gap:14px 34px;margin-top:34px;max-width:1000px}
+  .dfn p{color:var(--muted);font-size:16px;line-height:1.6}
+  .dfn b{color:var(--ink);font-weight:600}
+  .dfn .full{grid-column:1/-1}
+  @media(max-width:820px){.dfn{grid-template-columns:1fr;gap:12px}}
 
   /* Bento features */
   .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:56px}
@@ -321,17 +328,17 @@
   <meta property="og:locale:alternate" content="pl_PL">
   <meta property="og:locale:alternate" content="ja_JP">
   <meta property="og:url" content="https://playrgameslauncher.com/ru/">
-  <meta property="og:title" content="playR — все ваши игры в одной библиотеке.">
-  <meta property="og:description" content="playR объединяет Steam, Epic, GOG, Amazon, EA, Ubisoft и Battle.net в одну библиотеку: запускайте игры, смотрите их описания, сравнивайте цены из списков желаемого. Облачный гейминг GeForce NOW и Amazon Luna, ТВ-режим с геймпадом, размещение на своём сервере, 9 языков.">
+  <meta property="og:title" content="playR — универсальный игровой лаунчер и единая библиотека">
+  <meta property="og:description" content="Универсальный игровой лаунчер «всё в одном» на вашем сервере: playR объединяет Steam, Epic, GOG, Amazon, EA, Ubisoft, Battle.net и Riot Games в одну библиотеку — плюс ваши игры с Xbox, PlayStation и Nintendo. Сравнение цен по спискам желаемого, оповещения о бесплатных играх, облачные игры, консольный режим с геймпадом, 9 языков.">
   <meta property="og:image" content="https://playrgameslauncher.com/assets/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="playR — все ваши игры в одной библиотеке.">
+  <meta property="og:image:alt" content="playR — универсальный игровой лаунчер и единая библиотека">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="playR — все ваши игры в одной библиотеке.">
-  <meta name="twitter:description" content="playR объединяет Steam, Epic, GOG, Amazon, EA, Ubisoft и Battle.net в одну библиотеку: запускайте игры, смотрите их описания, сравнивайте цены из списков желаемого. Облачный гейминг GeForce NOW и Amazon Luna, ТВ-режим с геймпадом, размещение на своём сервере, 9 языков.">
+  <meta name="twitter:title" content="playR — универсальный игровой лаунчер и единая библиотека">
+  <meta name="twitter:description" content="Универсальный игровой лаунчер «всё в одном» на вашем сервере: playR объединяет Steam, Epic, GOG, Amazon, EA, Ubisoft, Battle.net и Riot Games в одну библиотеку — плюс ваши игры с Xbox, PlayStation и Nintendo. Сравнение цен по спискам желаемого, оповещения о бесплатных играх, облачные игры, консольный режим с геймпадом, 9 языков.">
   <meta name="twitter:image" content="https://playrgameslauncher.com/assets/og.jpg">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://playrgameslauncher.com/ru/#site","name":"playR","url":"https://playrgameslauncher.com/ru/","inLanguage":"ru","publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}},{"@type":"SoftwareApplication","@id":"https://playrgameslauncher.com/ru/#app","name":"playR","description":"playR объединяет Steam, Epic, GOG, Amazon, EA, Ubisoft и Battle.net в одну библиотеку: запускайте игры, смотрите их описания, сравнивайте цены из списков желаемого. Облачный гейминг GeForce NOW и Amazon Luna, ТВ-режим с геймпадом, размещение на своём сервере, 9 языков.","url":"https://playrgameslauncher.com/ru/","inLanguage":"ru","applicationCategory":"GameApplication","applicationSubCategory":"Game library manager","operatingSystem":"Windows 10, Windows 11, Docker (Linux)","downloadUrl":"https://github.com/ixelia-fr/playR-releases/releases/latest","screenshot":"https://playrgameslauncher.com/assets/og.jpg","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://playrgameslauncher.com/ru/#site","name":"playR","url":"https://playrgameslauncher.com/ru/","inLanguage":"ru","publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}},{"@type":"SoftwareApplication","@id":"https://playrgameslauncher.com/ru/#app","name":"playR","description":"Универсальный игровой лаунчер «всё в одном» на вашем сервере: playR объединяет Steam, Epic, GOG, Amazon, EA, Ubisoft, Battle.net и Riot Games в одну библиотеку — плюс ваши игры с Xbox, PlayStation и Nintendo. Сравнение цен по спискам желаемого, оповещения о бесплатных играх, облачные игры, консольный режим с геймпадом, 9 языков.","url":"https://playrgameslauncher.com/ru/","inLanguage":"ru","applicationCategory":"GameApplication","applicationSubCategory":"Game library manager","operatingSystem":"Windows 10, Windows 11, Docker (Linux)","downloadUrl":"https://github.com/ixelia-fr/playR-releases/releases/latest","screenshot":"https://playrgameslauncher.com/assets/og.jpg","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}}]}</script>
 </head>
 <body>
 <div class="bg-fx"></div><div class="grain"></div>
@@ -347,6 +354,8 @@
       <a href="#gratuits">Бесплатные игры</a>
     </div></details>
     <a href="#how">Как это работает</a>
+    <a href="comparatif.html">Сравнение</a>
+    <a href="faq.html">FAQ</a>
     <a href="docs.html">Документация</a>
     <details class="langs"><summary aria-label="Langue">🌐 Русский</summary><div><a href="/" hreflang="fr">Français</a><a href="/en/" hreflang="en">English</a><a href="/de/" hreflang="de">Deutsch</a><a href="/es/" hreflang="es">Español</a><a href="/it/" hreflang="it">Italiano</a><a href="/pt/" hreflang="pt">Português</a><a href="/nl/" hreflang="nl">Nederlands</a><a href="/pl/" hreflang="pl">Polski</a><a href="/ru/" hreflang="ru" aria-current="page">Русский</a><a href="/ja/" hreflang="ja">日本語</a></div></details>
   </div>
@@ -357,9 +366,9 @@
 </div></nav>
 
 <header><div class="wrap">
-  <span class="eyebrow reveal d1">Универсальный игровой лаунчер</span>
+  <span class="eyebrow reveal d1">Универсальный игровой лаунчер · всё в одном · свой сервер</span>
   <h1 class="reveal d2">Все ваши игры — <em>одна библиотека.</em></h1>
-  <p class="sub reveal d3"><strong>То, что медиасервер делает с вашими фильмами, playR делает с вашими играми.</strong> Steam, Epic, GOG, Amazon, EA, Ubisoft и Battle.net объединены в одну библиотеку — а ваши игры доступны по стримингу в GeForce NOW и Amazon Luna. Запускайте любую игру из одного приложения, находите всю информацию о ней и следите за ценами в списках желаемого. На компьютере или в полноэкранном режиме с геймпадом.</p>
+  <p class="sub reveal d3"><strong>Универсальный игровой лаунчер, размещённый у вас дома.</strong> Что медиасервер делает с вашими фильмами, playR делает с вашими играми. Steam, Epic, GOG, Amazon, EA, Ubisoft, Battle.net и Riot Games в одной библиотеке — плюс игры, доступные по стримингу в GeForce NOW и Amazon Luna. Запускайте любую игру из одного приложения, находите о ней всё и следите за ценами в списках желаемого. На ПК или на весь экран с геймпадом.</p>
   <div class="cta reveal d4">
     <a href="#download" class="btn btn-primary">Скачать для Windows</a>
     <a href="#tv" class="btn">▶ Посмотреть ТВ-режим</a>
@@ -374,6 +383,7 @@
     <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L6.5 18h2.3l1.4-3.8h3.6L15.2 18h2.3L12 2zm0 3.8 1.3 3.4h-2.6L12 5.8z"/><path d="M5.5 20.5c3.8-1.6 9.5-1.8 13 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>Amazon</b>
     <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.635 6.162l-5.928 9.377H4.24l1.508-2.3h4.024l1.474-2.335H2.264L.79 13.239h2.156L0 17.84h12.072l4.563-7.259 1.652 2.66h-1.401l-1.473 2.299h4.347l1.473 2.3H24zm-11.461.107L3.7 8.604l9.52-.035 1.474-2.3z"/></svg>EA</b>
     <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.561 11.988C23.301-.304 6.954-4.89.656 6.634c.282.206.661.477.943.672a11.747 11.747 0 00-.976 3.067 11.885 11.885 0 00-.184 2.071C.439 18.818 5.621 24 12.005 24c6.385 0 11.556-5.17 11.556-11.556v-.455zm-20.27 2.06c-.152 1.246-.054 1.636-.054 1.788l-.282.098c-.108-.206-.37-.932-.488-1.908C2.163 10.308 4.7 6.96 8.57 6.33c3.544-.52 6.937 1.68 7.728 4.758l-.282.098c-.087-.087-.228-.336-.77-.878-4.281-4.281-11.002-2.32-11.956 3.74zm11.002 2.081a3.145 3.145 0 01-2.59 1.355 3.15 3.15 0 01-3.155-3.155 3.159 3.159 0 012.927-3.144c1.018-.043 1.972.51 2.416 1.398a2.58 2.58 0 01-.455 2.95c.293.205.575.4.856.595zm6.58.12c-1.669 3.782-5.106 5.766-8.77 5.712-7.034-.347-9.083-8.466-4.38-11.393l.207.206c-.076.108-.358.325-.791 1.182-.51 1.041-.672 2.081-.607 2.732.369 5.67 8.314 6.83 11.045 1.214C21.057 8.217 11.822.401 3.626 6.374l-.184-.184C5.599 2.808 9.816 1.3 13.837 2.309c6.147 1.55 9.453 7.956 7.035 13.94z"/></svg>Ubisoft</b>
+    <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.458.86 0 7.093l3.353 12.761 2.552-.313-.701-8.024.838-.373 1.447 8.202 4.361-.535-.775-8.857.83-.37 1.591 9.025 4.412-.542-.849-9.708.84-.374 1.74 9.87L24 17.318V3.5Zm.316 19.356.222 1.256L24 23.14v-4.18l-10.22 1.256Z"/></svg>Riot Games</b>
     <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.94 8.296C15.9 6.892 11.534 6 7.426 6.332c.206-1.36.714-2.308 1.548-2.508 1.148-.275 2.4.48 3.594 1.854.782.102 1.71.28 2.355.429C12.747 2.013 9.828-.282 7.607.565c-1.688.644-2.553 2.97-2.448 6.094-2.2.468-3.915 1.3-5.013 2.495-.056.065-.181.227-.137.305.034.058.146-.008.194-.04 1.274-.89 2.904-1.373 5.027-1.676.303 3.333 1.713 7.56 4.055 10.952-1.28.502-2.356.536-2.946-.087-.812-.856-.784-2.318-.19-4.04a26.764 26.764 0 0 1-.807-2.254c-2.459 3.934-2.986 7.61-1.143 9.11 1.402 1.14 3.847.725 6.502-.926 1.505 1.672 3.083 2.74 4.667 3.094.084.015.287.043.332-.034.034-.06-.08-.124-.131-.149-1.408-.657-2.64-1.828-3.964-3.515 2.735-1.929 5.691-5.263 7.457-8.988 1.076.86 1.64 1.773 1.398 2.595-.336 1.131-1.615 1.84-3.403 2.185a27.697 27.697 0 0 1-1.548 1.826c4.634.16 8.08-1.22 8.458-3.565.286-1.786-1.295-3.696-4.053-5.17.696-2.139.832-4.04.346-5.588-.029-.08-.106-.27-.196-.27-.068 0-.067.13-.063.187.135 1.547-.263 3.2-1.062 5.19zm-8.533 9.869c-1.96-3.145-3.09-6.849-3.082-10.594 3.702-.124 7.474.748 10.714 2.627-1.743 3.269-4.385 6.1-7.633 7.966h.001z"/></svg>Battle.net</b>
   </div>
 
@@ -390,13 +400,29 @@
   </div>
 </div></header>
 
+<!-- Écrite pour répondre aux formulations réellement tapées dans un moteur de
+     recherche (« lanceur de jeux universel », « tout-en-un », « gestionnaire de
+     bibliothèque », « auto-hébergé ») : le reste de la page est écrit en langue
+     de marque, et n'en contenait aucune. -->
+<section id="cest-quoi" style="padding-top:40px"><div class="wrap">
+  <span class="kicker">Если коротко</span>
+  <h2>Универсальный игровой лаунчер,<br>размещённый у вас дома.</h2>
+  <div class="dfn">
+    <p><b>Универсальный игровой лаунчер</b> — программа «всё в одном», объединяющая библиотеки нескольких магазинов в одну. Вместо того чтобы открывать Steam, затем Epic, затем GOG, вы открываете playR.</p>
+    <p><b>Менеджер игровой библиотеки</b> — оценки, списки, статусы, фильтры, сортировка и статистика: достаточно, чтобы навести порядок в коллекции из нескольких сотен игр, а не просто показать её.</p>
+    <p><b>На вашем сервере</b> — библиотека живёт на вашей машине: ПК с Windows или на чём угодно с Docker (NAS, CasaOS, Proxmox). Остальные компьютеры подключаются к ней, и ничего не проходит через сторонний сервис.</p>
+    <p><b>Несколько экранов</b> — та же библиотека с клавиатурой и мышью на ПК и в консольном режиме — полный экран, геймпад в руках — на телевизоре в гостиной.</p>
+    <p class="full"><b>Без эмуляции — и это осознанно</b> — playR не работает ни с эмуляторами, ни с ROM: только игры, купленные в официальных магазинах. <a href="comparatif.html" style="color:var(--cyan)">Если вам нужно ретро, сравнение подскажет, куда обратиться.</a></p>
+  </div>
+</div></section>
+
 <section id="features"><div class="wrap">
   <span class="kicker">Что умеет</span>
   <h2>Библиотека, созданная<br>для игроков.</h2>
   <div class="bento">
-    <div class="card glow c-6"><span class="ico">🧩</span><h3>7 магазинов и облачный гейминг — одна библиотека</h3>
-      <p>Steam (включая семейную библиотеку), Epic, GOG, Amazon, EA, Ubisoft Connect и Battle.net в одном месте, с группировкой похожих игр. Игры, доступные в GeForce NOW и Amazon Luna, тоже отмечены здесь и запускаются прямо из playR, ничего не нужно устанавливать. Одна библиотека для просмотра вместо 7 лаунчеров.</p></div>
-    <div class="card c-2"><span class="ico">📺</span><h3>ТВ-режим</h3>
+    <div class="card glow c-6"><span class="ico">🧩</span><h3>8 ПК-магазинов, 3 консоли и облачные игры — одна библиотека</h3>
+      <p>Steam (включая семейную библиотеку), Epic, GOG, Amazon, EA, Ubisoft Connect, Battle.net и Riot Games в одном месте, с группировкой похожих игр — а рядом ваши библиотеки Xbox, PlayStation и Nintendo. Игры, доступные в GeForce NOW и Amazon Luna, распознаются и запускаются из playR — устанавливать ничего не нужно. Одна библиотека вместо того, чтобы открывать каждый лаунчер по очереди.</p></div>
+    <div class="card c-2"><span class="ico">📺</span><h3>ТВ-режим: настоящий консольный режим</h3>
       <p>Полноэкранный интерфейс, полностью управляемый геймпадом, как на консоли — на телевизоре в гостиной и на мониторе компьютера. С жеребьёвкой «Во что поиграть сегодня?» и заставкой-слайд-шоу.</p></div>
     <div class="card c-2"><span class="ico">🚀</span><h3>Играть и устанавливать</h3>
       <p>Устанавливайте и запускайте игры прямо из библиотеки. Игра куплена сразу в нескольких магазинах? playR даст выбрать, откуда её запустить.</p></div>
@@ -424,9 +450,9 @@
 </div></section>
 
 <section id="tv" style="padding-top:40px"><div class="wrap">
-  <span class="kicker">ТВ-режим</span>
+  <span class="kicker">ТВ-режим · консольный режим</span>
   <h2>Диван, геймпад,<br>полный экран.</h2>
-  <p class="lead">Полноэкранный интерфейс, полностью управляемый геймпадом, как на консоли: крупные обложки, карусели, подробные страницы игр, сортировка и фильтры. На телевизоре в гостиной и на мониторе компьютера — запускайте игру, ни разу не коснувшись мыши. Не знаете, что запустить? «Во что поиграть сегодня?» выберет случайную игру из открытого списка. А через несколько минут без действий playR включает слайд-шоу из скриншотов, вместе с музыкой.</p>
+  <p class="lead">Настоящий консольный режим: полноэкранный интерфейс, управляемый только геймпадом, с крупными обложками, каруселями, подробными карточками, сортировкой и фильтрами. И на телевизоре в гостиной, и на мониторе ПК — запускайте игру, ни разу не коснувшись мыши. Не знаете, во что сыграть? «Во что сыграть сегодня?» выберет случайную из показанных. А через несколько минут бездействия playR покажет ваши скриншоты слайд-шоу, с музыкой.</p>
   <div class="shot" style="margin-top:48px">
     <div class="shot-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
       <span class="shot-title">playR — ТВ-режим</span></div>
@@ -465,7 +491,7 @@
     <div class="step"><div class="n">2</div><h3>Клиент</h3>
       <p>Установите приложение playR на каждый компьютер. Оно само найдёт вашу библиотеку — на этом компьютере или в сети.</p></div>
     <div class="step"><div class="n">3</div><h3>Ваши аккаунты</h3>
-      <p>Подключите свои платформы (Steam, Epic, GOG, Amazon, EA, Ubisoft, Battle.net) с собственными данными входа — откроется окно входа, вы авторизуетесь у них, и всё. Синхронизируйте — и библиотека появится.</p></div>
+      <p>Подключите свои платформы (Steam, Epic, GOG, Amazon, EA, Ubisoft, Battle.net) собственными учётными данными — Riot Games не просит ничего: его игры появляются, как только установлен его клиент — откроется окно входа, вы войдёте у них, и всё. Синхронизируйте — и библиотека на месте.</p></div>
   </div>
 </div></section>
 
@@ -508,6 +534,7 @@
   <svg class="logo" viewBox="0 36 512 180" role="img" aria-label="playR"><g transform="translate(4,89)"><path d="M22.5 0 h 26 v 22.5 h 22.5 v 26 h -22.5 v 22.5 h -26 v -22.5 h -22.5 v -26 h 22.5 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(114,0)" fill="#f1f5f9"><path d="M34 88 C 32 122, 30 162, 29 202 C 29 207, 33.5 207, 35 201 C 39 160, 45 118, 49 88 C 50.5 80, 34.5 80, 34 88 Z"/><path d="M47 92 C 73 83, 102 96, 100 119 C 98 142, 66 152, 39 144 C 32.5 142, 35 131, 42 133.5 C 65 140, 88 132, 89 117 C 90 102, 70 94, 49 101 C 42.5 103, 40.5 90, 47 92 Z"/><path d="M112 50 C 110 90, 108 128, 107 159 C 107 164.5, 111.5 164.5, 113.5 158 C 118 128, 122.5 88, 126 50 C 127 42, 111.5 42, 112 50 Z"/><path d="M191 97 C 166 86, 138 99, 138 123 C 138 146, 163 156, 187 145 C 192.5 142.5, 196.5 149.5, 191 152.5 C 160 167, 125 151, 125 123 C 125 94, 161 77, 193 89.5 C 199.5 92, 197 99.5, 191 97 Z"/><path d="M192 92 C 190 116, 187 139, 187 157 C 187 163.5, 178 163.5, 178 157 C 178 136, 180.5 112, 183 92 C 184 84, 193 84, 192 92 Z"/><path d="M213 96 C 217 119, 225 141, 236 155.5 C 239.5 160, 231.5 166.5, 227 160.5 C 213.5 143, 205 119, 202 97 C 201 89, 212 88, 213 96 Z"/><path d="M264 94 C 256 125, 245 157, 233 183 C 227 196, 216.5 205.5, 205 208 C 198.5 209.5, 197 200.5, 204 198.5 C 214 196, 221.5 186, 227 175 C 239 148, 247.5 120, 253.5 93 C 255.5 85, 266 86, 264 94 Z"/><path d="M290 44 C 294 44, 298 47, 297 53 C 295 65, 290 78, 285 87 C 282.5 91, 277.5 88, 280 84 C 284 76, 287 64, 288 51 C 288.5 45.5, 287 44, 290 44 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(132,0)" fill="var(--violet)"><path d="M300 44 C 296 90, 292 132, 290 164 C 290 170, 279.5 170, 280.5 163.5 C 284 129, 288 87, 292 42 C 293 34, 301 36, 300 44 Z"/><path d="M296 47 C 331 40, 375 47, 377 74 C 379 99, 345 111, 310 109 C 303.5 109, 304.5 97.5, 311 97.5 C 341 99.5, 366 91, 364 74.5 C 362 58, 328 52.5, 298 58 C 291.5 59, 289.5 46, 296 47 Z"/><path d="M317 104 C 338 125, 359 148, 376 169 C 380 174, 370.5 181.5, 365.5 175 C 348 152, 327 129, 308.5 110.5 C 303 105, 312 98.5, 317 104 Z"/></g></svg>
   <div style="display:flex;gap:26px;flex-wrap:wrap">
     <a href="#features">Возможности</a><a href="#download">Скачать</a>
+    <a href="comparatif.html">Сравнение</a><a href="faq.html">FAQ</a>
     <a href="docs.html">Документация</a><a href="https://github.com/ixelia-fr/playR-releases">GitHub</a>
     <a href="../mentions-legales.html">Правовая информация</a>
   </div>

@@ -281,6 +281,286 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/docs.html"/>
   </url>
   <url>
+    <loc>https://playrgameslauncher.com/comparatif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/en/comparatif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/de/comparatif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/es/comparatif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/it/comparatif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/pt/comparatif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/nl/comparatif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/pl/comparatif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/ru/comparatif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/ja/comparatif.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/comparatif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/comparatif.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/en/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/de/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/es/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/it/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/pt/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/nl/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/pl/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/ru/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://playrgameslauncher.com/ja/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://playrgameslauncher.com/de/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://playrgameslauncher.com/es/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://playrgameslauncher.com/it/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://playrgameslauncher.com/pt/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://playrgameslauncher.com/nl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://playrgameslauncher.com/pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://playrgameslauncher.com/ru/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://playrgameslauncher.com/ja/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playrgameslauncher.com/faq.html"/>
+  </url>
+  <url>
     <loc>https://playrgameslauncher.com/mentions-legales.html</loc>
   </url>
 </urlset>

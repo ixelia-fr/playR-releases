@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>playR — すべてのゲームを、ひとつのライブラリに。</title>
-<meta name="description" content="playR は Steam・Epic・GOG・Amazon・EA・Ubisoft・Battle.net をひとつのライブラリにまとめます。ゲームを起動し、詳細情報を確認し、ウィッシュリストの価格を比較。GeForce NOW と Amazon Luna のクラウドゲーミング、コントローラー操作の TV モード、セルフホスト、9 言語対応。" />
+<title>playR — ユニバーサルゲームランチャーと統合ライブラリ</title>
+<meta name="description" content="セルフホスト型のオールインワン・ユニバーサルゲームランチャー。playR は Steam、Epic、GOG、Amazon、EA、Ubisoft、Battle.net、Riot Games を 1 つのライブラリにまとめ、さらに Xbox・PlayStation・Nintendo のゲームも並べます。ウィッシュリストの価格比較、無料ゲームの通知、クラウドゲーミング、コントローラー対応のコンソールモード、9 言語対応。" />
 <!-- Icônes : le « R » du logo (même tracé que src/components/Logo.jsx), posé sur
      une tuile sombre — sans elle, le violet disparaît dans l'onglet d'un
      navigateur en thème clair. Chemins absolus : les pages de langue vivent un
@@ -156,6 +156,13 @@
   h2{font-family:var(--display);font-weight:700;letter-spacing:-.03em;line-height:1;
     font-size:clamp(32px,5vw,56px);margin:14px 0 0}
   .lead{color:var(--muted);font-size:18px;max-width:52ch;margin-top:18px}
+  /* Section « En un mot » : des définitions, pas des arguments. Deux colonnes
+     pour qu'elle ne pousse pas le reste de la page vers le bas. */
+  .dfn{display:grid;grid-template-columns:1fr 1fr;gap:14px 34px;margin-top:34px;max-width:1000px}
+  .dfn p{color:var(--muted);font-size:16px;line-height:1.6}
+  .dfn b{color:var(--ink);font-weight:600}
+  .dfn .full{grid-column:1/-1}
+  @media(max-width:820px){.dfn{grid-template-columns:1fr;gap:12px}}
 
   /* Bento features */
   .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:56px}
@@ -321,17 +328,17 @@
   <meta property="og:locale:alternate" content="pl_PL">
   <meta property="og:locale:alternate" content="ru_RU">
   <meta property="og:url" content="https://playrgameslauncher.com/ja/">
-  <meta property="og:title" content="playR — すべてのゲームを、ひとつのライブラリに。">
-  <meta property="og:description" content="playR は Steam・Epic・GOG・Amazon・EA・Ubisoft・Battle.net をひとつのライブラリにまとめます。ゲームを起動し、詳細情報を確認し、ウィッシュリストの価格を比較。GeForce NOW と Amazon Luna のクラウドゲーミング、コントローラー操作の TV モード、セルフホスト、9 言語対応。">
+  <meta property="og:title" content="playR — ユニバーサルゲームランチャーと統合ライブラリ">
+  <meta property="og:description" content="セルフホスト型のオールインワン・ユニバーサルゲームランチャー。playR は Steam、Epic、GOG、Amazon、EA、Ubisoft、Battle.net、Riot Games を 1 つのライブラリにまとめ、さらに Xbox・PlayStation・Nintendo のゲームも並べます。ウィッシュリストの価格比較、無料ゲームの通知、クラウドゲーミング、コントローラー対応のコンソールモード、9 言語対応。">
   <meta property="og:image" content="https://playrgameslauncher.com/assets/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="playR — すべてのゲームを、ひとつのライブラリに。">
+  <meta property="og:image:alt" content="playR — ユニバーサルゲームランチャーと統合ライブラリ">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="playR — すべてのゲームを、ひとつのライブラリに。">
-  <meta name="twitter:description" content="playR は Steam・Epic・GOG・Amazon・EA・Ubisoft・Battle.net をひとつのライブラリにまとめます。ゲームを起動し、詳細情報を確認し、ウィッシュリストの価格を比較。GeForce NOW と Amazon Luna のクラウドゲーミング、コントローラー操作の TV モード、セルフホスト、9 言語対応。">
+  <meta name="twitter:title" content="playR — ユニバーサルゲームランチャーと統合ライブラリ">
+  <meta name="twitter:description" content="セルフホスト型のオールインワン・ユニバーサルゲームランチャー。playR は Steam、Epic、GOG、Amazon、EA、Ubisoft、Battle.net、Riot Games を 1 つのライブラリにまとめ、さらに Xbox・PlayStation・Nintendo のゲームも並べます。ウィッシュリストの価格比較、無料ゲームの通知、クラウドゲーミング、コントローラー対応のコンソールモード、9 言語対応。">
   <meta name="twitter:image" content="https://playrgameslauncher.com/assets/og.jpg">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://playrgameslauncher.com/ja/#site","name":"playR","url":"https://playrgameslauncher.com/ja/","inLanguage":"ja","publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}},{"@type":"SoftwareApplication","@id":"https://playrgameslauncher.com/ja/#app","name":"playR","description":"playR は Steam・Epic・GOG・Amazon・EA・Ubisoft・Battle.net をひとつのライブラリにまとめます。ゲームを起動し、詳細情報を確認し、ウィッシュリストの価格を比較。GeForce NOW と Amazon Luna のクラウドゲーミング、コントローラー操作の TV モード、セルフホスト、9 言語対応。","url":"https://playrgameslauncher.com/ja/","inLanguage":"ja","applicationCategory":"GameApplication","applicationSubCategory":"Game library manager","operatingSystem":"Windows 10, Windows 11, Docker (Linux)","downloadUrl":"https://github.com/ixelia-fr/playR-releases/releases/latest","screenshot":"https://playrgameslauncher.com/assets/og.jpg","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://playrgameslauncher.com/ja/#site","name":"playR","url":"https://playrgameslauncher.com/ja/","inLanguage":"ja","publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}},{"@type":"SoftwareApplication","@id":"https://playrgameslauncher.com/ja/#app","name":"playR","description":"セルフホスト型のオールインワン・ユニバーサルゲームランチャー。playR は Steam、Epic、GOG、Amazon、EA、Ubisoft、Battle.net、Riot Games を 1 つのライブラリにまとめ、さらに Xbox・PlayStation・Nintendo のゲームも並べます。ウィッシュリストの価格比較、無料ゲームの通知、クラウドゲーミング、コントローラー対応のコンソールモード、9 言語対応。","url":"https://playrgameslauncher.com/ja/","inLanguage":"ja","applicationCategory":"GameApplication","applicationSubCategory":"Game library manager","operatingSystem":"Windows 10, Windows 11, Docker (Linux)","downloadUrl":"https://github.com/ixelia-fr/playR-releases/releases/latest","screenshot":"https://playrgameslauncher.com/assets/og.jpg","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"IXÉLIA","url":"https://playrgameslauncher.com"}}]}</script>
 </head>
 <body>
 <div class="bg-fx"></div><div class="grain"></div>
@@ -347,6 +354,8 @@
       <a href="#gratuits">無料ゲーム</a>
     </div></details>
     <a href="#how">使い方</a>
+    <a href="comparatif.html">比較</a>
+    <a href="faq.html">よくある質問</a>
     <a href="docs.html">ドキュメント</a>
     <details class="langs"><summary aria-label="Langue">🌐 日本語</summary><div><a href="/" hreflang="fr">Français</a><a href="/en/" hreflang="en">English</a><a href="/de/" hreflang="de">Deutsch</a><a href="/es/" hreflang="es">Español</a><a href="/it/" hreflang="it">Italiano</a><a href="/pt/" hreflang="pt">Português</a><a href="/nl/" hreflang="nl">Nederlands</a><a href="/pl/" hreflang="pl">Polski</a><a href="/ru/" hreflang="ru">Русский</a><a href="/ja/" hreflang="ja" aria-current="page">日本語</a></div></details>
   </div>
@@ -357,9 +366,9 @@
 </div></nav>
 
 <header><div class="wrap">
-  <span class="eyebrow reveal d1">ユニバーサルなゲームランチャー</span>
+  <span class="eyebrow reveal d1">ユニバーサルゲームランチャー · オールインワン · セルフホスト</span>
   <h1 class="reveal d2">すべてのゲームを、 <em>ひとつのライブラリに。</em></h1>
-  <p class="sub reveal d3"><strong>メディアサーバーが映画にしていることを、playR はゲームにします。</strong> Steam・Epic・GOG・Amazon・EA・Ubisoft・Battle.net をひとつのライブラリに集約。さらに GeForce NOW と Amazon Luna でストリーミングプレイも。どのゲームもひとつのアプリから起動でき、詳細情報をまとめて確認し、ウィッシュリストの価格を追えます。PC でも、コントローラーによる全画面表示でも。</p>
+  <p class="sub reveal d3"><strong>自宅でホストする、ユニバーサルゲームランチャー。</strong> メディアサーバーが映画に対して果たす役割を、playR はゲームに対して果たします。Steam、Epic、GOG、Amazon、EA、Ubisoft、Battle.net、Riot Games を 1 つのライブラリにまとめ、GeForce NOW や Amazon Luna でストリーミングできるゲームも並べます。すべてのゲームを 1 つのアプリから起動し、詳細情報を確認し、ウィッシュリストの価格を追えます。PC でも、コントローラーの全画面でも。</p>
   <div class="cta reveal d4">
     <a href="#download" class="btn btn-primary">Windows 版をダウンロード</a>
     <a href="#tv" class="btn">▶ TV モードを見る</a>
@@ -374,6 +383,7 @@
     <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L6.5 18h2.3l1.4-3.8h3.6L15.2 18h2.3L12 2zm0 3.8 1.3 3.4h-2.6L12 5.8z"/><path d="M5.5 20.5c3.8-1.6 9.5-1.8 13 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>Amazon</b>
     <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.635 6.162l-5.928 9.377H4.24l1.508-2.3h4.024l1.474-2.335H2.264L.79 13.239h2.156L0 17.84h12.072l4.563-7.259 1.652 2.66h-1.401l-1.473 2.299h4.347l1.473 2.3H24zm-11.461.107L3.7 8.604l9.52-.035 1.474-2.3z"/></svg>EA</b>
     <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.561 11.988C23.301-.304 6.954-4.89.656 6.634c.282.206.661.477.943.672a11.747 11.747 0 00-.976 3.067 11.885 11.885 0 00-.184 2.071C.439 18.818 5.621 24 12.005 24c6.385 0 11.556-5.17 11.556-11.556v-.455zm-20.27 2.06c-.152 1.246-.054 1.636-.054 1.788l-.282.098c-.108-.206-.37-.932-.488-1.908C2.163 10.308 4.7 6.96 8.57 6.33c3.544-.52 6.937 1.68 7.728 4.758l-.282.098c-.087-.087-.228-.336-.77-.878-4.281-4.281-11.002-2.32-11.956 3.74zm11.002 2.081a3.145 3.145 0 01-2.59 1.355 3.15 3.15 0 01-3.155-3.155 3.159 3.159 0 012.927-3.144c1.018-.043 1.972.51 2.416 1.398a2.58 2.58 0 01-.455 2.95c.293.205.575.4.856.595zm6.58.12c-1.669 3.782-5.106 5.766-8.77 5.712-7.034-.347-9.083-8.466-4.38-11.393l.207.206c-.076.108-.358.325-.791 1.182-.51 1.041-.672 2.081-.607 2.732.369 5.67 8.314 6.83 11.045 1.214C21.057 8.217 11.822.401 3.626 6.374l-.184-.184C5.599 2.808 9.816 1.3 13.837 2.309c6.147 1.55 9.453 7.956 7.035 13.94z"/></svg>Ubisoft</b>
+    <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.458.86 0 7.093l3.353 12.761 2.552-.313-.701-8.024.838-.373 1.447 8.202 4.361-.535-.775-8.857.83-.37 1.591 9.025 4.412-.542-.849-9.708.84-.374 1.74 9.87L24 17.318V3.5Zm.316 19.356.222 1.256L24 23.14v-4.18l-10.22 1.256Z"/></svg>Riot Games</b>
     <b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.94 8.296C15.9 6.892 11.534 6 7.426 6.332c.206-1.36.714-2.308 1.548-2.508 1.148-.275 2.4.48 3.594 1.854.782.102 1.71.28 2.355.429C12.747 2.013 9.828-.282 7.607.565c-1.688.644-2.553 2.97-2.448 6.094-2.2.468-3.915 1.3-5.013 2.495-.056.065-.181.227-.137.305.034.058.146-.008.194-.04 1.274-.89 2.904-1.373 5.027-1.676.303 3.333 1.713 7.56 4.055 10.952-1.28.502-2.356.536-2.946-.087-.812-.856-.784-2.318-.19-4.04a26.764 26.764 0 0 1-.807-2.254c-2.459 3.934-2.986 7.61-1.143 9.11 1.402 1.14 3.847.725 6.502-.926 1.505 1.672 3.083 2.74 4.667 3.094.084.015.287.043.332-.034.034-.06-.08-.124-.131-.149-1.408-.657-2.64-1.828-3.964-3.515 2.735-1.929 5.691-5.263 7.457-8.988 1.076.86 1.64 1.773 1.398 2.595-.336 1.131-1.615 1.84-3.403 2.185a27.697 27.697 0 0 1-1.548 1.826c4.634.16 8.08-1.22 8.458-3.565.286-1.786-1.295-3.696-4.053-5.17.696-2.139.832-4.04.346-5.588-.029-.08-.106-.27-.196-.27-.068 0-.067.13-.063.187.135 1.547-.263 3.2-1.062 5.19zm-8.533 9.869c-1.96-3.145-3.09-6.849-3.082-10.594 3.702-.124 7.474.748 10.714 2.627-1.743 3.269-4.385 6.1-7.633 7.966h.001z"/></svg>Battle.net</b>
   </div>
 
@@ -390,13 +400,29 @@
   </div>
 </div></header>
 
+<!-- Écrite pour répondre aux formulations réellement tapées dans un moteur de
+     recherche (« lanceur de jeux universel », « tout-en-un », « gestionnaire de
+     bibliothèque », « auto-hébergé ») : le reste de la page est écrit en langue
+     de marque, et n'en contenait aucune. -->
+<section id="cest-quoi" style="padding-top:40px"><div class="wrap">
+  <span class="kicker">ひとことで言うと</span>
+  <h2>ユニバーサルゲームランチャー、<br>ホストするのは自宅。</h2>
+  <div class="dfn">
+    <p><b>ユニバーサルゲームランチャー</b> — 複数ストアのライブラリを 1 つに統合するオールインワンのソフト。Steam、Epic、GOG と開いて回る代わりに、playR を開くだけで済みます。</p>
+    <p><b>ゲームライブラリマネージャー</b> — 評価、リスト、ステータス、フィルター、並べ替え、統計まで。数百本規模のコレクションを、ただ並べるのではなく整理するための道具が揃っています。</p>
+    <p><b>セルフホスト</b> — ライブラリは自分の機材の上に置きます。Windows PC でも、Docker が動くもの（NAS、CasaOS、Proxmox）なら何でも構いません。ほかのパソコンはそこへ接続し、第三者のサービスを経由するものは一切ありません。</p>
+    <p><b>マルチスクリーン</b> — PC ではキーボードとマウスで、リビングのテレビではコンソールモード（全画面・コントローラー操作）で、同じライブラリを扱えます。</p>
+    <p class="full"><b>エミュレーション非対応（意図的に）</b> — playR はエミュレーターも ROM も扱いません。対象は公式ストアで購入したゲームだけです。 <a href="comparatif.html" style="color:var(--cyan)">レトロが目的なら、比較表がふさわしい選択肢を示します。</a></p>
+  </div>
+</div></section>
+
 <section id="features"><div class="wrap">
   <span class="kicker">できること</span>
   <h2>ゲーマーのための<br>ライブラリ。</h2>
   <div class="bento">
-    <div class="card glow c-6"><span class="ico">🧩</span><h3>7 つのストアとクラウドゲーミングを、ひとつのライブラリに</h3>
-      <p>Steam（ファミリーライブラリを含む）・Epic・GOG・Amazon・EA・Ubisoft Connect・Battle.net をひとつの場所にまとめ、同じゲームは自動でグループ化。GeForce NOW と Amazon Luna で遊べるゲームもここで見分けられ、インストールなしで playR から直接起動できます。7 つのランチャーを開く代わりに、ひとつのライブラリを見るだけです。</p></div>
-    <div class="card c-2"><span class="ico">📺</span><h3>TV モード</h3>
+    <div class="card glow c-6"><span class="ico">🧩</span><h3>PC ストア 8 つ、コンソール 3 つ、クラウドゲーミングを 1 つのライブラリに</h3>
+      <p>Steam（ファミリーライブラリを含む）、Epic、GOG、Amazon、EA、Ubisoft Connect、Battle.net、Riot Games を 1 か所にまとめ、似たゲームは自動でグループ化します。その隣には Xbox、PlayStation、Nintendo のライブラリも並びます。GeForce NOW や Amazon Luna で遊べるゲームも判別され、インストール不要のまま playR から起動できます。ランチャーを 1 つずつ開く代わりに、見るのは 1 つのライブラリだけです。</p></div>
+    <div class="card c-2"><span class="ico">📺</span><h3>TV モード：本格的なコンソールモード</h3>
       <p>コンソール機のように、コントローラーだけで操作できる全画面インターフェース。リビングのテレビでも、PC のモニターでも。「今夜は何を遊ぶ？」のランダム抽選や、スライドショーのスクリーンセーバーも備えています。</p></div>
     <div class="card c-2"><span class="ico">🚀</span><h3>プレイとインストール</h3>
       <p>ライブラリから直接、ゲームをインストールして起動できます。複数のストアで持っているゲームは、どちらから起動するかを playR が選ばせてくれます。</p></div>
@@ -424,9 +450,9 @@
 </div></section>
 
 <section id="tv" style="padding-top:40px"><div class="wrap">
-  <span class="kicker">TV モード</span>
+  <span class="kicker">TV モード · コンソールモード</span>
   <h2>ソファと、コントローラーと、<br>大画面。</h2>
-  <p class="lead">コンソール機のように、コントローラーだけで操作できる全画面インターフェース。大きなカバーアート、カルーセル、詳細なゲーム情報、並べ替えと絞り込み。リビングのテレビでも PC のモニターでも、マウスに一切触れずにゲームを起動できます。何を遊ぶか決まらないときは「今夜は何を遊ぶ？」が、表示中の一覧からランダムに 1 本選びます。そして数分間操作しないでいると、playR はスクリーンショットのスライドショーに切り替わります。音楽付きです。</p>
+  <p class="lead">本格的なコンソールモードです。大きなジャケット、カルーセル、詳細ページ、並べ替えとフィルターまで、すべてコントローラーだけで操作できる全画面インターフェース。リビングのテレビでも PC のモニターでも、マウスに触れずにゲームを起動できます。何を遊ぶか迷ったら「今夜は何を遊ぶ？」が表示中の一覧から 1 本を抽選。数分放置すると、音楽つきのスクリーンショット・スライドショーに切り替わります。</p>
   <div class="shot" style="margin-top:48px">
     <div class="shot-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
       <span class="shot-title">playR — TV モード</span></div>
@@ -465,7 +491,7 @@
     <div class="step"><div class="n">2</div><h3>クライアント</h3>
       <p>各 PC に playR アプリをインストールするだけ。この PC 上でもネットワーク上でも、ライブラリを自動で見つけます。</p></div>
     <div class="step"><div class="n">3</div><h3>アカウント連携</h3>
-      <p>ご自身の認証情報で各プラットフォーム（Steam、Epic、GOG、Amazon、EA、Ubisoft、Battle.net）を連携。ログイン画面が開くので、各サービスにログインするだけです。同期すれば、ライブラリが表示されます。</p></div>
+      <p>各プラットフォーム（Steam、Epic、GOG、Amazon、EA、Ubisoft、Battle.net）をご自身のアカウントで接続します。Riot Games だけは何も要りません — クライアントが入っていれば自動でゲームが並びます。ほかはログイン画面が開き、各社のサイトで認証すれば完了。同期すればライブラリが表示されます。</p></div>
   </div>
 </div></section>
 
@@ -508,6 +534,7 @@
   <svg class="logo" viewBox="0 36 512 180" role="img" aria-label="playR"><g transform="translate(4,89)"><path d="M22.5 0 h 26 v 22.5 h 22.5 v 26 h -22.5 v 22.5 h -26 v -22.5 h -22.5 v -26 h 22.5 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(114,0)" fill="#f1f5f9"><path d="M34 88 C 32 122, 30 162, 29 202 C 29 207, 33.5 207, 35 201 C 39 160, 45 118, 49 88 C 50.5 80, 34.5 80, 34 88 Z"/><path d="M47 92 C 73 83, 102 96, 100 119 C 98 142, 66 152, 39 144 C 32.5 142, 35 131, 42 133.5 C 65 140, 88 132, 89 117 C 90 102, 70 94, 49 101 C 42.5 103, 40.5 90, 47 92 Z"/><path d="M112 50 C 110 90, 108 128, 107 159 C 107 164.5, 111.5 164.5, 113.5 158 C 118 128, 122.5 88, 126 50 C 127 42, 111.5 42, 112 50 Z"/><path d="M191 97 C 166 86, 138 99, 138 123 C 138 146, 163 156, 187 145 C 192.5 142.5, 196.5 149.5, 191 152.5 C 160 167, 125 151, 125 123 C 125 94, 161 77, 193 89.5 C 199.5 92, 197 99.5, 191 97 Z"/><path d="M192 92 C 190 116, 187 139, 187 157 C 187 163.5, 178 163.5, 178 157 C 178 136, 180.5 112, 183 92 C 184 84, 193 84, 192 92 Z"/><path d="M213 96 C 217 119, 225 141, 236 155.5 C 239.5 160, 231.5 166.5, 227 160.5 C 213.5 143, 205 119, 202 97 C 201 89, 212 88, 213 96 Z"/><path d="M264 94 C 256 125, 245 157, 233 183 C 227 196, 216.5 205.5, 205 208 C 198.5 209.5, 197 200.5, 204 198.5 C 214 196, 221.5 186, 227 175 C 239 148, 247.5 120, 253.5 93 C 255.5 85, 266 86, 264 94 Z"/><path d="M290 44 C 294 44, 298 47, 297 53 C 295 65, 290 78, 285 87 C 282.5 91, 277.5 88, 280 84 C 284 76, 287 64, 288 51 C 288.5 45.5, 287 44, 290 44 Z" fill="var(--violet)"/></g><g transform="skewX(-13) translate(132,0)" fill="var(--violet)"><path d="M300 44 C 296 90, 292 132, 290 164 C 290 170, 279.5 170, 280.5 163.5 C 284 129, 288 87, 292 42 C 293 34, 301 36, 300 44 Z"/><path d="M296 47 C 331 40, 375 47, 377 74 C 379 99, 345 111, 310 109 C 303.5 109, 304.5 97.5, 311 97.5 C 341 99.5, 366 91, 364 74.5 C 362 58, 328 52.5, 298 58 C 291.5 59, 289.5 46, 296 47 Z"/><path d="M317 104 C 338 125, 359 148, 376 169 C 380 174, 370.5 181.5, 365.5 175 C 348 152, 327 129, 308.5 110.5 C 303 105, 312 98.5, 317 104 Z"/></g></svg>
   <div style="display:flex;gap:26px;flex-wrap:wrap">
     <a href="#features">機能</a><a href="#download">ダウンロード</a>
+    <a href="comparatif.html">比較</a><a href="faq.html">よくある質問</a>
     <a href="docs.html">ドキュメント</a><a href="https://github.com/ixelia-fr/playR-releases">GitHub</a>
     <a href="../mentions-legales.html">法的事項</a>
   </div>
