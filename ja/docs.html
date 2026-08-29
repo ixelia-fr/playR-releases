@@ -391,12 +391,20 @@ docker run -d --name playr --restart unless-stopped \
     <p>どちらの方法でも結果は同じです。アクセス権を保持するのは <strong>サーバー</strong> で、以降は自動で再同期します。</p>
 
     <h2 id="gog-help">GOG</h2>
-    <p>GOG にはログイン用の API がないため、読み取るのは <strong>公開プロフィール</strong>.</p>
+    <p>GOG est le seul à ne proposer aucune connexion de compte: il n'existe pas de bouton « se connecter avec GOG ». playR lit donc votre <strong>公開プロフィール</strong>, exactement comme le ferait un visiteur. C'est un peu plus long à mettre en place, une seule fois.</p>
+    <h3>Rendre son profil public</h3>
     <ol>
-      <li>まず <a href="https://www.gog.com" target="_blank" rel="noopener">gog.com</a>で、プロフィールを <strong>公開</strong> に設定します（プロフィール設定 → プライバシー）。</li>
-      <li>プロフィールの <strong>ゲーム</strong> タブを開き、次のような URL をコピーします: <code>https://www.gog.com/u/PSEUDO/games</code>.</li>
-      <li>それを ⚙ 設定 → GOG に貼り付けて、次をクリック → <strong>同期</strong>.</li>
+      <li>まず <a href="https://www.gog.com" target="_blank" rel="noopener">gog.com</a>, cliquez sur votre <strong>avatar</strong> en haut à droite, puis sur <strong>Commandes et paramètres</strong>.</li>
+      <li>Dans <strong>Confidentialité</strong>, passez votre profil et vos jeux sur <strong>Public</strong>.</li>
     </ol>
+    <h3>Récupérer l'adresse de son onglet JEUX</h3>
+    <ol>
+      <li>Cliquez de nouveau sur votre <strong>avatar</strong>, puis sur <strong>Votre profil</strong>.</li>
+      <li>Sur la page qui s'ouvre, cliquez sur l'onglet <strong>ゲーム</strong> (à côté de Fil d'actualité, Profil, Amis, Avis).</li>
+      <li>Copiez l'adresse affichée par le navigateur: elle ressemble à <code>https://www.gog.com/u/VOTRE-PSEUDO/games</code>.</li>
+      <li>Collez-la dans ⚙ Paramètres → GOG, puis cliquez <strong>Synchroniser GOG</strong>.</li>
+    </ol>
+    <div class="box warn"><strong>Un profil resté privé ne remonte aucun jeu — et rien ne vous le dit.</strong> GOG répond alors une page vide, que playR ne peut pas distinguer d'une bibliothèque réellement vide. Si la synchro annonce zéro jeu, c'est presque toujours ça: repassez par l'étape 1.</div>
 
     <h2 id="amazon-help">Amazon Games</h2>
     <p>Amazon は単純なトークンを提供していません。ライブラリは Windows のセッションで暗号化されているため、読み取れるのは <strong>ご自身の PC 上だけ</strong>です。playR が自動で処理します。</p>

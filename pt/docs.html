@@ -391,12 +391,20 @@ docker run -d --name playr --restart unless-stopped \
     <p>O resultado é o mesmo nos dois casos: é o <strong>servidor</strong> que guarda o acesso e volta a sincronizar sozinho depois.</p>
 
     <h2 id="gog-help">GOG</h2>
-    <p>A GOG não tem API de início de sessão: lemos o seu <strong>perfil público</strong>.</p>
+    <p>GOG est le seul à ne proposer aucune connexion de compte: il n'existe pas de bouton « se connecter avec GOG ». playR lit donc votre <strong>perfil público</strong>, exactement comme le ferait un visiteur. C'est un peu plus long à mettre en place, une seule fois.</p>
+    <h3>Rendre son profil public</h3>
     <ol>
-      <li>Em <a href="https://www.gog.com" target="_blank" rel="noopener">gog.com</a>, torne o seu perfil <strong>público</strong> (Definições do perfil → Privacidade).</li>
-      <li>Abra o separador <strong>JOGOS</strong> do seu perfil e copie o URL, do tipo <code>https://www.gog.com/u/PSEUDO/games</code>.</li>
-      <li>Cole-o em ⚙ Definições → GOG → <strong>Sincronizar</strong>.</li>
+      <li>Em <a href="https://www.gog.com" target="_blank" rel="noopener">gog.com</a>, cliquez sur votre <strong>avatar</strong> en haut à droite, puis sur <strong>Commandes et paramètres</strong>.</li>
+      <li>Dans <strong>Confidentialité</strong>, passez votre profil et vos jeux sur <strong>Public</strong>.</li>
     </ol>
+    <h3>Récupérer l'adresse de son onglet JEUX</h3>
+    <ol>
+      <li>Cliquez de nouveau sur votre <strong>avatar</strong>, puis sur <strong>Votre profil</strong>.</li>
+      <li>Sur la page qui s'ouvre, cliquez sur l'onglet <strong>JOGOS</strong> (à côté de Fil d'actualité, Profil, Amis, Avis).</li>
+      <li>Copiez l'adresse affichée par le navigateur: elle ressemble à <code>https://www.gog.com/u/VOTRE-PSEUDO/games</code>.</li>
+      <li>Collez-la dans ⚙ Paramètres → GOG, puis cliquez <strong>Synchroniser GOG</strong>.</li>
+    </ol>
+    <div class="box warn"><strong>Un profil resté privé ne remonte aucun jeu — et rien ne vous le dit.</strong> GOG répond alors une page vide, que playR ne peut pas distinguer d'une bibliothèque réellement vide. Si la synchro annonce zéro jeu, c'est presque toujours ça: repassez par l'étape 1.</div>
 
     <h2 id="amazon-help">Amazon Games</h2>
     <p>A Amazon não fornece um token simples: a sua biblioteca está cifrada com a sua sessão Windows, pelo que só pode ser lida <strong>no seu PC</strong>. O playR trata disso sozinho.</p>
