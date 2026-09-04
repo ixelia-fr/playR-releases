@@ -123,6 +123,15 @@
     td:first-child{color:var(--ink);font-weight:600;font-size:15px}
   }
 </style>
+<!-- Mesure d'audience (Matomo, sans cookie) et numéro de version affiché.
+     Deux fichiers SÉPARÉS volontairement : un bloqueur de publicité écarte le
+     premier, jamais le second — or le numéro de version doit rester affiché à
+     côté du bouton « Télécharger » dans tous les cas.
+     `defer` : les deux scripts lisent le DOM au démarrage (sections, boutons).
+     Chemin ABSOLU : les pages de langue vivent un cran plus bas, alors que les
+     fichiers d'assets restent à la racine (même raison que les icônes). -->
+<script src="/assets/version.js" defer></script>
+<script src="/assets/mesure-audience.js" defer></script>
   <link rel="canonical" href="https://playrgameslauncher.com/ru/docs.html">
   <link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/docs.html">
   <link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/docs.html">

@@ -110,6 +110,15 @@
     th,td{padding:11px 12px}
   }
 </style>
+<!-- Mesure d'audience (Matomo, sans cookie) et numéro de version affiché.
+     Deux fichiers SÉPARÉS volontairement : un bloqueur de publicité écarte le
+     premier, jamais le second — or le numéro de version doit rester affiché à
+     côté du bouton « Télécharger » dans tous les cas.
+     `defer` : les deux scripts lisent le DOM au démarrage (sections, boutons).
+     Chemin ABSOLU : les pages de langue vivent un cran plus bas, alors que les
+     fichiers d'assets restent à la racine (même raison que les icônes). -->
+<script src="/assets/version.js" defer></script>
+<script src="/assets/mesure-audience.js" defer></script>
   <link rel="canonical" href="https://playrgameslauncher.com/nl/comparatif.html">
   <link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/comparatif.html">
   <link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/comparatif.html">
@@ -378,18 +387,5 @@
     <a href="docs.html" class="btn btn-ghost">Bekijk de documentatie</a>
   </div>
 </main>
-
-<script>
-  // Numéro de version lu sur la dernière release publiée — même mécanique que
-  // l'accueil, pour ne pas avoir à retoucher la page à chaque publication.
-  fetch('https://api.github.com/repos/ixelia-fr/playR-releases/releases/latest')
-    .then((r) => (r.ok ? r.json() : null))
-    .then((rel) => {
-      const v = rel && rel.tag_name && rel.tag_name.replace(/^desktop-v?/, '');
-      if (!v) return;
-      document.querySelectorAll('[data-version]').forEach((el) => { el.textContent = ` (v${v})`; });
-    })
-    .catch(() => {});
-</script>
 </body>
 </html>

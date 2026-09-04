@@ -303,6 +303,15 @@
     .note{font-size:11.5px;padding:16px}
   }
 </style>
+<!-- Mesure d'audience (Matomo, sans cookie) et numéro de version affiché.
+     Deux fichiers SÉPARÉS volontairement : un bloqueur de publicité écarte le
+     premier, jamais le second — or le numéro de version doit rester affiché à
+     côté du bouton « Télécharger » dans tous les cas.
+     `defer` : les deux scripts lisent le DOM au démarrage (sections, boutons).
+     Chemin ABSOLU : les pages de langue vivent un cran plus bas, alors que les
+     fichiers d'assets restent à la racine (même raison que les icônes). -->
+<script src="/assets/version.js" defer></script>
+<script src="/assets/mesure-audience.js" defer></script>
   <link rel="canonical" href="https://playrgameslauncher.com/nl/">
   <link rel="alternate" hreflang="fr" href="https://playrgameslauncher.com/">
   <link rel="alternate" hreflang="en" href="https://playrgameslauncher.com/en/">
@@ -554,18 +563,6 @@
     });
   });
 
-  // Numéro de version affiché à côté du bouton de téléchargement. Il est lu sur la
-  // dernière release publiée (tag `desktop-vX.Y.Z`) plutôt qu'écrit en dur : sinon il
-  // faudrait penser à retoucher le site à chaque publication, et il finirait périmé.
-  // En cas d'échec (hors ligne, quota GitHub), on n'affiche simplement rien.
-  fetch('https://api.github.com/repos/ixelia-fr/playR-releases/releases/latest')
-    .then((r) => (r.ok ? r.json() : null))
-    .then((rel) => {
-      const v = rel && rel.tag_name && rel.tag_name.replace(/^desktop-v?/, '');
-      if (!v) return;
-      document.querySelectorAll('[data-version]').forEach((el) => { el.textContent = ` (v${v})`; });
-    })
-    .catch(() => {});
 
   // Génère des faux covers colorés pour la démo.
   const pal=[['#7c3aed','#312e81'],['#0891b2','#0c4a6e'],['#db2777','#500724'],['#ea580c','#431407'],

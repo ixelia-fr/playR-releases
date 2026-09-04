@@ -37,10 +37,27 @@
   ul{padding-left:22px}
   .intro{font-size:17px;margin-top:14px}
   .maj{font-size:13px;color:#6b6880;margin-top:8px}
+  h3{font-family:var(--display);font-weight:600;font-size:17px;color:var(--ink);margin:26px 0 8px}
   .box{border:1px solid var(--line);border-radius:14px;padding:20px 22px;background:rgba(255,255,255,.028);margin:18px 0}
+  /* Case de refus de la mesure d'audience : une vraie case a cocher, pas un
+     lien vers un formulaire tiers -- l'etat doit se lire d'un coup d'oeil. */
+  .refus{display:flex;align-items:flex-start;gap:12px;cursor:pointer}
+  .refus input{margin-top:4px;width:18px;height:18px;accent-color:var(--violet);flex:none}
+  .refus span{color:var(--muted);font-size:15.5px}
+  .refus b{color:var(--ink);font-weight:600}
+  #refus-etat{font-size:13.5px;color:var(--cyan);margin:10px 0 0 30px;min-height:1.2em}
   .box p:last-child{margin-bottom:0}
   footer{border-top:1px solid var(--line);padding:44px 0;color:var(--muted);font-size:14px}
 </style>
+<!-- Mesure d'audience (Matomo, sans cookie) et numéro de version affiché.
+     Deux fichiers SÉPARÉS volontairement : un bloqueur de publicité écarte le
+     premier, jamais le second — or le numéro de version doit rester affiché à
+     côté du bouton « Télécharger » dans tous les cas.
+     `defer` : les deux scripts lisent le DOM au démarrage (sections, boutons).
+     Chemin ABSOLU : les pages de langue vivent un cran plus bas, alors que les
+     fichiers d'assets restent à la racine (même raison que les icônes). -->
+<script src="/assets/version.js" defer></script>
+<script src="/assets/mesure-audience.js" defer></script>
 </head>
 <body>
 
@@ -88,11 +105,36 @@
   <p>IXELIA ne saurait être tenue responsable des dommages directs ou indirects résultant de l'accès ou de l'utilisation du site ou du logiciel, ni du contenu des sites tiers accessibles via des liens.</p>
 
   <h2>6. Données personnelles (RGPD)</h2>
-  <p><strong>Ce site ne collecte aucune donnée personnelle.</strong> Il ne comporte ni formulaire, ni compte, ni cookie de mesure d'audience, ni traceur publicitaire.</p>
-  <p>Deux services tiers sont sollicités par votre navigateur lors de l'affichage de la page, ce qui leur transmet votre adresse IP :</p>
+  <p><strong>Ce site ne dépose aucun cookie</strong> — ni de mesure d'audience, ni publicitaire — et ne comporte ni formulaire, ni compte à créer.</p>
+
+  <h3>Mesure d'audience</h3>
+  <p>La fréquentation du site est mesurée avec <strong>Matomo</strong>, une solution européenne d'analyse d'audience. Les données de ce site sont hébergées <strong>en Allemagne</strong> (Matomo Cloud, Francfort) et exploitées par IXELIA seule&nbsp;: <strong>elles ne sont ni revendues, ni cédées à un tiers, ni recoupées avec un autre site.</strong></p>
+  <p>La mesure fonctionne <strong>sans aucun cookie</strong>, et votre adresse IP est tronquée avant tout enregistrement — elle n'est jamais conservée en entier. Elle entre à ce titre dans le cadre de l'exemption de consentement prévue par la CNIL pour la mesure d'audience&nbsp;: c'est ce qui nous permet de vous épargner un bandeau cookies.</p>
+  <p>Voici <strong>tout</strong> ce qui est enregistré, et rien d'autre&nbsp;:</p>
+  <ul>
+    <li>la page consultée, la date, l'heure et le temps que vous y passez&nbsp;;</li>
+    <li>la langue dans laquelle la page vous est affichée, et celle de votre navigateur&nbsp;;</li>
+    <li>votre pays et votre région, déduits de l'adresse IP tronquée&nbsp;;</li>
+    <li>le type d'appareil, la taille de l'écran, le navigateur et le système d'exploitation&nbsp;;</li>
+    <li>la page qui vous a amené ici (moteur de recherche ou site référent)&nbsp;;</li>
+    <li>ce que vous faites sur la page&nbsp;: jusqu'où vous l'avez descendue, quelles sections vous avez traversées, quels boutons et liens vous avez cliqués, et le téléchargement de l'installeur avec le numéro de version proposé.</li>
+  </ul>
+  <p><strong>Aucune de ces données ne permet de vous identifier</strong>, et rien n'est conservé d'une visite à l'autre&nbsp;: sans cookie, un retour trois jours plus tard est compté comme une nouvelle visite. Un jeton de session, effacé à la fermeture de l'onglet, retient uniquement si vous êtes arrivé depuis l'application playR. Les journaux détaillés sont supprimés au bout de 24 mois.</p>
+
+  <h3>Refuser la mesure d'audience</h3>
+  <p>Vous pouvez la couper à tout moment. L'effet est immédiat et vaut pour ce navigateur&nbsp;: plus rien n'est envoyé, et le script de mesure n'est même plus chargé.</p>
+  <div class="box">
+    <label class="refus"><input type="checkbox" id="refus-mesure">
+      <span><b>Ne pas mesurer ma visite.</b> Votre choix est retenu dans ce navigateur, sur ce site uniquement.</span></label>
+    <p id="refus-etat"></p>
+  </div>
+
+  <h3>Services tiers</h3>
+  <p>Trois services sont sollicités par votre navigateur lors de l'affichage de la page, ce qui leur transmet votre adresse IP&nbsp;:</p>
   <ul>
     <li><strong>GitHub</strong> — hébergement du site, et lecture du numéro de la dernière version publiée ;</li>
-    <li><strong>Bunny Fonts</strong> (BunnyWay d.o.o., Slovénie) — chargement des polices d'écriture, depuis des serveurs européens et sans traçage.</li>
+    <li><strong>Bunny Fonts</strong> (BunnyWay d.o.o., Slovénie) — chargement des polices d'écriture, depuis des serveurs européens et sans traçage&nbsp;;</li>
+    <li><strong>Matomo Cloud</strong> (InnoCraft Ltd) — la mesure d'audience décrite ci-dessus, que vous pouvez refuser.</li>
   </ul>
   <p><strong>Le logiciel playR, lui, fonctionne chez vous.</strong> Votre bibliothèque et vos identifiants de plateformes sont stockés sur votre propre serveur, et ne sont transmis à IXELIA à aucun moment. Les recherches de métadonnées et de prix passent par un service d'IXELIA qui ne reçoit que le titre du jeu concerné, sans aucune donnée vous identifiant.</p>
   <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition sur vos données. Pour l'exercer : <a href="mailto:contact@ixelia.fr">contact@ixelia.fr</a>. Vous pouvez également introduire une réclamation auprès de la <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>.</p>
@@ -107,5 +149,43 @@
   <a href="https://ixelia.fr" target="_blank" rel="noopener" style="color:var(--muted)">IXELIA</a>
 </div></footer>
 
+<script>
+  // Branchement de la case « Ne pas mesurer ma visite ».
+  // `mesure-audience.js` est chargé en `defer` : il s'exécute AVANT
+  // `DOMContentLoaded`, donc `window.playrMesure` est forcément là quand ce
+  // bloc tourne — sauf s'il a été bloqué, cas traité juste en dessous.
+  document.addEventListener('DOMContentLoaded', () => {
+    const case_ = document.getElementById('refus-mesure');
+    const etat = document.getElementById('refus-etat');
+    if (!case_ || !etat) return;
+
+    // Script de mesure absent = bloqué par une extension ou par le navigateur.
+    // Prétendre que la case sert à quelque chose serait mentir : on dit ce qui
+    // se passe réellement, et on désactive la case.
+    if (!window.playrMesure) {
+      case_.checked = true;
+      case_.disabled = true;
+      etat.textContent = 'Votre navigateur bloque déjà le script de mesure : rien n’est envoyé.';
+      return;
+    }
+
+    const rafraichir = (dire) => {
+      const refusee = window.playrMesure.estRefusee();
+      case_.checked = refusee;
+      if (!dire) { etat.textContent = ''; return; }
+      etat.textContent = refusee
+        ? 'C’est noté : plus rien n’est mesuré sur ce navigateur.'
+        : 'La mesure d’audience est réactivée. Merci !';
+    };
+
+    case_.addEventListener('change', () => {
+      if (case_.checked) window.playrMesure.refuser();
+      else window.playrMesure.accepter();
+      rafraichir(true);
+    });
+
+    rafraichir(false);
+  });
+</script>
 </body>
 </html>
